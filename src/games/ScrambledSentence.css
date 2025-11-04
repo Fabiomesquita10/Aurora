@@ -1,0 +1,207 @@
+.scrambled-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.scrambled-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.scrambled-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.scrambled-instruction {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.scrambled-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.scrambled-game-area {
+  margin-top: 30px;
+}
+
+.scrambled-sentence-area {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.scrambled-sentence-area h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.selected-words-container {
+  min-height: 100px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 3px dashed var(--border-soft);
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.selected-words-container:hover {
+  border-color: var(--color-primary);
+}
+
+.empty-hint {
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.selected-word {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.2) 0%, rgba(109, 192, 129, 0.1) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-success);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.selected-word:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(109, 192, 129, 0.3);
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.3) 0%, rgba(109, 192, 129, 0.2) 100%);
+}
+
+.scrambled-words-area {
+  text-align: center;
+}
+
+.scrambled-words-area h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.available-words-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.available-word {
+  padding: 15px 25px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.available-word:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(243, 201, 105, 0.2) 0%, rgba(243, 201, 105, 0.1) 100%);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.available-word:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.scrambled-result {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.scrambled-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.scrambled-result p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 15px 0;
+}
+
+.scrambled-result strong {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.scrambled-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.scrambled-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .scrambled-container {
+    padding: 20px;
+  }
+
+  .selected-word,
+  .available-word {
+    font-size: 1rem;
+    padding: 10px 18px;
+  }
+}
+

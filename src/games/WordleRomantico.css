@@ -1,0 +1,235 @@
+.wordle-container {
+  background: var(--bg-surface);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-soft);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.wordle-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.wordle-header h1 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.wordle-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.wordle-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.wordle-cell {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  background: white;
+  color: #333;
+}
+
+.wordle-cell.typing {
+  border-color: var(--color-primary);
+  animation: pulse 0.5s ease;
+}
+
+.wordle-cell.correct {
+  background: #6aaa64;
+  color: white;
+  border-color: #6aaa64;
+  transform: scale(1.1);
+}
+
+.wordle-cell.present {
+  background: #c9b458;
+  color: white;
+  border-color: #c9b458;
+  transform: scale(1.1);
+}
+
+.wordle-cell.absent {
+  background: #787c7e;
+  color: white;
+  border-color: #787c7e;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.game-message {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.game-message.success {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--color-success);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-message.error {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--color-error);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-message h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.game-message p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.reset-button {
+  background: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reset-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.keyboard {
+  margin-top: 30px;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.keyboard-key {
+  min-width: 40px;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  background: #d3d6da;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.keyboard-key:hover {
+  background: #b8bac0;
+  transform: scale(1.05);
+}
+
+.keyboard-key:active {
+  transform: scale(0.95);
+}
+
+.keyboard-key.special {
+  min-width: 70px;
+  font-size: 0.75rem;
+  background: #818384;
+  color: white;
+}
+
+.keyboard-key.correct {
+  background: #6aaa64;
+  color: white;
+}
+
+.keyboard-key.present {
+  background: #c9b458;
+  color: white;
+}
+
+.keyboard-key.absent {
+  background: #787c7e;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .wordle-cell {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .keyboard-key {
+    min-width: 30px;
+    height: 45px;
+    font-size: 0.8rem;
+  }
+
+  .keyboard-key.special {
+    min-width: 60px;
+  }
+
+  .wordle-header h1 {
+    font-size: 2rem;
+  }
+}

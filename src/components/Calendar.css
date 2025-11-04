@@ -1,0 +1,284 @@
+.calendar-container {
+  background: var(--bg-surface);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-soft);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.calendar-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: color 0.3s ease;
+}
+
+.calendar-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day.available {
+  background: var(--bg-card);
+  border-color: var(--color-gold);
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+.calendar-day.unlocked {
+  background: var(--bg-card);
+  border-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.calendar-day.unlocked::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, var(--color-gold), var(--bg-card), var(--color-gold));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.calendar-day.unlocked:hover::after {
+  opacity: 0.3;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.calendar-day.locked {
+  background: var(--border-soft);
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: var(--border-soft);
+}
+
+.calendar-day.won {
+  border-color: var(--color-success);
+  border-width: 3px;
+  background: var(--bg-card);
+  box-shadow: 0 0 20px rgba(109, 192, 129, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day.won .day-icon {
+  animation: bounce 0.5s ease;
+  filter: drop-shadow(0 0 8px rgba(243, 201, 105, 0.6));
+}
+
+.calendar-day.today {
+  border-color: var(--color-primary);
+  border-width: 4px;
+  box-shadow: 0 0 20px rgba(229, 72, 77, 0.5), 0 0 30px rgba(243, 201, 105, 0.3);
+}
+
+.day-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.day-icon {
+  font-size: 1.5rem;
+}
+
+.today-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: var(--color-primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.unlock-time {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.game-open-time {
+  font-size: 0.65rem;
+  color: var(--color-gold);
+  margin-top: 3px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.gift-preview {
+  color: var(--text-secondary);
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.game-info {
+  color: var(--text-secondary);
+  margin: 5px 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.day-info {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 2px solid var(--color-gold);
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: slideIn 0.5s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.day-info h3 {
+  margin: 0 0 15px 0;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.gift-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 10px 0;
+}
+
+.gift-description {
+  color: var(--text-secondary);
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.gift-price {
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+.calendar-game {
+  background: var(--bg-surface);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-soft);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.game-header {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(243, 201, 105, 0.2);
+}
+
+.game-header h2 {
+  color: var(--color-primary);
+  margin: 0;
+  font-weight: 700;
+}
+
+.game-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+  }
+
+  .day-number {
+    font-size: 1.4rem;
+  }
+}
+

@@ -1,0 +1,265 @@
+.t9-encoding-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.t9-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.t9-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.t9-instruction {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.t9-example {
+  color: var(--color-gold);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.t9-game-area {
+  margin-bottom: 30px;
+}
+
+.t9-numbers-display-simple {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.t9-numbers-line {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 4px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 4px 15px rgba(243, 201, 105, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.t9-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.t9-input-area label {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.t9-input {
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.t9-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(243, 201, 105, 0.3);
+}
+
+.t9-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.t9-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.t9-hint-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.t9-hint-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.t9-hint {
+  background: var(--bg-card);
+  border: 2px solid var(--color-gold);
+  border-radius: 12px;
+  padding: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
+.t9-submit-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.t9-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(243, 201, 105, 0.2);
+}
+
+.t9-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.t9-success {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.2) 0%, rgba(109, 192, 129, 0.1) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.t9-success h3 {
+  color: var(--color-success);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.t9-answer {
+  margin-top: 15px;
+  font-size: 1.3rem;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.t9-failure {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(229, 72, 77, 0.2) 0%, rgba(229, 72, 77, 0.1) 100%);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.t9-failure h3 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.t9-failure strong {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+
+.t9-help {
+  margin-top: 30px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+.t9-help h4 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.t9-help p {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.t9-help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.t9-help-grid div {
+  background: var(--bg-surface);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  border: 1px solid var(--border-soft);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .t9-encoding-container {
+    padding: 20px;
+  }
+
+  .t9-numbers {
+    gap: 10px;
+  }
+
+  .t9-digit {
+    min-width: 70px;
+    padding: 12px;
+  }
+
+  .t9-digit-number {
+    font-size: 1.5rem;
+  }
+
+  .t9-help-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-03T23:12:35.364Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 23
+    }
+  },
+  {
+    "gameType": "wordle",
+    "day": 1,
+    "date": "2025-11-03T23:12:43.601Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 3
+    }
+  }
+]

@@ -1,0 +1,131 @@
+.daily-wordle-container {
+  background: var(--bg-surface);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-soft);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.daily-wordle-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.daily-wordle-header h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.daily-wordle-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.today-attempts {
+  display: inline-block;
+  background: var(--bg-card);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 10px;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.today-attempts.new {
+  background: var(--bg-card);
+  border: 2px solid var(--color-gold);
+  color: var(--text-primary);
+}
+
+.result-message {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  padding: 15px 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wordle-points-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.wordle-points-info h3 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.wordle-points-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wordle-points-info li {
+  padding: 8px 0;
+  color: #666;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.wordle-points-info li:last-child {
+  border-bottom: none;
+}
+
+.wordle-points-info strong {
+  color: var(--color-gold);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.already-played-message {
+  text-align: center;
+  padding: 40px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  margin-top: 20px;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.already-played-message h3 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.already-played-message p {
+  color: var(--text-secondary);
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

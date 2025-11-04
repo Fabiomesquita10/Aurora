@@ -1,0 +1,326 @@
+.cryptogram-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.cryptogram-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cryptogram-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.cryptogram-instruction {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.cryptogram-hint {
+  color: var(--color-gold);
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+.cryptogram-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.cryptogram-stats .errors {
+  color: var(--color-error);
+}
+
+.cryptogram-game-area {
+  margin-top: 30px;
+}
+
+.cryptogram-text-display {
+  margin-bottom: 30px;
+}
+
+.cryptogram-text-display .label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.text-box {
+  padding: 20px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: 12px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-all;
+}
+
+.text-box.encoded {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.text-box.decoded {
+  color: var(--color-gold);
+}
+
+.cryptogram-char {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+  margin: 0 2px;
+}
+
+.cryptogram-char.mapped {
+  color: var(--color-gold);
+}
+
+.cryptogram-char.empty {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.cryptogram-space {
+  display: inline-block;
+  width: 20px;
+}
+
+.cryptogram-mapping {
+  margin-bottom: 30px;
+}
+
+.cryptogram-mapping h3 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.mapping-note {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.mapping-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mapping-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.encoded-char {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 30px;
+  text-align: center;
+}
+
+.arrow {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.mapping-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid var(--border-soft);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--color-gold);
+  max-width: 50px;
+}
+
+.mapping-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px rgba(243, 201, 105, 0.3);
+}
+
+.mapping-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mapping-input.correct {
+  border-color: var(--color-success);
+  background: rgba(109, 192, 129, 0.1);
+}
+
+.mapping-input.wrong {
+  border-color: var(--color-error);
+  background: rgba(229, 72, 77, 0.1);
+}
+
+.mapping-item.correct {
+  border-color: var(--color-success);
+}
+
+.mapping-item.wrong {
+  border-color: var(--color-error);
+}
+
+.check-mark {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+.cross-mark {
+  color: var(--color-error);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+.cryptogram-submit-button {
+  width: 100%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.cryptogram-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cryptogram-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cryptogram-result {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.cryptogram-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cryptogram-final-text {
+  margin: 25px 0;
+}
+
+.cryptogram-final-text .label {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.cryptogram-final-text .decoded {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 3px;
+}
+
+.cryptogram-result .stats {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 20px 0;
+}
+
+.cryptogram-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.cryptogram-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .cryptogram-container {
+    padding: 20px;
+  }
+
+  .text-box {
+    font-size: 1.4rem;
+    padding: 15px;
+  }
+
+  .mapping-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+}
+

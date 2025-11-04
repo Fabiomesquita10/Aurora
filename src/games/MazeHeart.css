@@ -1,0 +1,179 @@
+.maze-heart-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.maze-heart-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.maze-heart-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.maze-heart-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.maze-heart-canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 15px;
+  overflow: auto;
+}
+
+.maze-heart-canvas {
+  border: 3px solid var(--border-soft);
+  border-radius: 10px;
+  cursor: default;
+  background: #ecf0f1;
+  touch-action: none;
+  user-select: none;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: border-color 0.2s ease;
+}
+
+.maze-heart-canvas:hover {
+  border-color: var(--color-primary);
+}
+
+.maze-heart-start-screen {
+  text-align: center;
+  padding: 40px;
+}
+
+.maze-heart-start-screen h2 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.maze-heart-instruction {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.maze-heart-size-info {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.maze-heart-start-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #d68910 100%);
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(243, 201, 105, 0.3);
+}
+
+.maze-heart-start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(243, 201, 105, 0.5);
+}
+
+.maze-heart-start-button:active {
+  transform: translateY(-1px);
+}
+
+.maze-heart-result {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.maze-heart-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.maze-heart-result p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 15px 0;
+}
+
+.maze-heart-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.maze-heart-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .maze-heart-container {
+    padding: 20px;
+  }
+
+  .maze-heart-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .maze-heart-stats {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .maze-heart-canvas-wrapper {
+    padding: 10px;
+  }
+}
+

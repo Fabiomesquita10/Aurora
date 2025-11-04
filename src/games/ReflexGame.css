@@ -1,0 +1,340 @@
+.reflex-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.reflex-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.reflex-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.reflex-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 15px 0;
+  font-weight: 600;
+  min-height: 30px;
+}
+
+.reflex-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.reflex-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.reflex-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.reflex-score {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
+
+.reflex-game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.reflex-box {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 4px solid var(--border-soft);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.reflex-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.reflex-box.active {
+  border-color: var(--color-gold);
+  box-shadow: 0 8px 30px rgba(243, 201, 105, 0.4);
+  animation: pulse-active 0.5s ease infinite;
+}
+
+.reflex-waiting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  animation: countdown-pulse 1s ease infinite;
+}
+
+.reflex-waiting-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  animation: blink 1s ease infinite;
+}
+
+.reflex-active-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.flash {
+  animation: flash 0.3s ease;
+}
+
+.reflex-last-time {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  min-height: 30px;
+}
+
+.reflex-start-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.reflex-start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.reflex-instructions {
+  margin-top: 30px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+.reflex-instructions h4 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.reflex-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reflex-instructions li {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.reflex-instructions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.reflex-result {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.reflex-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.reflex-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.perfect-score,
+.good-score,
+.ok-score {
+  font-size: 1.2rem;
+  margin: 20px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.perfect-score {
+  color: var(--color-gold);
+}
+
+.reflex-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.reflex-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes countdown-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes flash {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-active {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .reflex-container {
+    padding: 20px;
+  }
+
+  .reflex-box {
+    width: 250px;
+    height: 250px;
+  }
+
+  .reflex-active-text {
+    font-size: 2rem;
+  }
+
+  .countdown-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+  }
+
+  .reflex-stats {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

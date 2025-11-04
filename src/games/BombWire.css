@@ -1,0 +1,621 @@
+.bomb-wire-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.bomb-wire-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.bomb-wire-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.bomb-wire-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.bomb-wire-timer {
+  font-size: 1.3rem;
+  font-weight: 700;
+  animation: pulse 1s ease infinite;
+}
+
+.bomb-wire-attempts {
+  color: var(--text-secondary);
+}
+
+.bomb-wire-start-screen {
+  text-align: center;
+  padding: 40px;
+}
+
+.bomb-wire-start-screen h2 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.bomb-wire-instruction {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.bomb-wire-info {
+  background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.bomb-wire-info p {
+  margin: 10px 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.bomb-wire-rules {
+  background: var(--bg-card);
+  border: 2px solid var(--color-gold);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.bomb-wire-rules h3 {
+  color: var(--color-gold);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.bomb-wire-rules ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bomb-wire-rules li {
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+.bomb-wire-rules li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+}
+
+.no-rules {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.bomb-wire-start-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #d68910 100%);
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(243, 201, 105, 0.3);
+}
+
+.bomb-wire-start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(243, 201, 105, 0.5);
+}
+
+.bomb-wire-start-button:active {
+  transform: translateY(-1px);
+}
+
+.bomb-wire-game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.bomb-wire-bomb {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 5px solid #1a252f;
+  position: relative;
+  animation: bomb-pulse 2s ease infinite;
+}
+
+.bomb-display {
+  text-align: center;
+}
+
+.bomb-timer-display {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px currentColor;
+  animation: timer-blink 1s ease infinite;
+}
+
+.bomb-wire-rules-display {
+  background: var(--bg-card);
+  border: 2px solid var(--color-gold);
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.rules-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.bomb-wire-rules-display h3 {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.hint-button {
+  background: linear-gradient(135deg, var(--color-gold) 0%, #d68910 100%);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(243, 201, 105, 0.3);
+}
+
+.hint-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(243, 201, 105, 0.5);
+}
+
+.hints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.hint-display {
+  background: linear-gradient(135deg, rgba(243, 201, 105, 0.2) 0%, rgba(243, 201, 105, 0.1) 100%);
+  border: 2px solid var(--color-gold);
+  border-radius: 12px;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.hint-text {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 600;
+  flex: 1;
+}
+
+.close-hint-button {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.close-hint-button:hover {
+  background: var(--color-error);
+  border-color: var(--color-error);
+  color: white;
+}
+
+.hint-limit {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.bomb-wire-math-modal {
+  background: var(--bg-card);
+  border: 3px solid var(--color-primary);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.bomb-wire-math-modal h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.math-question {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin: 30px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.math-input-area {
+  margin: 30px 0;
+}
+
+.math-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 3px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.math-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(243, 201, 105, 0.3);
+}
+
+.math-error {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  margin: 10px 0 0 0;
+  font-weight: 600;
+}
+
+.math-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.math-submit-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.math-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.math-cancel-button {
+  background: white;
+  border: 2px solid var(--text-secondary);
+  color: var(--text-secondary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.math-cancel-button:hover {
+  background: var(--text-secondary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.bomb-wire-rules-display ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bomb-wire-rules-display li {
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+.bomb-wire-rules-display li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+}
+
+.bomb-wire-wires {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.bomb-wire-button {
+  background: var(--bg-card);
+  border: 4px solid var(--wire-color);
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.bomb-wire-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-width: 5px;
+}
+
+.bomb-wire-button:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.bomb-wire-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.bomb-wire-button.selected {
+  border-width: 6px;
+  box-shadow: 0 0 20px var(--wire-color);
+}
+
+.bomb-wire-button.correct {
+  animation: correct-pulse 0.5s ease;
+  border-color: var(--color-success);
+  background: rgba(109, 192, 129, 0.1);
+}
+
+.bomb-wire-button.wrong {
+  animation: wrong-shake 0.5s ease;
+  border-color: var(--color-error);
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.wire-visual {
+  width: 60px;
+  height: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.wire-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.wire-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.wire-number {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.bomb-wire-result {
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.bomb-wire-result.success {
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+}
+
+.bomb-wire-result.error {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.05) 100%);
+  border: 2px solid var(--color-error);
+}
+
+.bomb-wire-result h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.bomb-wire-result.success h2 {
+  color: var(--color-success);
+}
+
+.bomb-wire-result.error h2 {
+  color: var(--color-error);
+}
+
+.bomb-wire-result p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 15px 0;
+}
+
+.bomb-wire-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.bomb-wire-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bomb-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes timer-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes correct-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes wrong-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .bomb-wire-container {
+    padding: 20px;
+  }
+
+  .bomb-wire-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .bomb-wire-stats {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .bomb-wire-bomb {
+    width: 150px;
+    height: 150px;
+  }
+
+  .bomb-timer-display {
+    font-size: 2rem;
+  }
+
+  .bomb-wire-wires {
+    max-width: 100%;
+  }
+}
+

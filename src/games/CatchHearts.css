@@ -1,0 +1,252 @@
+.catch-hearts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.catch-hearts-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.catch-hearts-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.catch-hearts-instruction {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.catch-hearts-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.stat-value {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.catch-hearts-game-area {
+  margin-top: 30px;
+}
+
+.catch-hearts-start-screen {
+  text-align: center;
+  padding: 60px 30px;
+  background: var(--bg-card);
+  border-radius: 15px;
+  border: 2px solid var(--border-soft);
+}
+
+.catch-hearts-start-screen p {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.catch-hearts-hint {
+  color: var(--color-gold);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.catch-hearts-start-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  margin-top: 30px;
+}
+
+.catch-hearts-start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.catch-hearts-play-area {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(135deg, rgba(243, 201, 105, 0.1) 0%, rgba(243, 201, 105, 0.05) 100%);
+  border: 3px solid var(--color-primary);
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.catch-heart {
+  position: absolute;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: heartPulse 1s ease-in-out infinite;
+  user-select: none;
+}
+
+.catch-heart:hover {
+  transform: scale(1.2);
+}
+
+.catch-heart.normal {
+  animation: heartPulse 1s ease-in-out infinite;
+}
+
+.catch-heart.fast {
+  animation: heartPulseFast 0.5s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes heartPulseFast {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.catch-hearts-retry {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(243, 201, 105, 0.1);
+  border-radius: 10px;
+}
+
+.catch-hearts-retry p {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.catch-hearts-try-again-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.catch-hearts-try-again-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.catch-hearts-result {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.catch-hearts-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.catch-hearts-result p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 15px 0;
+}
+
+.catch-hearts-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.catch-hearts-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .catch-hearts-container {
+    padding: 20px;
+  }
+
+  .catch-hearts-play-area {
+    height: 400px;
+  }
+
+  .catch-heart {
+    font-size: 2.5rem;
+  }
+
+  .catch-hearts-stats {
+    gap: 15px;
+  }
+}

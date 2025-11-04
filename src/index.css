@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Light theme (default) */
+  --bg-primary: #FFF9F3;
+  --bg-surface: rgba(255, 255, 255, 0.7);
+  --bg-card: #FFE8CC;
+  --border-soft: #FFD43B;
+  --text-primary: #5B3A29;
+  --text-secondary: #666;
+  --color-primary: #C92A2A;
+  --color-primary-hover: #F03E3E;
+  --color-gold: #FFD43B;
+  --color-success: #4caf50;
+  --color-error: #ff6b6b;
+  --snow-opacity: 0.4;
+}
+
+body.dark-theme {
+  /* Dark theme */
+  --bg-primary: #0E1116;
+  --bg-surface: #171A21;
+  --bg-card: #171A21;
+  --border-soft: #2A2F3A;
+  --text-primary: #F3EDE7;
+  --text-secondary: #C9C2BA;
+  --color-primary: #E5484D;
+  --color-primary-hover: #F2555A;
+  --color-gold: #F3C969;
+  --color-success: #6DC081;
+  --color-error: #FF6B6B;
+  --snow-opacity: 0.25;
+}
+
+* {
+  font-family: 'Poppins', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efeito de neve discreto */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 85% 75%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 45% 60%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px);
+  background-size: 300px 300px, 250px 250px, 280px 280px, 320px 320px;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 25% 75%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--snow-opacity);
+  animation: snowFloat 20s linear infinite;
+}
+
+@keyframes snowFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}

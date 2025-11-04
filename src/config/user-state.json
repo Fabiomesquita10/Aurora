@@ -1,0 +1,28 @@
+{
+  "points": 0,
+  "spentPoints": 5,
+  "unlockedDays": [
+    1
+  ],
+  "wonGames": [
+    {
+      "gameId": "daily-game",
+      "day": 1,
+      "date": "2025-11-03T23:12:35.859Z",
+      "won": true,
+      "attempts": 1
+    },
+    {
+      "gameId": "wordle-extra",
+      "day": 1,
+      "date": "2025-11-03T23:12:44.095Z",
+      "won": true,
+      "attempts": 1
+    }
+  ],
+  "purchasedItems": [
+    1
+  ],
+  "lastDailyDate": null,
+  "dailyWordleAttempts": []
+}

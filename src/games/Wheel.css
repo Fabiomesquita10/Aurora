@@ -1,0 +1,243 @@
+.wheel-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.wheel-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.wheel-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.wheel-instruction {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.wheel-game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.wheel-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 30px auto;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  z-index: 10;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  border: 8px solid var(--color-gold);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 5px var(--bg-surface),
+    inset 0 0 50px rgba(243, 201, 105, 0.4);
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  overflow: visible;
+}
+
+.wheel-separator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform-origin: 50% 100%;
+  z-index: 2;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.wheel.spinning {
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.wheel-sector-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform-origin: 0 200px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.sector-label-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.sector-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
+  line-height: 1;
+}
+
+.wheel-spin-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  margin-top: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.wheel-spin-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(243, 201, 105, 0.3);
+}
+
+.wheel-spin-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: scale(0.95);
+}
+
+.wheel-spin-button.spinning {
+  animation: pulse-spin 1s ease-in-out infinite;
+}
+
+@keyframes pulse-spin {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.wheel-result {
+  margin-top: 30px;
+  text-align: center;
+  animation: slideIn 0.5s ease;
+  width: 100%;
+}
+
+.result-content {
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.2) 0%, rgba(109, 192, 129, 0.1) 100%);
+  border: 3px solid var(--color-success);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(109, 192, 129, 0.3);
+}
+
+.result-content h3 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.result-prize {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.result-icon {
+  font-size: 4rem;
+  animation: bounce-result 0.6s ease;
+}
+
+.result-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.result-description {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+@keyframes bounce-result {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .wheel-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  .wheel-sector-label {
+    width: 110px;
+    height: 110px;
+    transform-origin: 0 150px;
+  }
+
+  .sector-emoji {
+    font-size: 1.5rem;
+  }
+
+  .sector-label-text {
+    font-size: 0.65rem;
+  }
+
+  .wheel-spin-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,308 @@
+.riddles-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.riddles-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.riddles-header h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.riddles-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.riddles-category {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.riddles-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px auto;
+  max-width: 400px;
+}
+
+.riddles-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.riddles-question-area {
+  margin-top: 30px;
+}
+
+.riddles-question-box {
+  background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.riddles-question-box:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.riddles-question {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 600;
+}
+
+.riddles-hint-box {
+  background: linear-gradient(135deg, rgba(243, 201, 105, 0.1) 0%, rgba(243, 201, 105, 0.05) 100%);
+  border: 2px solid var(--color-gold);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hint-label {
+  color: var(--color-gold);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.hint-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  flex: 1;
+}
+
+.riddles-input-area {
+  margin: 25px 0;
+}
+
+.riddles-input-area label {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.riddles-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.riddles-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(243, 201, 105, 0.3);
+}
+
+.riddles-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.riddles-hint-button {
+  background: linear-gradient(135deg, var(--color-gold) 0%, #d68910 100%);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(243, 201, 105, 0.3);
+}
+
+.riddles-hint-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(243, 201, 105, 0.5);
+}
+
+.riddles-hint-button:active {
+  transform: translateY(0);
+}
+
+.riddles-submit-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.riddles-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.riddles-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.riddles-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.riddles-result {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(109, 192, 129, 0.1) 0%, rgba(109, 192, 129, 0.05) 100%);
+  border: 2px solid var(--color-success);
+  border-radius: 20px;
+  animation: slideIn 0.5s ease;
+}
+
+.riddles-result h2 {
+  color: var(--color-success);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.riddles-score {
+  margin: 25px 0;
+}
+
+.score-text {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.score-percentage {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin: 15px 0;
+  text-shadow: 0 2px 8px rgba(243, 201, 105, 0.3);
+}
+
+.perfect-score,
+.good-score,
+.ok-score {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.perfect-score {
+  color: var(--color-gold);
+}
+
+.good-score {
+  color: var(--color-success);
+}
+
+.riddles-reset-button {
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.riddles-reset-button:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.riddles-error {
+  text-align: center;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 2px solid var(--color-error);
+  border-radius: 20px;
+  color: var(--color-error);
+}
+
+.riddles-error p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .riddles-container {
+    padding: 20px;
+  }
+
+  .riddles-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .riddles-question {
+    font-size: 1.1rem;
+  }
+
+  .riddles-actions {
+    flex-direction: column;
+  }
+
+  .riddles-hint-button,
+  .riddles-submit-button {
+    width: 100%;
+  }
+}
