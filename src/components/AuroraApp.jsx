@@ -12,7 +12,7 @@ import './AuroraApp.css'
 function AuroraApp() {
   const [activeTab, setActiveTab] = useState('calendar')
   const gameState = useGameState()
-  const { points, resetGame, wonGames, DEV_MODE, toggleDevMode } = gameState
+  const { points, resetGame, wonGames, DEV_MODE } = gameState
   const [showFinalPhrase, setShowFinalPhrase] = useState(false)
   const allWordlesCompleted = checkAllWordlesCompleted(wonGames || [])
   const [showResetConfirm, setShowResetConfirm] = useState(false)
@@ -60,22 +60,17 @@ function AuroraApp() {
             <span className="points-label">pontos</span>
           </div>
           <button 
-            className={`dev-mode-toggle ${DEV_MODE ? 'active' : ''}`}
-            onClick={toggleDevMode}
-            title={DEV_MODE ? 'Modo Desenvolvedor' : 'Modo Utilizador'}
-          >
-            {DEV_MODE ? '🔧' : '👤'}
-          </button>
-          <button 
             className="theme-toggle" 
             onClick={() => setIsDarkMode(!isDarkMode)} 
             title={isDarkMode ? 'Modo claro' : 'Modo escuro'}
           >
             {isDarkMode ? '☀️' : '🌙'}
           </button>
-          <button className="reset-button" onClick={() => setShowResetConfirm(true)} title="Reset">
-            🔄
-          </button>
+          {DEV_MODE && (
+            <button className="reset-button" onClick={() => setShowResetConfirm(true)} title="Reset">
+              🔄
+            </button>
+          )}
         </div>
       </header>
 
@@ -152,7 +147,9 @@ function AuroraApp() {
             </div>
           </div>
         )}
-        {activeTab === 'calendar' && <Calendar />}
+        {activeTab === 'calendar' && (
+          <Calendar onNavigateToPresents={() => setActiveTab('presents')} />
+        )}
         {activeTab === 'presents' && <Presents />}
         {activeTab === 'shop' && <Shop />}
         {activeTab === 'wordles' && <Wordles />}

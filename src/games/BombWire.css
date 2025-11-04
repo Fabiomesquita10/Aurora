@@ -1,11 +1,19 @@
 .bomb-wire-container {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 40px;
   background: var(--bg-surface);
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bomb-wire-container {
+    padding: 30px;
+    max-width: 100%;
+  }
 }
 
 .bomb-wire-header {
@@ -145,6 +153,27 @@
   gap: 30px;
 }
 
+.bomb-wire-main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .bomb-wire-main-content.with-math {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .bomb-wire-wires {
+    flex: 0 0 auto;
+  }
+}
+
 .bomb-wire-bomb {
   width: 200px;
   height: 200px;
@@ -270,6 +299,17 @@
   font-style: italic;
 }
 
+.bomb-wire-math-sidebar {
+  background: var(--bg-card);
+  border: 3px solid var(--color-primary);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  min-width: 300px;
+  max-width: 400px;
+  flex: 0 0 auto;
+}
+
 .bomb-wire-math-modal {
   background: var(--bg-card);
   border: 3px solid var(--color-primary);
@@ -280,6 +320,14 @@
   margin: 0 auto;
 }
 
+@media (max-width: 1023px) {
+  .bomb-wire-math-sidebar {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+  }
+}
+
 .bomb-wire-math-modal h2 {
   color: var(--color-primary);
   font-size: 2rem;
@@ -287,12 +335,56 @@
   font-weight: 700;
 }
 
+.math-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.math-sidebar-header h3 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.math-close-button {
+  background: var(--bg-surface);
+  border: 2px solid var(--color-error);
+  color: var(--color-error);
+  padding: 5px 12px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.math-close-button:hover {
+  background: var(--color-error);
+  color: white;
+}
+
 .math-question {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--color-gold);
-  margin: 30px 0;
+  margin: 20px 0;
   font-family: 'Courier New', monospace;
+}
+
+@media (min-width: 1024px) {
+  .math-question {
+    font-size: 2.5rem;
+    margin: 30px 0;
+  }
 }
 
 .math-input-area {

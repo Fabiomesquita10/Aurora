@@ -11,7 +11,7 @@ function BombWire({
   onComplete, 
   onGameAttempt 
 }) {
-  const [gameStatus, setGameStatus] = useState('waiting') // waiting, playing, won, lost, showing-hint
+  const [gameStatus, setGameStatus] = useState('waiting') // waiting, playing, won, lost
   const [timeLeft, setTimeLeft] = useState(maxTime)
   const [attempts, setAttempts] = useState(0)
   const [startTime, setStartTime] = useState(null)
@@ -292,7 +292,7 @@ function BombWire({
     
     setCurrentMathQuestion(selectedQuestion)
     setHintRule(associatedRule)
-    setGameStatus('showing-hint')
+    // Não mudar o gameStatus - manter em 'playing' para ver as opções
     setMathAnswer('')
     setMathError('')
   }
@@ -340,7 +340,7 @@ function BombWire({
         setUnlockedRules(prev => [...prev, hintRule])
       }
       
-      setGameStatus('playing')
+      // Manter gameStatus como 'playing'
       setCurrentMathQuestion(null)
       setHintRule(null)
       setMathAnswer('')
@@ -411,46 +411,7 @@ function BombWire({
     )
   }
 
-  if (gameStatus === 'showing-hint') {
-    return (
-      <div className="bomb-wire-container">
-        <div className="bomb-wire-math-modal">
-          <h2>🧮 Resolve a Conta</h2>
-          <p className="math-question">{currentMathQuestion?.question} = ?</p>
-          <div className="math-input-area">
-            <input
-              type="number"
-              className="math-input"
-              value={mathAnswer}
-              onChange={(e) => {
-                setMathAnswer(e.target.value)
-                setMathError('')
-              }}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') handleMathSubmit()
-              }}
-              placeholder="Resposta"
-              autoFocus
-            />
-            {mathError && <p className="math-error">{mathError}</p>}
-          </div>
-          <div className="math-actions">
-            <button onClick={handleMathSubmit} className="math-submit-button">
-              Submeter
-            </button>
-            <button onClick={() => {
-              setGameStatus('playing')
-              setCurrentMathQuestion(null)
-              setMathAnswer('')
-              setMathError('')
-            }} className="math-cancel-button">
-              Cancelar
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  // Não renderizar estado separado - mostrar pergunta ao lado quando existir
 
   if (gameStatus === 'won') {
     return (
@@ -512,7 +473,7 @@ function BombWire({
         <div className="bomb-wire-rules-display">
           <div className="rules-header">
             <h3>Dicas:</h3>
-            {mathQuestions.length > 0 && activeHints.length < 3 && (
+            {mathQuestions.length > 0 && activeHints.length < 3 && gameStatus === 'playing' && (
               <button onClick={requestHint} className="hint-button">
                 💡 Pedir Dica ({activeHints.length}/3)
               </button>
@@ -539,22 +500,66 @@ function BombWire({
           )}
         </div>
 
-        <div className="bomb-wire-wires">
-          {wires.map((wire) => (
-            <button
-              key={wire.id}
-              className={`bomb-wire-button ${selectedWire === wire.id ? 'selected' : ''} ${showResult && wire.id === correctWire ? 'correct' : ''} ${showResult && selectedWire === wire.id && wire.id !== correctWire ? 'wrong' : ''}`}
-              onClick={() => handleWireCut(wire.id)}
-              disabled={gameStatus !== 'playing'}
-              style={{ '--wire-color': wire.color }}
-            >
-              <div className="wire-visual" style={{ backgroundColor: wire.color }}></div>
-              <div className="wire-info">
-                <span className="wire-name">{wire.name}</span>
-                <span className="wire-number">Número: {wireNumbers?.[wire.id] || '?'}</span>
+        <div className={`bomb-wire-main-content ${currentMathQuestion ? 'with-math' : ''}`}>
+          <div className="bomb-wire-wires">
+            {wires.map((wire) => (
+              <button
+                key={wire.id}
+                className={`bomb-wire-button ${selectedWire === wire.id ? 'selected' : ''} ${showResult && wire.id === correctWire ? 'correct' : ''} ${showResult && selectedWire === wire.id && wire.id !== correctWire ? 'wrong' : ''}`}
+                onClick={() => handleWireCut(wire.id)}
+                disabled={gameStatus !== 'playing' || currentMathQuestion !== null}
+                style={{ '--wire-color': wire.color }}
+              >
+                <div className="wire-visual" style={{ backgroundColor: wire.color }}></div>
+                <div className="wire-info">
+                  <span className="wire-name">{wire.name}</span>
+                  <span className="wire-number">Número: {wireNumbers?.[wire.id] || '?'}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {currentMathQuestion && (
+            <div className="bomb-wire-math-sidebar">
+              <div className="math-sidebar-header">
+                <h3>🧮 Resolve a Conta</h3>
+                <button 
+                  onClick={() => {
+                    setGameStatus('playing')
+                    setCurrentMathQuestion(null)
+                    setMathAnswer('')
+                    setMathError('')
+                  }} 
+                  className="math-close-button"
+                >
+                  ✕
+                </button>
               </div>
-            </button>
-          ))}
+              <p className="math-question">{currentMathQuestion?.question} = ?</p>
+              <div className="math-input-area">
+                <input
+                  type="number"
+                  className="math-input"
+                  value={mathAnswer}
+                  onChange={(e) => {
+                    setMathAnswer(e.target.value)
+                    setMathError('')
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') handleMathSubmit()
+                  }}
+                  placeholder="Resposta"
+                  autoFocus
+                />
+                {mathError && <p className="math-error">{mathError}</p>}
+              </div>
+              <div className="math-actions">
+                <button onClick={handleMathSubmit} className="math-submit-button">
+                  Submeter
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

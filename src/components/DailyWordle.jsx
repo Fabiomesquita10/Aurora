@@ -4,21 +4,29 @@ import { useGameState } from '../utils/gameState'
 import './DailyWordle.css'
 
 function DailyWordle() {
-  const { addPoints, addDailyWordleAttempt, calculateWordlePoints, getTodayWordleAttempts, dailyWordleAttempts } = useGameState()
+  const { addDailyWordleAttempt, calculateWordlePoints, getTodayWordleAttempts, dailyWordleAttempts, addGameAttempt } = useGameState()
   const [showResult, setShowResult] = useState(false)
   const [resultMessage, setResultMessage] = useState('')
   const [hasPlayedToday, setHasPlayedToday] = useState(false)
 
   const todayAttempts = getTodayWordleAttempts()
   const today = new Date().toISOString().split('T')[0]
+  // Usar o dia do mês como identificador para o wordle diário
+  const todayDay = new Date().getDate()
 
   useEffect(() => {
     setHasPlayedToday(todayAttempts !== null)
   }, [todayAttempts, dailyWordleAttempts])
 
+  const handleWordleAttempt = async (gameType, day, gameData) => {
+    // Registar no sistema de gameAttempts para calcular pontos
+    // Converter 'wordle' para 'wordle-daily' para diferenciar do wordle do calendário
+    const dailyGameType = gameType === 'wordle' ? 'wordle-daily' : gameType
+    await addGameAttempt(dailyGameType, day, gameData)
+  }
+
   const handleWordleWin = (attempts) => {
     const points = calculateWordlePoints(attempts)
-    addPoints(points)
     addDailyWordleAttempt(attempts)
     setHasPlayedToday(true)
     setResultMessage(`🎉 Ganhaste ${points} pontos! (${attempts} tentativa${attempts > 1 ? 's' : ''})`)
@@ -66,7 +74,13 @@ function DailyWordle() {
           <p>Volta amanhã para uma nova palavra! 🎯</p>
         </div>
       ) : (
-        <WordleRomantico onWin={handleWordleWin} onComplete={handleWordleComplete} />
+        <WordleRomantico 
+          onWin={handleWordleWin} 
+          onComplete={handleWordleComplete}
+          day={todayDay}
+          onGameAttempt={handleWordleAttempt}
+          calculateWordlePoints={calculateWordlePoints}
+        />
       )}
       
       <div className="wordle-points-info">

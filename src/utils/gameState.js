@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { getAllGifts } from './calendarConfig'
 import { loadGameAttempts, saveGameAttempts, addGameAttempt as saveGameAttempt, clearGameAttempts, removeDuplicateAttempts } from './gameAttemptsStorage'
 import { loadUserState, saveUserState, clearUserState } from './userStateStorage'
+import { createConfigBackup } from './configBackup'
 
 const STORAGE_KEYS = {
   POINTS: 'aurora_points',
@@ -101,6 +102,7 @@ export const useGameState = () => {
   }, []) // Apenas executar uma vez ao montar
 
   // Recalcular pontos quando gameAttempts ou spentPoints mudam
+  // Este useEffect serve como backup caso a atualização direta em addGameAttempt/purchaseItem não funcione
   useEffect(() => {
     const totalScore = state.gameAttempts
       .filter(attempt => attempt.score !== null && attempt.score !== undefined)
@@ -112,7 +114,7 @@ export const useGameState = () => {
     if (calculatedPoints !== state.points) {
       setState(prev => ({ ...prev, points: calculatedPoints }))
     }
-  }, [state.gameAttempts, state.spentPoints])
+  }, [state.gameAttempts, state.spentPoints]) // Usar o array completo para detectar todas as mudanças
 
   // Sincronizar com localStorage quando o estado muda
   useEffect(() => {
@@ -184,18 +186,39 @@ export const useGameState = () => {
     // Verificar se já existe um jogo ganho para este gameId e day
     const existingIndex = state.wonGames.findIndex(g => g.gameId === gameId && g.day === day)
     
+    // Verificar se o jogo foi ganho (para fazer backup)
+    const gameWon = metadata.won !== false && metadata.won !== undefined ? metadata.won : true
+    
     if (existingIndex === -1) {
       // Não existe, adicionar
       setState(prev => ({
         ...prev,
         wonGames: [...prev.wonGames, { gameId, day, date: new Date().toISOString(), won: true, ...metadata }],
       }))
+      
+      // Fazer backup quando um jogo é completado (apenas se ganhou)
+      // O backup será substituído se já existir um para o mesmo dia
+      if (gameWon && day) {
+        createConfigBackup(day).catch(err => {
+          console.warn('Erro ao fazer backup:', err)
+        })
+      }
     } else {
       // Já existe, atualizar apenas se for mais recente ou se não tinha won: true
       setState(prev => {
         const updated = [...prev.wonGames]
         const existing = updated[existingIndex]
-        // Se o novo tem won: true ou o existente não tem, atualizar
+        const wasWon = existing.won === true
+        const isNowWon = metadata.won === true || metadata.won !== false
+        
+        // Fazer backup sempre que um jogo é ganho, mesmo que já tenha sido ganho antes
+        // Isso garante que o backup mais recente substitui o anterior do mesmo dia
+        if (isNowWon && day) {
+          createConfigBackup(day).catch(err => {
+            console.warn('Erro ao fazer backup:', err)
+          })
+        }
+        
         if (metadata.won === true || existing.won !== true) {
           updated[existingIndex] = { ...existing, ...metadata, won: true, date: new Date().toISOString() }
         }
@@ -205,11 +228,21 @@ export const useGameState = () => {
   }
 
   const purchaseItem = (itemId, price) => {
-    setState(prev => ({
-      ...prev,
-      purchasedItems: [...prev.purchasedItems, itemId],
-      spentPoints: (prev.spentPoints || 0) + price, // Adicionar ao total gasto
-    }))
+    setState(prev => {
+      const newSpentPoints = (prev.spentPoints || 0) + price
+      // Recalcular pontos imediatamente
+      const totalScore = prev.gameAttempts
+        .filter(a => a.score !== null && a.score !== undefined)
+        .reduce((sum, a) => sum + (a.score || 0), 0)
+      const calculatedPoints = Math.max(0, totalScore - newSpentPoints)
+      
+      return {
+        ...prev,
+        purchasedItems: [...prev.purchasedItems, itemId],
+        spentPoints: newSpentPoints,
+        points: calculatedPoints, // Atualizar pontos imediatamente
+      }
+    })
   }
 
   const canUnlockDay = (day) => {
@@ -320,13 +353,25 @@ export const useGameState = () => {
       metadata: gameData.metadata || {},
     }
     
+    // Atualizar o estado primeiro (para atualização imediata da UI)
+    setState(prev => {
+      const newAttempts = [...prev.gameAttempts, attempt]
+      // Recalcular pontos imediatamente
+      const totalScore = newAttempts
+        .filter(a => a.score !== null && a.score !== undefined)
+        .reduce((sum, a) => sum + (a.score || 0), 0)
+      const spentPoints = prev.spentPoints || 0
+      const calculatedPoints = Math.max(0, totalScore - spentPoints)
+      
+      return {
+        ...prev,
+        gameAttempts: newAttempts,
+        points: calculatedPoints, // Atualizar pontos imediatamente
+      }
+    })
+    
     // Guardar no ficheiro JSON através do utilitário (atualiza o ficheiro diretamente)
     await saveGameAttempt(attempt)
-    
-    setState(prev => ({
-      ...prev,
-      gameAttempts: [...prev.gameAttempts, attempt],
-    }))
   }
 
   /**
@@ -421,20 +466,34 @@ export const useGameState = () => {
     window.location.reload()
   }
 
-  // Modo desenvolvimento: desbloquear todos os dias
-  // Carregar do localStorage ou usar false como padrão
+  // Modo desenvolvimento: carregar da variável de ambiente VITE_DEV_MODE
+  // Se não estiver definida, usar false como padrão
   const [devMode, setDevMode] = useState(() => {
+    // Primeiro verificar variável de ambiente (definida no build/run)
+    const envDevMode = import.meta.env.VITE_DEV_MODE
+    if (envDevMode !== undefined) {
+      return envDevMode === 'true' || envDevMode === true
+    }
+    // Fallback para localStorage (compatibilidade)
     const saved = localStorage.getItem('aurora_dev_mode')
     return saved === 'true'
   })
 
-  // Guardar no localStorage quando mudar
+  // Guardar no localStorage quando mudar (apenas se não estiver definido por env)
   useEffect(() => {
-    localStorage.setItem('aurora_dev_mode', devMode.toString())
+    const envDevMode = import.meta.env.VITE_DEV_MODE
+    if (envDevMode === undefined) {
+      localStorage.setItem('aurora_dev_mode', devMode.toString())
+    }
   }, [devMode])
 
+  // Função mantida para compatibilidade, mas não faz nada se DEV_MODE vier do env
   const toggleDevMode = () => {
-    setDevMode(prev => !prev)
+    const envDevMode = import.meta.env.VITE_DEV_MODE
+    if (envDevMode === undefined) {
+      setDevMode(prev => !prev)
+    }
+    // Se vier do env, não permite toggle
   }
 
   return {

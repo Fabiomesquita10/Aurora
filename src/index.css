@@ -83,8 +83,15 @@ body::before {
 
 #root {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  width: 100%;
+}
+
+/* Mobile: centralizar conteúdo */
+@media (max-width: 768px) {
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
 }

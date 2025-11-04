@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode dev",
+    "dev:dev": "vite --mode dev",
+    "dev:player": "vite --mode player",
     "build": "vite build",
     "preview": "vite preview"
   },

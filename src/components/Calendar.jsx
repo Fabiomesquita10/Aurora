@@ -18,16 +18,19 @@ import ScrambledSentence from '../games/ScrambledSentence'
 import MazeHeart from '../games/MazeHeart'
 import BombWire from '../games/BombWire'
 import Timeline from '../games/Timeline'
+import PrizeModal from './PrizeModal'
 import './Calendar.css'
 import './GameSelection.css'
 
 const DAYS = Array.from({ length: 25 }, (_, i) => i + 1)
 
-function Calendar() {
+function Calendar({ onNavigateToPresents }) {
   const { unlockedDays, unlockDay, addWonGame, addGameAttempt, addPoints, calculateWordlePoints, DEV_MODE, wonGames } = useGameState()
   const [selectedDay, setSelectedDay] = useState(null)
   const [gameDay, setGameDay] = useState(null)
   const [gameMode, setGameMode] = useState(null) // 'main' ou 'wordle'
+  const [showPrizeModal, setShowPrizeModal] = useState(false)
+  const [prizeDay, setPrizeDay] = useState(null)
 
   // Verificar se pode desbloquear dia (modo dev desbloqueia tudo)
   const canUnlock = (day) => {
@@ -57,13 +60,45 @@ function Calendar() {
       
       // Não dar pontos aqui - os pontos são calculados dinamicamente dos scores guardados
       
-      // Voltar ao calendário após um pequeno delay
-      setTimeout(() => {
+      // Mostrar modal de prémio imediatamente para o jogo principal (não wordle extra)
+      if (gameMode === 'main' || gameMode === null) {
+        // Fechar o jogo imediatamente e mostrar o modal
         setGameDay(null)
         setSelectedDay(null)
         setGameMode(null)
-      }, 2000)
+        setPrizeDay(gameDay)
+        setShowPrizeModal(true)
+      } else {
+        // Para wordle extra, apenas voltar ao calendário
+        setTimeout(() => {
+          setGameDay(null)
+          setSelectedDay(null)
+          setGameMode(null)
+        }, 2000)
+      }
     }
+  }
+
+  const handleClosePrizeModal = () => {
+    setShowPrizeModal(false)
+    setPrizeDay(null)
+    // Voltar ao calendário após fechar o modal
+    setGameDay(null)
+    setSelectedDay(null)
+    setGameMode(null)
+  }
+
+  const handleViewAllPresents = () => {
+    setShowPrizeModal(false)
+    setPrizeDay(null)
+    // Navegar para a página de prémios
+    if (onNavigateToPresents) {
+      onNavigateToPresents()
+    }
+    // Voltar ao calendário
+    setGameDay(null)
+    setSelectedDay(null)
+    setGameMode(null)
   }
 
   const handleGameComplete = (attempts, won) => {
@@ -529,6 +564,14 @@ function Calendar() {
             )
           })()}
         </div>
+      )}
+
+      {showPrizeModal && prizeDay && (
+        <PrizeModal
+          day={prizeDay}
+          onClose={handleClosePrizeModal}
+          onViewAllPresents={handleViewAllPresents}
+        />
       )}
     </div>
   )

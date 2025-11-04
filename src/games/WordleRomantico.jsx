@@ -59,19 +59,19 @@ function WordleRomantico({ targetWord: propTargetWord, day, onWin, onComplete, o
         // Calcular score (pontos ganhos)
         const score = calculateWordlePoints ? calculateWordlePoints(attempts) : null
         
-        // Registar tentativa
+        // Registar tentativa imediatamente (sem delay para atualização mais rápida)
         if (onGameAttempt && day) {
-          setTimeout(() => {
-            onGameAttempt('wordle', day, {
-              won: true,
-              attempts: attempts,
-              errors: 0,
-              score: score,
-              metadata: {
-                timeSeconds: elapsedTime,
-              },
-            })
-          }, 0)
+          onGameAttempt('wordle', day, {
+            won: true,
+            attempts: attempts,
+            errors: 0,
+            score: score,
+            metadata: {
+              timeSeconds: elapsedTime,
+            },
+          }).catch(err => {
+            console.warn('Erro ao registar tentativa:', err)
+          })
         }
         // Chamar callbacks se fornecidos
         if (onWin) {
@@ -84,19 +84,19 @@ function WordleRomantico({ targetWord: propTargetWord, day, onWin, onComplete, o
         setGameStatus('lost')
         const elapsedTime = Math.round((Date.now() - startTime) / 1000) // Tempo em segundos
         
-        // Registar tentativa (perdeu)
+        // Registar tentativa (perdeu) imediatamente
         if (onGameAttempt && day) {
-          setTimeout(() => {
-            onGameAttempt('wordle', day, {
-              won: false,
-              attempts: MAX_ATTEMPTS,
-              errors: MAX_ATTEMPTS,
-              score: null,
-              metadata: {
-                timeSeconds: elapsedTime,
-              },
-            })
-          }, 0)
+          onGameAttempt('wordle', day, {
+            won: false,
+            attempts: MAX_ATTEMPTS,
+            errors: MAX_ATTEMPTS,
+            score: null,
+            metadata: {
+              timeSeconds: elapsedTime,
+            },
+          }).catch(err => {
+            console.warn('Erro ao registar tentativa:', err)
+          })
         }
         // Mesmo falhando, chamar onComplete para registar participação
         if (onComplete) {

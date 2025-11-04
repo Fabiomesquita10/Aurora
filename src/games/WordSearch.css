@@ -1,11 +1,19 @@
 .wordsearch-container {
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 40px;
   background: var(--bg-surface);
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .wordsearch-container {
+    max-width: 100%;
+    padding: 30px;
+  }
 }
 
 .wordsearch-header {
@@ -15,9 +23,15 @@
 
 .wordsearch-header h2 {
   color: var(--color-primary);
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .wordsearch-header h2 {
+    font-size: 2rem;
+  }
 }
 
 .wordsearch-instruction {
@@ -38,6 +52,24 @@
 
 .wordsearch-game-area {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+@media (min-width: 1024px) {
+  .wordsearch-game-area {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .wordsearch-words-list {
+    flex: 0 0 auto;
+    min-width: 250px;
+  }
 }
 
 .wordsearch-words-list {
@@ -47,8 +79,16 @@
 
 .wordsearch-words-list h3 {
   color: var(--text-primary);
-  font-size: 1.2rem;
-  margin-bottom: 15px;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .wordsearch-words-list h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
 }
 
 .words-grid {
@@ -59,14 +99,21 @@
 }
 
 .word-item {
-  padding: 8px 15px;
+  padding: 10px 18px;
   background: var(--bg-card);
   border: 2px solid var(--border-soft);
   border-radius: 8px;
   font-weight: 600;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .word-item {
+    padding: 8px 15px;
+    font-size: 1rem;
+  }
 }
 
 .word-item.found {
@@ -84,6 +131,7 @@
   overflow: hidden;
   background: white;
   user-select: none;
+  margin: 0 auto;
 }
 
 .wordsearch-row {
@@ -91,18 +139,34 @@
 }
 
 .wordsearch-cell {
-  width: 35px;
-  height: 35px;
+  width: 42px;
+  height: 42px;
   border: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s ease;
   background: white;
+}
+
+@media (max-width: 768px) {
+  .wordsearch-cell {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .wordsearch-cell {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
 }
 
 .wordsearch-cell:hover {
@@ -178,17 +242,7 @@
   }
 }
 
-@media (max-width: 768px) {
-  .wordsearch-container {
-    padding: 20px;
-  }
-
-  .wordsearch-cell {
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-  }
-
+@media (max-width: 600px) {
   .words-grid {
     gap: 8px;
   }

@@ -15,23 +15,34 @@ function Presents() {
   )]
   
   const earnedPresents = uniqueWonDays
-    .map(day => ({
-      day: day,
-      gift: DAILY_GIFTS[day] || { 
-        title: `Presente do Dia ${day}`, 
-        description: 'Um presente especial', 
-        points: 10,
-        category: 'Low',
-        estimatedPrice: 0
-      },
-      earned: true,
-      type: 'daily'
-    }))
-    .sort((a, b) => a.day - b.day)
+    .map(day => {
+      // Encontrar o jogo ganho mais recente para este dia
+      const dayGames = wonGames
+        .filter(g => g.gameId === 'daily-game' && g.day === day)
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+      const latestGame = dayGames[0]
+      
+      return {
+        day: day,
+        gift: DAILY_GIFTS[day] || { 
+          title: `Presente do Dia ${day}`, 
+          description: 'Um presente especial', 
+          points: 10,
+          category: 'Low',
+          estimatedPrice: 0
+        },
+        earned: true,
+        type: 'daily',
+        date: latestGame?.date || new Date().toISOString()
+      }
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Ordenar por data mais recente
 
   // Itens comprados na loja
+  // Para itens da loja, precisamos de uma forma de rastrear quando foram comprados
+  // Por enquanto, vamos usar a ordem de compra (últimos itens = mais recentes)
   const shopPresents = purchasedItems
-    .map(itemId => {
+    .map((itemId, index) => {
       const item = SHOP_ITEMS.find(i => i.id === itemId)
       if (!item) return null
       return {
@@ -45,13 +56,15 @@ function Presents() {
         },
         earned: true,
         type: 'shop',
-        purchaseDate: new Date().toISOString()
+        date: new Date(Date.now() - (purchasedItems.length - index) * 1000).toISOString() // Aproximação: itens mais recentes têm timestamp maior
       }
     })
     .filter(Boolean)
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Ordenar por data mais recente
 
-  // Combinar presentes diários e da loja
+  // Combinar presentes diários e da loja, ordenados por data mais recente
   const allPresents = [...earnedPresents, ...shopPresents]
+    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)) // Ordenar todos por data mais recente
 
   const totalPresents = allPresents.length
   const unwrappedPresents = allPresents.filter(p => !p.earned).length

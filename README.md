@@ -11,6 +11,13 @@ npm install
 
 2. Run in development mode:
 ```bash
+# Development mode (with dev tools)
+npm run dev:dev
+
+# Player mode (without dev tools)
+npm run dev:player
+
+# Default (same as dev:dev)
 npm run dev
 ```
 
@@ -154,14 +161,24 @@ src/
 
 ## 💾 Persistence
 
-All data stored in `localStorage`, for now:
-- Points
+All data stored in `localStorage` and JSON files:
+- Points (calculated dynamically from game attempts)
 - Unlocked days
 - Won games
 - Purchased items
 - Daily Wordle attempts
 - Last daily game date
 - Dark mode
+
+**JSON Files** (in `src/config/`):
+- `calendar-config.json` - Calendar and game configuration
+- `game-attempts.json` - All game attempts and scores
+- `user-state.json` - User progress and state
+- `wordle-phrase.json` - Wordle phrases and final message
+
+**Backups** (in `src/config/backups/`):
+- Automatic backups created when games are completed
+- One backup per game day (most recent kept)
 
 ## 📱 Pages/Navigation
 
@@ -189,11 +206,48 @@ Edit `SHOP_ITEMS` in `src/utils/gameState.js`
 The project includes a development mode (DEV_MODE) that allows:
 - Unlock all days
 - Test games in Playground
-- Reset game state
+- Reset game state (button only visible in dev mode)
+
+**Modes:**
+- `npm run dev:dev` - Development mode with dev tools and reset button
+- `npm run dev:player` - Player mode without dev tools (clean interface)
 
 ## 🎯 Special Features
 
+- **Prize Modal**: When a game is completed, a beautiful modal shows the prize won. The player decides when to close it and can navigate directly to the presents page
 - **Final Phrase**: After completing all daily Wordles, a special phrase is revealed
 - **Dark Mode**: Toggle to switch between light and dark theme
 - **Local Persistence**: All progress is automatically saved
-- **Responsive Design**: Interface adaptable to different screen sizes
+- **Auto Backup System**: Automatic backup of config files when games are completed
+  - One backup per game day (keeps the most recent)
+  - Backup is created when either the daily game or wordle extra is completed
+  - If both games are played on the same day, the latest backup replaces the previous one
+  - Backup naming: `backup-YYYY-MM-DDTHH-MM-SS-day-N` (includes backup date and game day)
+  - Keeps last 50 backups automatically
+- **Real-time Points**: Points update immediately when games are completed or items are purchased (no page refresh needed)
+- **Organized Presents**: Presents page shows all prizes ordered by most recent first
+- **Responsive Design**: Interface adaptable to different screen sizes, optimized for desktop use
+- **Desktop Optimized**: Full-width layout for desktop screens, better use of available space
+
+## 🎁 Prize System
+
+When a game is completed:
+1. A modal appears immediately showing the prize details (no game victory screen delay)
+2. Player can choose to:
+   - View all presents (navigates to Presents page)
+   - Continue playing (returns to calendar)
+3. Presents are organized by most recent first
+4. All prizes are automatically saved and backed up
+
+## 💾 Backup System
+
+The application automatically creates backups of all configuration files when games are completed:
+
+- **Backup Trigger**: Created when either the daily game or wordle extra is won
+- **One Backup Per Day**: Only the most recent backup for each game day (1-25) is kept
+- **Backup Naming**: `backup-YYYY-MM-DDTHH-MM-SS-day-N`
+  - Includes the backup creation date/time
+  - Includes the game day number (1-25)
+  - Example: `backup-2024-12-14T10-30-00-day-14`
+- **Automatic Cleanup**: Maintains only the last 50 backups
+- **Location**: `src/config/backups/`
