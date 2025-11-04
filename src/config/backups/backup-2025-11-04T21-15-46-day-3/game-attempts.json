@@ -1,0 +1,70 @@
+[
+  {
+    "gameType": "wordle",
+    "day": 3,
+    "date": "2025-11-04T21:15:45.792Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "wordle",
+    "day": 1,
+    "date": "2025-11-04T21:15:37.626Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "wordle",
+    "day": 2,
+    "date": "2025-11-04T21:15:29.798Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-04T21:15:20.470Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 6
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  }
+]

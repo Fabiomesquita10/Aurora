@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { useGameState } from '../utils/gameState'
 import { canUnlockDay as checkCanUnlockDay, getUnlockTime, formatTimeUntilUnlock } from '../utils/dateUtils'
-import { getDayGift, getDayGame, getGameOpenTime, getDayGameWord, getDayGameNumbers, getDayGamePhrase, getDayGamePrizes, getDayGameQuestions, getDayGameTriviaQuestions, getDayGameRounds, getDayGameRiddles, getDayGameEncodedText, getDayGameDecodedText, getDayGameCipherType, getDayGameCipherRule, getDayGameSudokuPuzzle, getDayGameSudokuSolution, getDayGameSudokuInitial, getDayGameSudokuHint, getDayGameWords, getDayGameGridSize, getDayGameTargetHearts, getDayGameDuration, getDayGameMaxAttempts, getDayGameSentence, getDayGameMazeSize, getDayGameDifficulty, getDayGameCorrectWire, getDayGameRules, getDayGameMaxTime, getDayGameMathQuestions, getDayGameEvents } from '../utils/calendarConfig'
+import { getCurrentProfile } from '../utils/userProfiles'
+import { isAccountActive } from '../utils/accounts'
+import { getDayGift, getDayGame, getGameOpenTime, getDayGameWord, getDayGameNumbers, getDayGamePhrase, getDayGamePrizes, getDayGameQuestions, getDayGameTriviaQuestions, getDayGameRounds, getDayGameRiddles, getDayGameEncodedText, getDayGameDecodedText, getDayGameCipherType, getDayGameCipherRule, getDayGameSudokuPuzzle, getDayGameSudokuSolution, getDayGameSudokuInitial, getDayGameSudokuHint, getDayGameWords, getDayGameGridSize, getDayGameTargetHearts, getDayGameDuration, getDayGameMaxAttempts, getDayGameSentence, getDayGameMazeSize, getDayGameDifficulty, getDayGameCorrectWire, getDayGameRules, getDayGameMaxTime, getDayGameMathQuestions, getDayGameEvents, getDayGameImageUrl, getDayGameNumberOfBalls, getDayGameSequences, getDayGameDoubleReflexRounds, getDayGameDoubleReflexButtons } from '../utils/calendarConfig'
 import { getWordleWordForDay } from '../utils/wordlePhrase'
-import WordleRomantico from '../games/WordleRomantico'
-import T9Encoding from '../games/T9Encoding'
-import Wheel from '../games/Wheel'
-import Quiz from '../games/Quiz'
-import Trivia from '../games/Trivia'
-import ReflexGame from '../games/ReflexGame'
-import MiniRiddles from '../games/MiniRiddles'
-import Cryptogram from '../games/Cryptogram'
-import MiniSudoku from '../games/MiniSudoku'
-import WordSearch from '../games/WordSearch'
-import CatchHearts from '../games/CatchHearts'
-import ScrambledSentence from '../games/ScrambledSentence'
-import MazeHeart from '../games/MazeHeart'
-import BombWire from '../games/BombWire'
-import Timeline from '../games/Timeline'
+import WordleRomantico from '../games/WordleRomantico/WordleRomantico'
+import T9Encoding from '../games/T9Encoding/T9Encoding'
+import Wheel from '../games/Wheel/Wheel'
+import Quiz from '../games/Quiz/Quiz'
+import Trivia from '../games/Trivia/Trivia'
+import ReflexGame from '../games/ReflexGame/ReflexGame'
+import MiniRiddles from '../games/MiniRiddles/MiniRiddles'
+import Cryptogram from '../games/Cryptogram/Cryptogram'
+import MiniSudoku from '../games/MiniSudoku/MiniSudoku'
+import WordSearch from '../games/WordSearch/WordSearch'
+import CatchHearts from '../games/CatchHearts/CatchHearts'
+import ScrambledSentence from '../games/ScrambledSentence/ScrambledSentence'
+import MazeHeart from '../games/MazeHeart/MazeHeart'
+import BombWire from '../games/BombWire/BombWire'
+import Timeline from '../games/Timeline/Timeline'
+import Puzzle from '../games/Puzzle/Puzzle'
+import Simon from '../games/Simon/Simon'
+import DoubleReflex from '../games/DoubleReflex/DoubleReflex'
 import PrizeModal from './PrizeModal'
 import './Calendar.css'
 import './GameSelection.css'
@@ -38,7 +43,23 @@ function Calendar({ onNavigateToPresents }) {
     return checkCanUnlockDay(day) || unlockedDays.includes(day - 1) || day === 1
   }
 
-  const handleDayClick = (day) => {
+  const handleDayClick = async (day) => {
+    // Verificar se está autenticado
+    const profile = getCurrentProfile()
+    if (!profile) {
+      alert('🔒 Por favor, faz login primeiro! Vai à secção "Perfis" para fazer login.')
+      return
+    }
+    
+    // Verificar se a conta está ativa
+    if (profile.accountId) {
+      const active = await isAccountActive(profile.accountId)
+      if (!active) {
+        alert('⚠️ A tua conta não está ativa. Contacta o administrador.')
+        return
+      }
+    }
+    
     if (canUnlock(day)) {
       if (!unlockedDays.includes(day)) {
         unlockDay(day)
@@ -224,6 +245,11 @@ function Calendar({ onNavigateToPresents }) {
     const gameMaxTime = getDayGameMaxTime(gameDay)
     const gameMathQuestions = getDayGameMathQuestions(gameDay)
     const gameEvents = getDayGameEvents(gameDay)
+    const gameImageUrl = getDayGameImageUrl(gameDay)
+    const gameNumberOfBalls = getDayGameNumberOfBalls(gameDay)
+    const gameSequences = getDayGameSequences(gameDay)
+    const gameDoubleReflexRounds = getDayGameDoubleReflexRounds(gameDay)
+    const gameDoubleReflexButtons = getDayGameDoubleReflexButtons(gameDay)
     
     // Verificar se o jogo já foi completado
     const isGameCompleted = (gameId) => {
@@ -427,6 +453,40 @@ function Calendar({ onNavigateToPresents }) {
           return (
             <Timeline
               events={gameEvents}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'puzzle-tiles':
+          return (
+            <Puzzle
+              gridSize={gameGridSize || 3}
+              imageUrl={gameImageUrl}
+              difficulty={gameDifficulty || 'medium'}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'simon':
+          return (
+            <Simon
+              numberOfBalls={gameNumberOfBalls || 4}
+              sequences={gameSequences}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'double-reflex':
+          return (
+            <DoubleReflex
+              rounds={gameDoubleReflexRounds || 10}
+              numberOfButtons={gameDoubleReflexButtons || 9}
               day={gameDay}
               onWin={handleGameWin}
               onComplete={handleGameComplete}

@@ -115,7 +115,7 @@ export function writeJsonPlugin() {
           return
         }
         
-        if ((req.url === '/api/write-game-attempts' || req.url === '/api/write-user-state') && req.method === 'POST') {
+        if ((req.url === '/api/write-game-attempts' || req.url === '/api/write-user-state' || req.url === '/api/write-accounts') && req.method === 'POST') {
           let body = ''
           req.on('data', chunk => {
             body += chunk.toString()
@@ -129,6 +129,8 @@ export function writeJsonPlugin() {
                 filePath = path.join(__dirname, 'src', 'config', 'game-attempts.json')
               } else if (req.url === '/api/write-user-state') {
                 filePath = path.join(__dirname, 'src', 'config', 'user-state.json')
+              } else if (req.url === '/api/write-accounts') {
+                filePath = path.join(__dirname, 'src', 'config', 'accounts.json')
               }
               
               // Garantir que o diretório existe

@@ -49,26 +49,36 @@ src/
 │   ├── Wordles.jsx     # Daily Wordles list
 │   ├── Playground.jsx  # Games playground
 │   ├── FinalPhrase.jsx # Final phrase after completing all Wordles
+│   ├── ProfileManager.jsx # User profile and login management
 │   └── *.css           # Component styles
 │
-├── games/              # Mini-games
-│   ├── WordleRomantico.jsx  # Wordle game (daily)
-│   ├── BombWire.jsx         # Bomb defusal game
-│   ├── CatchHearts.jsx      # Catch hearts
-│   ├── Cryptogram.jsx       # Cryptogram
-│   ├── MazeHeart.jsx        # Heart maze
-│   ├── MiniRiddles.jsx      # Mini-riddles
-│   ├── MiniSudoku.jsx       # 4×4 Sudoku
-│   ├── Quiz.jsx             # Quiz
-│   ├── ReflexGame.jsx       # Reflex game
-│   ├── ScrambledSentence.jsx # Scrambled sentence
-│   ├── T9Encoding.jsx       # T9 encoding
-│   ├── Timeline.jsx          # Timeline
-│   ├── Trivia.jsx           # Trivia
-│   ├── Wheel.jsx            # Wheel of fortune
-│   ├── WordSearch.jsx       # Word search
-│   ├── words.js             # Words dictionary
-│   └── *.css                # Game styles
+├── games/              # Mini-games (organized by game)
+│   ├── WordleRomantico/     # Wordle game (daily)
+│   │   ├── WordleRomantico.jsx
+│   │   ├── WordleRomantico.css
+│   │   ├── words.js
+│   │   └── README.md
+│   ├── BombWire/            # Bomb defusal game
+│   │   ├── BombWire.jsx
+│   │   ├── BombWire.css
+│   │   └── README.md
+│   ├── CatchHearts/         # Catch hearts
+│   ├── Cryptogram/          # Cryptogram
+│   ├── MazeHeart/           # Heart maze
+│   ├── MiniRiddles/         # Mini-riddles
+│   ├── MiniSudoku/          # 4×4 Sudoku
+│   ├── Quiz/                # Quiz
+│   ├── ReflexGame/          # Reflex game
+│   ├── ScrambledSentence/   # Scrambled sentence
+│   ├── T9Encoding/          # T9 encoding
+│   ├── Timeline/            # Timeline
+│   ├── Trivia/              # Trivia
+│   ├── Wheel/               # Wheel of fortune
+│   ├── WordSearch/          # Word search
+│   ├── Puzzle/              # Puzzle tiles (sliding puzzle)
+│   ├── Simon/               # Simon Says (memory sequence game)
+│   └── DoubleReflex/        # Double Reflex (quick reaction game)
+│       (Each game has its own folder with .jsx, .css, and README.md)
 │
 ├── utils/              # Utilities and logic
 │   ├── gameState.js    # Global game state (points, unlocks, etc.)
@@ -76,13 +86,16 @@ src/
 │   ├── calendarConfig.js # Calendar configuration
 │   ├── gameAttemptsStorage.js # Attempt management
 │   ├── userStateStorage.js # User state persistence
+│   ├── userProfiles.js # User profile management
+│   ├── accounts.js     # Account authentication
 │   └── wordlePhrase.js # Wordle logic and final phrase
 │
 ├── config/             # Configuration files
 │   ├── calendar-config.json # Calendar configuration
 │   ├── game-attempts.json   # Game attempts
 │   ├── user-state.json      # User state
-│   └── wordle-phrase.json   # Wordle phrase
+│   ├── wordle-phrase.json   # Wordle phrase
+│   └── accounts.json         # User accounts (login)
 │
 ├── App.jsx             # Root component
 ├── App.css             # App styles
@@ -115,6 +128,9 @@ src/
 13. **Trivia 🎯** - Couple trivia
 14. **Wheel 🎡** - Wheel of fortune
 15. **Word Search 🔍** - Word search
+16. **Puzzle Tiles 🧩** - Sliding puzzle game (configurable difficulty and grid size)
+17. **Simon 🎮** - Memorize and repeat color sequences (progressive difficulty)
+18. **Double Reflex ⚡** - Quick reaction game with multiple buttons
 
 ## 🎁 Gift System
 
@@ -162,7 +178,7 @@ src/
 ## 💾 Persistence
 
 All data stored in `localStorage` and JSON files:
-- Points (calculated dynamically from game attempts)
+- Points (calculated dynamically from game attempts - not stored in user-state.json)
 - Unlocked days
 - Won games
 - Purchased items
@@ -172,13 +188,26 @@ All data stored in `localStorage` and JSON files:
 
 **JSON Files** (in `src/config/`):
 - `calendar-config.json` - Calendar and game configuration
-- `game-attempts.json` - All game attempts and scores
-- `user-state.json` - User progress and state
+- `game-attempts.json` - All game attempts and scores (with accountId for cross-browser sync)
+- `user-state.json` - User progress and state (with accountId for cross-browser sync)
 - `wordle-phrase.json` - Wordle phrases and final message
+- `accounts.json` - User accounts for authentication
 
 **Backups** (in `src/config/backups/`):
 - Automatic backups created when games are completed
 - One backup per game day (most recent kept)
+
+## 👥 Multi-User System
+
+The application supports multiple users with individual progress tracking:
+
+- **Login System**: Manual account authentication via `accounts.json`
+- **Account Activation**: Accounts must be marked as `active: true` to play
+- **Cross-Browser Sync**: User progress syncs across different browsers using `accountId`
+- **Profile Management**: Each account has its own profile with separate progress
+- **No Default Profile**: No default profile is created - users must log in to play
+- **Data Isolation**: Each user's data (points, unlocked days, game attempts) is stored separately
+- **Dynamic Points**: Points are calculated dynamically from all game attempts (not stored in user-state.json)
 
 ## 📱 Pages/Navigation
 
@@ -186,7 +215,8 @@ All data stored in `localStorage` and JSON files:
 2. **Presents** 🎁 - List of unlocked and won gifts
 3. **Shop** 🛍️ - Buy items with earned points
 4. **Wordles** 📝 - List of completed daily Wordles
-5. **Playground** 🎮 - Test all games (development mode)
+5. **Profiles** 👤 - User login and profile management
+6. **Playground** 🎮 - Test all games (development mode)
 
 ## 🔧 Configuration and Development
 
@@ -212,8 +242,28 @@ The project includes a development mode (DEV_MODE) that allows:
 - `npm run dev:dev` - Development mode with dev tools and reset button
 - `npm run dev:player` - Player mode without dev tools (clean interface)
 
+### Adding User Accounts
+Edit `src/config/accounts.json` to add new users:
+```json
+[
+  {
+    "id": "account_1",
+    "username": "admin",
+    "password": "admin",
+    "name": "Administrador",
+    "active": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]
+```
+- `active: true` is required for accounts to be able to play
+- Each account gets its own profile and progress tracking
+
 ## 🎯 Special Features
 
+- **Multi-User Support**: Login system with individual progress tracking per user
+- **Cross-Browser Sync**: User progress automatically syncs across different browsers using `accountId`
+- **Dynamic Points System**: Points are calculated in real-time from all game attempts (not stored statically)
 - **Prize Modal**: When a game is completed, a beautiful modal shows the prize won. The player decides when to close it and can navigate directly to the presents page
 - **Final Phrase**: After completing all daily Wordles, a special phrase is revealed
 - **Dark Mode**: Toggle to switch between light and dark theme
@@ -228,6 +278,7 @@ The project includes a development mode (DEV_MODE) that allows:
 - **Organized Presents**: Presents page shows all prizes ordered by most recent first
 - **Responsive Design**: Interface adaptable to different screen sizes, optimized for desktop use
 - **Desktop Optimized**: Full-width layout for desktop screens, better use of available space
+- **Progressive Difficulty**: Some games (like Simon) increase difficulty progressively (speed increases with each level)
 
 ## 🎁 Prize System
 

@@ -1,0 +1,24 @@
+[
+  {
+    "spentPoints": 0,
+    "unlockedDays": [
+      1,
+      2
+    ],
+    "wonGames": [
+      {
+        "gameId": "daily-game",
+        "day": 1,
+        "date": "2025-11-04T21:15:20.970Z",
+        "won": true,
+        "attempts": 1
+      }
+    ],
+    "purchasedItems": [],
+    "lastDailyDate": null,
+    "dailyWordleAttempts": [],
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  }
+]

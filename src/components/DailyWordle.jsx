@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import WordleRomantico from '../games/WordleRomantico'
+import WordleRomantico from '../games/WordleRomantico/WordleRomantico'
 import { useGameState } from '../utils/gameState'
 import './DailyWordle.css'
 

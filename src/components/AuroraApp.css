@@ -55,6 +55,17 @@
   }
 }
 
+.profile-indicator {
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
 .header-right {
   display: flex;
   align-items: center;

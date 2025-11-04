@@ -5,8 +5,10 @@ import Shop from './Shop'
 import FinalPhrase from './FinalPhrase'
 import Wordles from './Wordles'
 import Playground from './Playground'
+import ProfileManager from './ProfileManager'
 import { useGameState } from '../utils/gameState'
 import { checkAllWordlesCompleted } from '../utils/wordlePhrase'
+import { getCurrentProfile, getAllProfiles, createProfile, setCurrentProfile as setCurrentProfileId } from '../utils/userProfiles'
 import './AuroraApp.css'
 
 function AuroraApp() {
@@ -16,10 +18,22 @@ function AuroraApp() {
   const [showFinalPhrase, setShowFinalPhrase] = useState(false)
   const allWordlesCompleted = checkAllWordlesCompleted(wonGames || [])
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const [currentProfile, setCurrentProfile] = useState(null)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const saved = localStorage.getItem('aurora_dark_mode')
     return saved === 'true'
   })
+
+  useEffect(() => {
+    // Carregar perfil atual (sem criar perfil padrão)
+    const profile = getCurrentProfile()
+    setCurrentProfile(profile)
+    
+    // Se não houver perfil, redirecionar para a secção de perfis para mostrar login
+    if (!profile) {
+      setActiveTab('profiles')
+    }
+  }, [])
 
   // Verificar se todos os wordles foram completados
   useEffect(() => {
@@ -54,6 +68,11 @@ function AuroraApp() {
       <header className="aurora-header">
         <h1>✨ Aurora</h1>
         <div className="header-right">
+          {currentProfile && (
+            <div className="profile-indicator" title={`Perfil: ${currentProfile.name}`}>
+              👤 {currentProfile.name}
+            </div>
+          )}
           <div className="points-display" key={`points-${points}`}>
             <span className="points-icon">💎</span>
             <span className="points-value">{points || 0}</span>
@@ -128,6 +147,12 @@ function AuroraApp() {
         >
           🎮 Playground
         </button>
+        <button
+          className={`nav-button ${activeTab === 'profiles' ? 'active' : ''}`}
+          onClick={() => setActiveTab('profiles')}
+        >
+          👤 Perfis
+        </button>
       </nav>
 
       <main className="aurora-main">
@@ -148,12 +173,82 @@ function AuroraApp() {
           </div>
         )}
         {activeTab === 'calendar' && (
-          <Calendar onNavigateToPresents={() => setActiveTab('presents')} />
+          <>
+            {!currentProfile && (
+              <div style={{ padding: '40px', textAlign: 'center' }}>
+                <h2>🔒 Autenticação Necessária</h2>
+                <p>Por favor, faz login na secção "Perfis" para aceder ao calendário.</p>
+                <button 
+                  onClick={() => setActiveTab('profiles')}
+                  style={{ 
+                    marginTop: '20px', 
+                    padding: '12px 24px', 
+                    background: 'var(--primary-color)', 
+                    color: 'white', 
+                    border: 'none', 
+                    borderRadius: '8px', 
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Ir para Login
+                </button>
+              </div>
+            )}
+            {currentProfile && <Calendar onNavigateToPresents={() => setActiveTab('presents')} />}
+          </>
         )}
-        {activeTab === 'presents' && <Presents />}
-        {activeTab === 'shop' && <Shop />}
-        {activeTab === 'wordles' && <Wordles />}
-        {activeTab === 'playground' && <Playground />}
+        {activeTab === 'presents' && (
+          <>
+            {!currentProfile && (
+              <div style={{ padding: '40px', textAlign: 'center' }}>
+                <h2>🔒 Autenticação Necessária</h2>
+                <p>Por favor, faz login na secção "Perfis" para aceder aos presentes.</p>
+              </div>
+            )}
+            {currentProfile && <Presents />}
+          </>
+        )}
+        {activeTab === 'shop' && (
+          <>
+            {!currentProfile && (
+              <div style={{ padding: '40px', textAlign: 'center' }}>
+                <h2>🔒 Autenticação Necessária</h2>
+                <p>Por favor, faz login na secção "Perfis" para aceder à loja.</p>
+              </div>
+            )}
+            {currentProfile && <Shop />}
+          </>
+        )}
+        {activeTab === 'wordles' && (
+          <>
+            {!currentProfile && (
+              <div style={{ padding: '40px', textAlign: 'center' }}>
+                <h2>🔒 Autenticação Necessária</h2>
+                <p>Por favor, faz login na secção "Perfis" para aceder aos wordles.</p>
+              </div>
+            )}
+            {currentProfile && <Wordles />}
+          </>
+        )}
+        {activeTab === 'playground' && (
+          <>
+            {!currentProfile && (
+              <div style={{ padding: '40px', textAlign: 'center' }}>
+                <h2>🔒 Autenticação Necessária</h2>
+                <p>Por favor, faz login na secção "Perfis" para aceder ao playground.</p>
+              </div>
+            )}
+            {currentProfile && <Playground />}
+          </>
+        )}
+        {activeTab === 'profiles' && (
+          <ProfileManager onProfileChange={(profileId) => {
+            setCurrentProfile(getCurrentProfile())
+            window.location.reload()
+          }} />
+        )}
       </main>
     </div>
   )

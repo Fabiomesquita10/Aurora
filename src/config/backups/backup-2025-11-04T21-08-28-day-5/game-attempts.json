@@ -1,0 +1,111 @@
+[
+  {
+    "gameType": "quiz",
+    "day": 5,
+    "date": "2025-11-04T21:08:27.882Z",
+    "won": true,
+    "attempts": 5,
+    "errors": 3,
+    "score": 2,
+    "reactionTimes": null,
+    "answeredQuestions": [
+      {
+        "questionId": 1,
+        "question": "Onde foi o nosso primeiro encontro?",
+        "selectedAnswer": "a",
+        "correct": true
+      },
+      {
+        "questionId": 2,
+        "question": "Em que dia te mandei mensagem pela primeira vez?",
+        "selectedAnswer": "d",
+        "correct": false
+      },
+      {
+        "questionId": 3,
+        "question": "Onde fomos jantar a primeira vez?",
+        "selectedAnswer": "d",
+        "correct": false
+      },
+      {
+        "questionId": 4,
+        "question": "Onde foram as nossas primeiras ferias juntos?",
+        "selectedAnswer": "d",
+        "correct": true
+      },
+      {
+        "questionId": 5,
+        "question": "Qual foi a minha primeira prenda?",
+        "selectedAnswer": "d",
+        "correct": false
+      }
+    ],
+    "metadata": {},
+    "profileId": "profile_1762290482220_9j19neaw4",
+    "profileName": "Administrador"
+  },
+  {
+    "gameType": "wordle",
+    "day": 3,
+    "date": "2025-11-04T21:05:06.965Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 9
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador"
+  },
+  {
+    "gameType": "wordle",
+    "day": 1,
+    "date": "2025-11-04T21:04:54.461Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 3
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador"
+  },
+  {
+    "gameType": "wordle",
+    "day": 2,
+    "date": "2025-11-04T21:04:32.176Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 3
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador"
+  },
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-04T21:04:25.202Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 6
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador"
+  }
+]

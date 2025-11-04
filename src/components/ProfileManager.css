@@ -1,0 +1,316 @@
+.profile-manager {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.btn-create-profile {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-create-profile:hover {
+  background: var(--primary-hover);
+}
+
+.current-profile {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px solid var(--primary-color);
+}
+
+.current-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 10px;
+}
+
+.current-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.profiles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-item {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.profile-item:hover {
+  border-color: var(--border-color);
+}
+
+.profile-item.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.profile-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-switch,
+.btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-switch {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-switch:hover {
+  background: var(--primary-hover);
+}
+
+.btn-delete {
+  background: #ff4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #cc0000;
+}
+
+.no-profiles {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+.btn-logout {
+  padding: 10px 20px;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  background: #cc0000;
+}
+
+.btn-login {
+  padding: 12px 24px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s;
+  margin-top: 15px;
+}
+
+.btn-login:hover {
+  background: var(--primary-hover);
+}
+
+.no-profile-message {
+  text-align: center;
+  padding: 40px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px dashed var(--border-color);
+}
+
+.no-profile-message p {
+  color: var(--text-secondary);
+  margin: 10px 0;
+}
+
+.current-account {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-left: 10px;
+}
+
+.profile-account {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.login-error {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 6px;
+  border: 1px solid #ff4444;
+}
+
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.modal-content input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modal-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.modal-content input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.modal-content input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.modal-buttons button:first-child {
+  background: var(--primary-color);
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background: var(--primary-hover);
+}
+
+.modal-buttons button:last-child {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+
+.modal-buttons button:last-child:hover {
+  background: var(--text-secondary);
+}
+
+.dark-theme .profile-item {
+  background: var(--card-bg);
+}
+
+.dark-theme .modal-content {
+  background: var(--card-bg);
+}
+

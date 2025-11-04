@@ -3,6 +3,7 @@ import { getAllGifts } from './calendarConfig'
 import { loadGameAttempts, saveGameAttempts, addGameAttempt as saveGameAttempt, clearGameAttempts, removeDuplicateAttempts } from './gameAttemptsStorage'
 import { loadUserState, saveUserState, clearUserState } from './userStateStorage'
 import { createConfigBackup } from './configBackup'
+import { getProfileKey, getCurrentProfile } from './userProfiles'
 
 const STORAGE_KEYS = {
   POINTS: 'aurora_points',
@@ -30,7 +31,9 @@ const safeJsonParse = (value, defaultValue) => {
 // Inicializar estado padrão
 const getInitialState = () => {
   // Tentar carregar do localStorage primeiro (sincronizado com JSON)
-  const stored = localStorage.getItem('aurora_user_state_json')
+  // Usar getProfileKey para obter a chave correta do perfil atual
+  const storageKey = getProfileKey('user_state_json')
+  const stored = localStorage.getItem(storageKey)
   let userState = null
   if (stored) {
     try {
@@ -42,7 +45,18 @@ const getInitialState = () => {
   
   const localPoints = parseInt(localStorage.getItem(STORAGE_KEYS.POINTS) || '0') || 0
   
-  const gameAttempts = loadGameAttempts() // Carregar do JSON
+  // Carregar game attempts (pode ser async, mas para inicialização usamos sync)
+  // Tentar carregar do localStorage primeiro (sincronizado)
+  let gameAttempts = []
+  try {
+    const storageKey = getProfileKey('game_attempts_json')
+    const stored = localStorage.getItem(storageKey)
+    if (stored) {
+      gameAttempts = JSON.parse(stored)
+    }
+  } catch (e) {
+    console.warn('Erro ao carregar game attempts:', e)
+  }
   
   // Calcular pontos totais: soma dos scores dos gameAttempts - pontos gastos na loja
   const spentPoints = userState?.spentPoints ?? 0
@@ -66,40 +80,111 @@ const getInitialState = () => {
 // Hook para usar o estado do jogo
 export const useGameState = () => {
   const [state, setState] = useState(getInitialState)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Carregar estado do JSON quando o componente monta ou quando o perfil muda
+  useEffect(() => {
+    const loadStateFromJSON = async () => {
+      try {
+        setIsLoading(true)
+        
+        // Forçar reload do JSON para garantir que temos os dados mais recentes
+        const userState = await loadUserState(true)
+        
+        // Carregar game attempts do JSON (async)
+        const gameAttempts = await loadGameAttempts()
+        
+        // Calcular pontos totais
+        const spentPoints = userState?.spentPoints ?? 0
+        const totalScore = gameAttempts
+          .filter(attempt => attempt.score !== null && attempt.score !== undefined)
+          .reduce((sum, attempt) => sum + (attempt.score || 0), 0)
+        const calculatedPoints = Math.max(0, totalScore - spentPoints)
+        
+        // Atualizar estado com dados do JSON
+        setState({
+          points: calculatedPoints,
+          spentPoints: spentPoints,
+          unlockedDays: userState?.unlockedDays || [],
+          wonGames: userState?.wonGames || [],
+          purchasedItems: userState?.purchasedItems || [],
+          lastDailyDate: userState?.lastDailyDate || null,
+          dailyWordleAttempts: userState?.dailyWordleAttempts || [],
+          gameAttempts: gameAttempts || []
+        })
+        
+        setIsLoading(false)
+      } catch (e) {
+        console.warn('Erro ao carregar estado do JSON:', e)
+        setIsLoading(false)
+      }
+    }
+    
+    loadStateFromJSON()
+    
+    // Escutar mudanças de perfil via storage event
+    const handleStorageChange = (e) => {
+      if (e.key === 'aurora_current_profile') {
+        loadStateFromJSON()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    
+    // Também escutar mudanças locais (mesma aba)
+    const checkProfileChange = () => {
+      const currentProfile = getCurrentProfile()
+      const lastProfileId = localStorage.getItem('aurora_last_profile_id')
+      if (currentProfile?.id !== lastProfileId) {
+        localStorage.setItem('aurora_last_profile_id', currentProfile?.id || '')
+        loadStateFromJSON()
+      }
+    }
+    
+    // Verificar mudanças de perfil periodicamente
+    const interval = setInterval(checkProfileChange, 500)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, []) // Executar quando o componente monta
 
   // Limpar duplicados ao carregar (apenas uma vez)
   useEffect(() => {
-    const cleanDuplicates = async () => {
-      const cleaned = await removeDuplicateAttempts()
-      if (cleaned.length !== state.gameAttempts.length) {
-        setState(prev => ({
-          ...prev,
-          gameAttempts: cleaned,
-        }))
-      }
-      
-      // Limpar duplicados nos wonGames (manter apenas o mais recente para cada gameId+day)
-      const wonGamesMap = new Map()
-      state.wonGames.forEach(game => {
-        const key = `${game.gameId}-${game.day}`
-        const existing = wonGamesMap.get(key)
-        if (!existing || new Date(game.date) > new Date(existing.date)) {
-          wonGamesMap.set(key, game)
+    if (!isLoading) {
+      const cleanDuplicates = async () => {
+        const cleaned = await removeDuplicateAttempts()
+        if (cleaned.length !== state.gameAttempts.length) {
+          setState(prev => ({
+            ...prev,
+            gameAttempts: cleaned,
+          }))
         }
-      })
-      const cleanedWonGames = Array.from(wonGamesMap.values())
-      
-      if (cleanedWonGames.length !== state.wonGames.length) {
-        console.log('Limpeza de duplicados nos wonGames:', state.wonGames.length - cleanedWonGames.length, 'duplicados removidos')
-        setState(prev => ({
-          ...prev,
-          wonGames: cleanedWonGames,
-        }))
+        
+        // Limpar duplicados nos wonGames (manter apenas o mais recente para cada gameId+day)
+        const wonGamesMap = new Map()
+        state.wonGames.forEach(game => {
+          const key = `${game.gameId}-${game.day}`
+          const existing = wonGamesMap.get(key)
+          if (!existing || new Date(game.date) > new Date(existing.date)) {
+            wonGamesMap.set(key, game)
+          }
+        })
+        const cleanedWonGames = Array.from(wonGamesMap.values())
+        
+        if (cleanedWonGames.length !== state.wonGames.length) {
+          console.log('Limpeza de duplicados nos wonGames:', state.wonGames.length - cleanedWonGames.length, 'duplicados removidos')
+          setState(prev => ({
+            ...prev,
+            wonGames: cleanedWonGames,
+          }))
+        }
       }
+      cleanDuplicates()
     }
-    cleanDuplicates()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // Apenas executar uma vez ao montar
+  }, [isLoading]) // Executar quando terminar de carregar
 
   // Recalcular pontos quando gameAttempts ou spentPoints mudam
   // Este useEffect serve como backup caso a atualização direta em addGameAttempt/purchaseItem não funcione
@@ -127,9 +212,9 @@ export const useGameState = () => {
     }
     localStorage.setItem(STORAGE_KEYS.DAILY_WORDLE_ATTEMPTS, JSON.stringify(state.dailyWordleAttempts))
     
-    // Guardar estado do utilizador no JSON (incluindo spentPoints)
+    // Guardar estado do utilizador no JSON (sem points - são sempre calculados dinamicamente)
     saveUserState({
-      points: state.points, // Manter para compatibilidade
+      // points: NÃO guardar - são sempre calculados dinamicamente a partir dos game attempts
       spentPoints: state.spentPoints || 0,
       unlockedDays: state.unlockedDays,
       wonGames: state.wonGames,
@@ -340,6 +425,9 @@ export const useGameState = () => {
     // Adicionar à lista de tentativas pendentes com timestamp
     pendingAttemptsRef.current.set(attemptKey, now)
     
+    // Adicionar informação do perfil atual
+    const currentProfile = getCurrentProfile()
+    
     const attempt = {
       gameType,
       day,
@@ -351,6 +439,9 @@ export const useGameState = () => {
       reactionTimes: gameData.reactionTimes || null,
       answeredQuestions: gameData.answeredQuestions || null,
       metadata: gameData.metadata || {},
+      profileId: currentProfile?.id || null,
+      profileName: currentProfile?.name || null,
+      accountId: currentProfile?.accountId || null,
     }
     
     // Atualizar o estado primeiro (para atualização imediata da UI)

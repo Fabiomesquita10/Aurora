@@ -56,6 +56,61 @@ export const getDayGameEvents = (day) => {
 }
 
 /**
+ * Obtém a URL da imagem do puzzle de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {string|null} URL da imagem ou null se não existir
+ */
+export const getDayGameImageUrl = (day) => {
+  const game = getDayGame(day)
+  if (!game) return null
+  return game.imageUrl || null
+}
+
+/**
+ * Obtém o número de bolas do Simon de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {number} Número de bolas (default: 4)
+ */
+export const getDayGameNumberOfBalls = (day) => {
+  const game = getDayGame(day)
+  if (!game) return 4
+  return game.numberOfBalls || 4
+}
+
+/**
+ * Obtém as sequências do Simon de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {array|null} Array de sequências ou null
+ */
+export const getDayGameSequences = (day) => {
+  const game = getDayGame(day)
+  if (!game) return null
+  return game.sequences || null
+}
+
+/**
+ * Obtém o número de rondas do Reflexo Duplo de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {number} Número de rondas (default: 10)
+ */
+export const getDayGameDoubleReflexRounds = (day) => {
+  const game = getDayGame(day)
+  if (!game) return 10
+  return game.rounds || 10
+}
+
+/**
+ * Obtém o número de botões/quadrados do Reflexo Duplo de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {number} Número de botões (default: 9)
+ */
+export const getDayGameDoubleReflexButtons = (day) => {
+  const game = getDayGame(day)
+  if (!game) return 9
+  return game.numberOfButtons || 9
+}
+
+/**
  * Obtém a palavra específica de um jogo de um dia (se definida)
  * @param {number} day - Dia de dezembro (1-25)
  * @returns {string|null} Palavra específica ou null se usar random

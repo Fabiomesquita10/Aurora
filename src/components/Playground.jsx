@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useGameState } from '../utils/gameState'
-import WordleRomantico from '../games/WordleRomantico'
+import WordleRomantico from '../games/WordleRomantico/WordleRomantico'
 import './Playground.css'
 
 function Playground() {
@@ -11,7 +11,23 @@ function Playground() {
   const playedGames = wonGames.filter(g => g.gameId === 'daily-game')
   const uniqueGameDays = [...new Set(playedGames.map(g => g.day))].sort((a, b) => a - b)
 
-  const handlePlayWordle = () => {
+  const handlePlayWordle = async () => {
+    // Verificar se está autenticado
+    const profile = getCurrentProfile()
+    if (!profile) {
+      alert('🔒 Por favor, faz login primeiro! Vai à secção "Perfis" para fazer login.')
+      return
+    }
+    
+    // Verificar se a conta está ativa
+    if (profile.accountId) {
+      const active = await isAccountActive(profile.accountId)
+      if (!active) {
+        alert('⚠️ A tua conta não está ativa. Contacta o administrador.')
+        return
+      }
+    }
+    
     setSelectedGame('wordle')
   }
 
