@@ -2,10 +2,12 @@
 import { getProfileKey, getCurrentProfile } from './userProfiles'
 
 // Função para carregar todos os registos do JSON (todos os perfis)
-const loadAllGameAttemptsFromJSON = async () => {
+const loadAllGameAttemptsFromJSON = async (forceReload = false) => {
   try {
     if (import.meta.env.DEV) {
-      const response = await fetch('/src/config/game-attempts.json')
+      // Adicionar timestamp para evitar cache
+      const cacheBuster = forceReload ? `?t=${Date.now()}` : ''
+      const response = await fetch(`/src/config/game-attempts.json${cacheBuster}`)
       if (response.ok) {
         return await response.json()
       }
@@ -103,8 +105,9 @@ export const saveGameAttempts = async (attempts) => {
     localStorage.setItem(storageKey, JSON.stringify(attempts))
     
     // SEMPRE guardar no ficheiro JSON (mesmo em produção, se possível)
-    // Carregar todos os attempts existentes do JSON
-    const allAttemptsFromJSON = await loadAllGameAttemptsFromJSON()
+    // IMPORTANTE: Carregar todos os attempts existentes do JSON SEMPRE (forçar reload para evitar cache)
+    // Isto garante que temos os dados mais recentes de todos os navegadores
+    const allAttemptsFromJSON = await loadAllGameAttemptsFromJSON(true)
     
     // Obter perfil atual
     const currentProfile = getCurrentProfile()
@@ -145,6 +148,13 @@ export const saveGameAttempts = async (attempts) => {
         if (!currentProfileAttempts.has(key)) {
           allAttempts.push(attempt)
         }
+      } else {
+        // Se é do perfil atual mas não está nos novos attempts, manter (pode ser de outro navegador)
+        const key = `${attempt.gameType}-${attempt.day}-${attempt.date}`
+        if (!currentProfileAttempts.has(key)) {
+          // Manter attempts do perfil atual que não estão nos novos attempts (de outros navegadores)
+          allAttempts.push(attempt)
+        }
       }
     })
     
@@ -161,6 +171,8 @@ export const saveGameAttempts = async (attempts) => {
     // Ordenar por data (mais recentes primeiro)
     allAttempts.sort((a, b) => new Date(b.date) - new Date(a.date))
     
+    console.log(`💾 A guardar ${allAttempts.length} attempts no JSON (${currentProfileAttempts.size} do perfil atual, ${allAttempts.length - currentProfileAttempts.size} de outros perfis/navegadores)`)
+    
     // Em modo desenvolvimento, escrever diretamente no ficheiro JSON
     if (import.meta.env.DEV) {
       try {
@@ -173,13 +185,14 @@ export const saveGameAttempts = async (attempts) => {
         })
         
         if (response.ok) {
-          console.log('✅ Ficheiro game-attempts.json atualizado! (todos os perfis)')
+          console.log('✅ Ficheiro game-attempts.json atualizado! (todos os perfis e navegadores)')
         } else {
-          console.warn('⚠️ Não foi possível atualizar o ficheiro JSON (servidor pode não estar disponível)')
+          const errorText = await response.text()
+          console.warn('⚠️ Não foi possível atualizar o ficheiro JSON:', response.status, errorText)
         }
       } catch (e) {
         // Se o servidor não estiver disponível, apenas logar
-        console.warn('⚠️ Não foi possível atualizar o ficheiro JSON:', e.message)
+        console.error('❌ Erro ao atualizar o ficheiro JSON:', e)
       }
     }
     
@@ -192,6 +205,8 @@ export const saveGameAttempts = async (attempts) => {
 
 // Função para adicionar um novo registo (com verificação de duplicados)
 export const addGameAttempt = async (attempt) => {
+  // IMPORTANTE: Carregar attempts do perfil atual (pode incluir attempts de outros navegadores com mesmo accountId)
+  // Mas quando guardamos, vamos fazer merge com TODOS os attempts do JSON (incluindo outros perfis)
   const attempts = await loadGameAttempts()
   const now = new Date(attempt.date || new Date().toISOString())
   
@@ -287,11 +302,88 @@ export const importGameAttemptsJSON = (file) => {
   })
 }
 
+// Função para escrever diretamente no JSON sem fazer merge (usado no reset)
+const writeGameAttemptsDirectly = async (attempts) => {
+  if (import.meta.env.DEV) {
+    try {
+      console.log('🔄 A escrever game-attempts.json diretamente com', attempts.length, 'attempts')
+      const response = await fetch('/api/write-game-attempts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(attempts),
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        console.log('✅ Ficheiro game-attempts.json atualizado diretamente!', result)
+        return true
+      } else {
+        const errorText = await response.text()
+        console.warn('⚠️ Não foi possível atualizar o ficheiro JSON:', response.status, errorText)
+        return false
+      }
+    } catch (e) {
+      console.error('❌ Erro ao atualizar o ficheiro JSON:', e)
+      return false
+    }
+  } else {
+    console.warn('⚠️ Modo produção: não é possível escrever diretamente no JSON')
+    return false
+  }
+}
+
 // Função para limpar todos os registos
-export const clearGameAttempts = () => {
+export const clearGameAttempts = async () => {
+  console.log('🧹 A limpar game-attempts...')
   const storageKey = getProfileKey('game_attempts_json')
   localStorage.removeItem(storageKey)
-  saveGameAttempts([])
+  
+  // Limpar apenas do perfil atual - carregar todos e remover os do perfil atual
+  const currentProfile = getCurrentProfile()
+  const currentProfileId = currentProfile?.id || null
+  const currentAccountId = currentProfile?.accountId || null
+  
+  console.log('👤 Perfil atual:', { profileId: currentProfileId, accountId: currentAccountId })
+  
+  if (currentProfileId || currentAccountId) {
+    // Carregar todos os attempts (forçar reload para evitar cache)
+    const allAttemptsFromJSON = await loadAllGameAttemptsFromJSON(true)
+    console.log('📊 Total de attempts no JSON:', allAttemptsFromJSON.length)
+    
+    // Filtrar para remover apenas os do perfil atual
+    const otherProfilesAttempts = allAttemptsFromJSON.filter(attempt => {
+      // Se é do perfil atual, remover
+      if (currentAccountId && attempt.accountId === currentAccountId) {
+        console.log('🗑️ Removendo attempt do perfil atual (accountId):', attempt)
+        return false
+      }
+      if (currentProfileId && attempt.profileId === currentProfileId) {
+        console.log('🗑️ Removendo attempt do perfil atual (profileId):', attempt)
+        return false
+      }
+      // Manter attempts de outros perfis
+      return true
+    })
+    
+    console.log('✅ Attempts restantes após limpeza:', otherProfilesAttempts.length)
+    
+    // Escrever diretamente no JSON sem fazer merge (para evitar adicionar o perfil atual de volta)
+    const success = await writeGameAttemptsDirectly(otherProfilesAttempts)
+    if (!success) {
+      console.error('❌ Falha ao escrever game-attempts.json')
+    }
+    return success
+  } else {
+    // Se não houver perfil, limpar tudo
+    console.log('⚠️ Sem perfil atual - limpando tudo')
+    const success = await writeGameAttemptsDirectly([])
+    if (!success) {
+      console.error('❌ Falha ao limpar game-attempts.json')
+    }
+    return success
+  }
 }
 
 // Função para remover duplicados dos registos existentes

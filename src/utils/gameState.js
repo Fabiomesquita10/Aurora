@@ -534,11 +534,12 @@ export const useGameState = () => {
     return stats
   }
 
-  const resetGame = () => {
+  const resetGame = async () => {
     // Limpar localStorage primeiro
     Object.values(STORAGE_KEYS).forEach(key => {
       localStorage.removeItem(key)
     })
+    
     // Depois resetar estado
     setState({
       points: 0,
@@ -550,9 +551,18 @@ export const useGameState = () => {
       dailyWordleAttempts: [],
       gameAttempts: [],
     })
-    // Limpar também os JSONs
-    clearGameAttempts()
-    clearUserState()
+    
+    // Limpar também os JSONs - aguardar que terminem
+    try {
+      await clearGameAttempts()
+      await clearUserState()
+    } catch (error) {
+      console.error('Erro ao limpar JSONs:', error)
+    }
+    
+    // Pequeno delay para garantir que tudo foi guardado
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
     // Forçar recarregamento dos dados do localStorage
     window.location.reload()
   }

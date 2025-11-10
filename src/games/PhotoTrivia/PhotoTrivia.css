@@ -1,0 +1,240 @@
+.photo-trivia-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-trivia-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.photo-trivia-header h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.photo-trivia-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.photo-trivia-progress {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.progress-dot.completed {
+  background: #27ae60;
+  transform: scale(1.2);
+}
+
+.progress-dot.current {
+  background: white;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.photo-trivia-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+}
+
+.photo-display {
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #f0f0f0;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.photo-hint {
+  background: #e8f4f8;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #3498db;
+  text-align: center;
+}
+
+.photo-hint p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.hint-letter {
+  color: #3498db;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 3px;
+}
+
+.hint-blank {
+  color: #7f8c8d;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 3px;
+}
+
+.photo-answer-section {
+  margin-bottom: 20px;
+}
+
+.photo-question {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.photo-answer-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.photo-answer-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.photo-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.photo-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.photo-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.photo-submit-btn:active {
+  transform: translateY(0);
+}
+
+.photo-stats {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e0e0e0;
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.photo-stats p {
+  margin: 5px 0;
+}
+
+.photo-trivia-result {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 500px;
+}
+
+.photo-trivia-result h2 {
+  color: #2c3e50;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.result-text {
+  font-size: 20px;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+}
+
+.result-stats {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.result-stats p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+@media (max-width: 600px) {
+  .photo-trivia-container {
+    padding: 10px;
+  }
+
+  .photo-trivia-content {
+    padding: 20px;
+  }
+
+  .photo-display {
+    min-height: 200px;
+  }
+
+  .photo-image {
+    max-height: 250px;
+  }
+}
+

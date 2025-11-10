@@ -1,0 +1,172 @@
+image.png<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testar QR Codes</title>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #e74c3c;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e74c3c;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .qr-preview {
+            max-width: 200px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Testar QR Codes</h1>
+        <p>Este script testa se os QR codes na pasta qrCodes são legíveis.</p>
+        
+        <div class="test-section">
+            <h3>QR Code 1 (AURORA_QR_1)</h3>
+            <input type="file" accept="image/*" id="file1" onchange="handleFileSelect(event, 'qr1-result', 'AURORA_QR_1')" style="display: none;">
+            <label for="file1" style="display: inline-block; padding: 10px 20px; background: #e74c3c; color: white; border-radius: 5px; cursor: pointer; margin: 10px 0;">
+                📁 Selecionar QR Code 1
+            </label>
+            <div id="qr1-preview"></div>
+            <div id="qr1-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>QR Code 2 (AURORA_QR_2)</h3>
+            <input type="file" accept="image/*" id="file2" onchange="handleFileSelect(event, 'qr2-result', 'AURORA_QR_2')" style="display: none;">
+            <label for="file2" style="display: inline-block; padding: 10px 20px; background: #e74c3c; color: white; border-radius: 5px; cursor: pointer; margin: 10px 0;">
+                📁 Selecionar QR Code 2
+            </label>
+            <div id="qr2-preview"></div>
+            <div id="qr2-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>QR Code 3 (AURORA_QR_3)</h3>
+            <input type="file" accept="image/*" id="file3" onchange="handleFileSelect(event, 'qr3-result', 'AURORA_QR_3')" style="display: none;">
+            <label for="file3" style="display: inline-block; padding: 10px 20px; background: #e74c3c; color: white; border-radius: 5px; cursor: pointer; margin: 10px 0;">
+                📁 Selecionar QR Code 3
+            </label>
+            <div id="qr3-preview"></div>
+            <div id="qr3-result"></div>
+        </div>
+
+        <div class="test-section" style="background: #e8f4f8; border-color: #3498db;">
+            <h3>ℹ️ Instruções</h3>
+            <p>1. Clica em "Selecionar QR Code" para cada um dos 3 QR codes</p>
+            <p>2. Escolhe o ficheiro PNG da pasta <code>qrCodes</code></p>
+            <p>3. O teste vai verificar se o QR code é legível e se contém o código correto</p>
+            <p><strong>Nota:</strong> Se os QR codes forem muito pequenos (menos de 500x500 pixels), podem não ser legíveis. Regenera-os usando o <code>generate-qr-codes.html</code> atualizado.</p>
+        </div>
+    </div>
+
+    <script>
+        let html5QrCodeInstance = null;
+
+        function getHtml5QrCode() {
+            if (!html5QrCodeInstance) {
+                html5QrCodeInstance = new Html5Qrcode("test-reader");
+            }
+            return html5QrCodeInstance;
+        }
+
+        async function handleFileSelect(event, resultId, expectedCode) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const resultDiv = document.getElementById(resultId);
+            const previewDiv = document.getElementById(resultId.replace('result', 'preview'));
+            
+            // Mostrar preview da imagem
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewDiv.innerHTML = `<img src="${e.target.result}" alt="QR Code" class="qr-preview" style="max-width: 200px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px;">`;
+            };
+            reader.readAsDataURL(file);
+
+            resultDiv.innerHTML = '<p>⏳ A testar...</p>';
+            
+            try {
+                const html5QrCode = getHtml5QrCode();
+                const decodedText = await html5QrCode.scanFile(file, false);
+                
+                if (decodedText && decodedText.trim()) {
+                    const code = decodedText.trim();
+                    if (code === expectedCode) {
+                        resultDiv.innerHTML = `<div class="result success">✅ SUCESSO! QR Code lido: "${code}" (correto)</div>`;
+                    } else {
+                        resultDiv.innerHTML = `<div class="result error">⚠️ QR Code lido mas código diferente!<br>Esperado: "${expectedCode}"<br>Lido: "${code}"</div>`;
+                    }
+                } else {
+                    resultDiv.innerHTML = `<div class="result error">❌ QR Code lido mas vazio</div>`;
+                }
+            } catch (error) {
+                console.error('Erro ao ler QR code:', error);
+                const errorMsg = error.message || error.toString() || 'Erro desconhecido';
+                
+                if (errorMsg.includes('No QR code found') || errorMsg.includes('NotFoundException')) {
+                    resultDiv.innerHTML = `<div class="result error">❌ Não foi possível encontrar um QR code nesta imagem.<br><br>Possíveis causas:<br>• Imagem muito pequena ou de baixa qualidade<br>• QR code cortado ou distorcido<br>• Imagem desfocada<br><br>Tenta regenerar o QR code com tamanho maior (1000x1000)</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="result error">❌ ERRO: ${errorMsg}</div>`;
+                }
+            }
+        }
+    </script>
+    <div id="test-reader" style="display: none;"></div>
+</body>
+</html>
+

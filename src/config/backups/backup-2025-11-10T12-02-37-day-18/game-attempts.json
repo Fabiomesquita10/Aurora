@@ -1,0 +1,20 @@
+[
+  {
+    "gameType": "pair-matching",
+    "day": 18,
+    "date": "2025-11-10T12:02:37.219Z",
+    "won": true,
+    "attempts": 7,
+    "errors": 2,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 18,
+      "failedAttempts": 2
+    },
+    "profileId": "profile_1762776123131_uha739xa6",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

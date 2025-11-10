@@ -55,11 +55,17 @@ function AuroraApp() {
     }
   }, [isDarkMode])
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (window.confirm('⚠️ Tens a certeza que queres fazer reset? Isto vai apagar todos os pontos, jogos ganhos e compras!')) {
-      resetGame()
       setShowResetConfirm(false)
-      alert('✅ Reset completo!')
+      try {
+        await resetGame()
+        // O resetGame já faz reload, mas se não fizer, mostrar mensagem
+        alert('✅ Reset completo! A página vai recarregar...')
+      } catch (error) {
+        console.error('Erro ao fazer reset:', error)
+        alert('❌ Erro ao fazer reset. Tenta novamente.')
+      }
     }
   }
 

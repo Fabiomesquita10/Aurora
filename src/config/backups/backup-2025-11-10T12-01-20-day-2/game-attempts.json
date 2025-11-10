@@ -1,0 +1,37 @@
+[
+  {
+    "gameType": "scrambled-sentence",
+    "day": 2,
+    "date": "2025-11-10T12:01:19.806Z",
+    "won": true,
+    "attempts": 3,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 3,
+      "sentence": "Eu sou linda"
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-10T12:01:09.763Z",
+    "won": true,
+    "attempts": 2,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 7
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

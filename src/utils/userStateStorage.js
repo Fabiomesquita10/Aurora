@@ -433,17 +433,63 @@ export const saveUserState = async (userState) => {
 }
 
 // Função para limpar o estado do utilizador
-export const clearUserState = () => {
+export const clearUserState = async () => {
   const storageKey = getProfileKey('user_state_json')
   localStorage.removeItem(storageKey)
-  const emptyState = {
-    points: 0,
-    unlockedDays: [],
-    wonGames: [],
-    purchasedItems: [],
-    lastDailyDate: null,
-    dailyWordleAttempts: []
+  
+  // Limpar apenas do perfil atual - carregar todos e remover o do perfil atual
+  const currentProfile = getCurrentProfile()
+  const currentProfileId = currentProfile?.id || null
+  const currentAccountId = currentProfile?.accountId || null
+  
+  if (currentProfileId || currentAccountId) {
+    // Carregar todos os estados
+    const allStatesFromJSON = await loadAllUserStatesFromJSON()
+    
+    // Filtrar para remover apenas o do perfil atual
+    const otherProfilesStates = allStatesFromJSON.filter(state => {
+      // Se é do perfil atual, remover
+      if (currentAccountId && state.accountId === currentAccountId) {
+        return false
+      }
+      if (currentProfileId && state.profileId === currentProfileId) {
+        return false
+      }
+      // Manter estados de outros perfis
+      return true
+    })
+    
+    // Guardar apenas os estados de outros perfis
+    if (import.meta.env.DEV) {
+      try {
+        const response = await fetch('/api/write-user-state', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(otherProfilesStates),
+        })
+        
+        if (response.ok) {
+          console.log('✅ Ficheiro user-state.json limpo! (perfil atual removido)')
+        } else {
+          console.warn('⚠️ Não foi possível atualizar o ficheiro JSON')
+        }
+      } catch (e) {
+        console.warn('⚠️ Não foi possível atualizar o ficheiro JSON:', e.message)
+      }
+    }
+  } else {
+    // Se não houver perfil, limpar tudo
+    const emptyState = {
+      points: 0,
+      unlockedDays: [],
+      wonGames: [],
+      purchasedItems: [],
+      lastDailyDate: null,
+      dailyWordleAttempts: []
+    }
+    await saveUserState(emptyState)
   }
-  saveUserState(emptyState)
 }
 

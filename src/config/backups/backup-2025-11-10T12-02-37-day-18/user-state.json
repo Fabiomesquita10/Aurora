@@ -1,0 +1,80 @@
+[
+  {
+    "spentPoints": 10,
+    "unlockedDays": [
+      1,
+      2,
+      3
+    ],
+    "wonGames": [
+      {
+        "gameId": "daily-game",
+        "day": 1,
+        "date": "2025-11-04T21:15:20.970Z",
+        "won": true,
+        "attempts": 1
+      },
+      {
+        "gameId": "wordle-extra",
+        "day": 2,
+        "date": "2025-11-04T21:15:30.303Z",
+        "won": true,
+        "attempts": 1
+      },
+      {
+        "gameId": "wordle-extra",
+        "day": 1,
+        "date": "2025-11-04T21:15:38.128Z",
+        "won": true,
+        "attempts": 1
+      },
+      {
+        "gameId": "wordle-extra",
+        "day": 3,
+        "date": "2025-11-04T21:15:46.297Z",
+        "won": true,
+        "attempts": 1
+      }
+    ],
+    "purchasedItems": [
+      6
+    ],
+    "lastDailyDate": null,
+    "dailyWordleAttempts": [],
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "spentPoints": 0,
+    "unlockedDays": [
+      1,
+      2,
+      3,
+      4,
+      18
+    ],
+    "wonGames": [
+      {
+        "gameId": "daily-game",
+        "day": 1,
+        "date": "2025-11-10T12:01:10.261Z",
+        "won": true,
+        "attempts": 2
+      },
+      {
+        "gameId": "daily-game",
+        "day": 2,
+        "date": "2025-11-10T12:01:20.308Z",
+        "won": true,
+        "attempts": 3
+      }
+    ],
+    "purchasedItems": [],
+    "lastDailyDate": null,
+    "dailyWordleAttempts": [],
+    "profileId": "profile_1762776123131_uha739xa6",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

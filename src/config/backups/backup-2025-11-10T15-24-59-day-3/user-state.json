@@ -1,0 +1,37 @@
+[
+  {
+    "spentPoints": 0,
+    "unlockedDays": [
+      21,
+      22
+    ],
+    "wonGames": [
+      {
+        "gameId": "daily-game",
+        "day": 21,
+        "date": "2025-11-10T14:41:42.720Z",
+        "won": true,
+        "attempts": 1
+      }
+    ],
+    "purchasedItems": [],
+    "lastDailyDate": null,
+    "dailyWordleAttempts": [],
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "spentPoints": 0,
+    "unlockedDays": [
+      3
+    ],
+    "wonGames": [],
+    "purchasedItems": [],
+    "lastDailyDate": null,
+    "dailyWordleAttempts": [],
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "gameType": "reflex",
+    "day": 7,
+    "date": "2025-11-10T12:09:37.483Z",
+    "won": true,
+    "attempts": 5,
+    "errors": 0,
+    "score": 299,
+    "reactionTimes": [
+      265,
+      280,
+      671,
+      311,
+      458,
+      458
+    ],
+    "answeredQuestions": null,
+    "metadata": {},
+    "profileId": "profile_1762776448037_bekl7fd68",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "gameType": "catch-hearts",
+    "day": 12,
+    "date": "2025-11-10T12:05:15.196Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 30,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 16,
+      "targetHearts": 30,
+      "heartsCaught": 30,
+      "timeLeft": 5
+    },
+    "profileId": "profile_1762776448037_bekl7fd68",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "gameType": "scrambled-sentence",
+    "day": 2,
+    "date": "2025-11-10T12:01:19.806Z",
+    "won": true,
+    "attempts": 3,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 3,
+      "sentence": "Eu sou linda"
+    },
+    "profileId": "profile_1762776448037_bekl7fd68",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-10T12:01:09.763Z",
+    "won": true,
+    "attempts": 2,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 7
+    },
+    "profileId": "profile_1762776448037_bekl7fd68",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

@@ -1,0 +1,972 @@
+{
+  "games": {
+    "wordle": {
+      "type": "wordle",
+      "wordLength": 5,
+      "maxAttempts": 6,
+      "useDailyRandom": true,
+      "targetWords": [
+        "AMOR", "SONHO", "BEIJO", "OLHAR", "TOCAR", "DOCIL", "PAIXAO",
+        "FELIZ", "UNIDO", "ABRACO", "DOCURA", "CUIDA", "ABRIGO", "CARINO",
+        "AMIGO", "TENRO", "TERNO", "CALOR", "SUAVE", "LINDO", "QUERO",
+        "AMADA", "AMADO", "AMIGA"
+      ]
+    },
+    "t9-encoding": {
+      "type": "t9-encoding",
+      "description": "Encoding T9 (Telemóvel Antigo)",
+      "instruction": "Descobre a palavra usando o código numérico T9. Exemplo: 5683 = LOVE"
+    },
+    "wheel": {
+      "type": "wheel",
+      "description": "Roda da Sorte",
+      "instruction": "Gira a roda e ganha um prémio aleatório!"
+    },
+    "quiz": {
+      "type": "quiz",
+      "description": "Quiz de Relacionamento",
+      "instruction": "Responde a 5 perguntas sobre o vosso relacionamento"
+    },
+    "trivia": {
+      "type": "trivia",
+      "description": "Isto ou Aquilo",
+      "instruction": "Escolhe entre duas opções - versão casal"
+    },
+    "reflex": {
+      "type": "reflex",
+      "description": "Jogo de Reflexo",
+      "instruction": "Clica o mais rápido possível quando algo mudar!"
+    },
+    "riddles": {
+      "type": "riddles",
+      "description": "Mini Riddles",
+      "instruction": "Resolve 3 enigmas curtos sobre séries, filmes ou vocês"
+    },
+    "cryptogram": {
+      "type": "cryptogram",
+      "description": "Criptograma",
+      "instruction": "Decifra o texto codificado por substituição de letras"
+    },
+    "mini-sudoku": {
+      "type": "mini-sudoku",
+      "description": "Mini Sudoku (4x4)",
+      "instruction": "Preenche a grelha 4x4 com ícones (🎄❤️⭐🎁)"
+    },
+    "word-search": {
+      "type": "word-search",
+      "description": "Caça Palavras",
+      "instruction": "Encontra todas as palavras escondidas na grelha"
+    },
+    "catch-hearts": {
+      "type": "catch-hearts",
+      "description": "Apanhar Corações",
+      "instruction": "Clica nos corações antes que desapareçam! Alguns aparecem e desaparecem muito rápido!"
+    },
+    "scrambled-sentence": {
+      "type": "scrambled-sentence",
+      "description": "Decifrar Frase Baralhada",
+      "instruction": "Clica nas palavras na ordem correta para formar a frase!"
+    },
+    "maze-heart": {
+      "type": "maze-heart",
+      "description": "Labirinto do Coração",
+      "instruction": "Guia o coração até ao outro sem tocar nas paredes ou bordas!"
+    },
+    "pair-matching": {
+      "type": "pair-matching",
+      "description": "Ligar Pares com Sentido",
+      "instruction": "Clica em dois itens para formar um par lógico (ex.: Lua ↔ Noite)"
+    },
+    "qr-code": {
+      "type": "qr-code",
+      "description": "Caça ao Tesouro - QR Codes",
+      "instruction": "Encontra e escaneia os 3 QR codes escondidos!"
+    },
+    "photo-trivia": {
+      "type": "photo-trivia",
+      "description": "Trivia das Fotos",
+      "instruction": "Adivinha o local de cada foto (com blur e cortada)!"
+    },
+    "box-choice": {
+      "type": "box-choice",
+      "description": "Caixa de Escolhas",
+      "instruction": "Escolhe uma das três caixas. Apenas uma tem o prémio!"
+    },
+    "musical-quiz": {
+      "type": "musical-quiz",
+      "description": "Quiz Musical",
+      "instruction": "Ouve o trecho de música e escolhe a resposta correta!"
+    },
+    "memory-game": {
+      "type": "memory-game",
+      "description": "Jogo de Memória",
+      "instruction": "Encontra todos os pares de cartas!"
+    },
+    "number-sequence": {
+      "type": "number-sequence",
+      "description": "Sequência Numérica",
+      "instruction": "Completa a sequência numérica!"
+    },
+    "fast-math": {
+      "type": "fast-math",
+      "description": "Matemática Rápida",
+      "instruction": "Resolve os cálculos o mais rápido possível!"
+    },
+    "pattern-recognition": {
+      "type": "pattern-recognition",
+      "description": "Reconhecimento de Padrões",
+      "instruction": "Identifica o padrão e escolhe o próximo elemento!"
+    }
+  },
+  "days": [
+    {
+      "day": 1,
+      "gift": {
+        "title": "Noite fora ❤️",
+        "description": "Uma noite especial fora",
+        "category": "Principal",
+        "estimatedPrice": 80,
+        "points": 10
+      },
+      "game": {
+        "type": "timeline",
+        "openTime": "00:00",
+        "description": "Linha do Tempo - Ordenar Eventos de 2025",
+        "events": [
+          {
+            "text": "Primeira",
+            "date": "2025-04-11"
+          },
+          {
+            "text": "Segunda",
+            "date": "2025-04-26"
+          },
+          {
+            "text": "Terceira",
+            "date": "2025-06-10"
+          },
+          {
+            "text": "Quarta",
+            "date": "2025-06-17"
+          },
+          {
+            "text": "Quinta",
+            "date": "2025-09-02"
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "gift": {
+        "title": "Chocolate Bounty 🍫",
+        "description": "Doce para adoçar o dia",
+        "category": "Low",
+        "estimatedPrice": 1,
+        "points": 10
+      },
+      "game": {
+        "type": "scrambled-sentence",
+        "openTime": "21:00",
+        "description": "Decifrar Frase Baralhada",
+        "sentence": "Eu sou linda"
+      }
+    },
+    {
+      "day": 3,
+      "gift": {
+        "title": "Carta escrita à mão 💌",
+        "description": "Palavras do coração",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "memory-game",
+        "openTime": "21:00",
+        "description": "Jogo de Memória",
+        "cards": [
+          { "id": "card1", "content": "🎵", "pair": "card1" },
+          { "id": "card1", "content": "🎵", "pair": "card1" },
+          { "id": "card2", "content": "❤️", "pair": "card2" },
+          { "id": "card2", "content": "❤️", "pair": "card2" },
+          { "id": "card3", "content": "⭐", "pair": "card3" },
+          { "id": "card3", "content": "⭐", "pair": "card3" },
+          { "id": "card4", "content": "🎁", "pair": "card4" },
+          { "id": "card4", "content": "🎁", "pair": "card4" },
+          { "id": "card5", "content": "🎄", "pair": "card5" },
+          { "id": "card5", "content": "🎄", "pair": "card5" },
+          { "id": "card6", "content": "🌟", "pair": "card6" },
+          { "id": "card6", "content": "🌟", "pair": "card6" }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "gift": {
+        "title": "Um abraço longo 🤗",
+        "description": "Carinho e amor",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "t9-encoding",
+        "openTime": "21:00",
+        "description": "Encoding T9 (Telemóvel Antigo)",
+        "numbers": "23676 67 8387 65467",
+        "phrase": "ADORO O BENFICA"
+      }
+    },
+    {
+      "day": 5,
+      "gift": {
+        "title": "Uma flor 🌹",
+        "description": "Rosa especial para ti",
+        "category": "Low",
+        "estimatedPrice": 3,
+        "points": 10
+      },
+      "game": {
+        "type": "quiz",
+        "openTime": "21:00",
+        "description": "Quiz de Relacionamento",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Onde foi?",
+            "options": [
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "Onde foi?",
+            "options": [
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
+            ]
+          },
+          {
+            "id": 3,
+            "question": "Onde foi?",
+            "options": [
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
+            ]
+          },
+          {
+            "id": 4,
+            "question": "Onde foi?",
+            "options": [
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
+            ]
+          },
+          {
+            "id": 5,
+            "question": "Onde foi?",
+            "options": [
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "gift": {
+        "title": "Cinema 🎬",
+        "description": "Sessão de cinema juntos",
+        "category": "Medium",
+        "estimatedPrice": 15,
+        "points": 15
+      },
+      "game": {
+        "type": "trivia",
+        "openTime": "21:00",
+        "description": "Isto ou Aquilo",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Qual prefiro?",
+            "option1": { "text": "Praia", "correct": true },
+            "option2": { "text": "Montanha", "correct": false }
+          },
+          {
+            "id": 2,
+            "question": "Qual prefiro?",
+            "option1": { "text": "Verão", "correct": true },
+            "option2": { "text": "Inverno", "correct": false }
+          },
+          {
+            "id": 3,
+            "question": "Qual prefiro?",
+            "option1": { "text": "Pizza", "correct": true },
+            "option2": { "text": "Hambúrguer", "correct": false }
+          },
+          {
+            "id": 4,
+            "question": "Qual prefiro?",
+            "option1": { "text": "Filme", "correct": false },
+            "option2": { "text": "Série", "correct": true }
+          },
+          {
+            "id": 5,
+            "question": "Qual prefiro? Modo hard",
+            "option1": { "text": "Factorio", "correct": true },
+            "option2": { "text": "Satisfactory", "correct": false }
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "gift": {
+        "title": "Cupom \"ligar para dar uma volta\" 🚗",
+        "description": "Um passeio especial",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "reflex",
+        "openTime": "21:00",
+        "description": "Jogo de Reflexo",
+        "rounds": 5
+      }
+    },
+    {
+      "day": 8,
+      "gift": {
+        "title": "Lanche no D'Agradável 🍝",
+        "description": "Um momento gastronómico",
+        "category": "Medium",
+        "estimatedPrice": 10,
+        "points": 15
+      },
+      "game": {
+        "type": "riddles",
+        "openTime": "21:00",
+        "description": "Mini Riddles",
+        "riddles": [
+          {
+            "id": 1,
+            "question": "Tenho keys mas não abro portas. Tenho espaço mas não tenho quartos. O que sou?",
+            "answer": "teclado",
+            "hint": "Usas-me para escrever",
+            "category": "Tecnologia"
+          },
+          {
+            "id": 2,
+            "question": "Era alto quando era novo e agora velho, sou baixo. O que sou?",
+            "answer": "vela",
+            "hint": "Acendes-me para ver no escuro",
+            "category": "Objeto"
+          },
+          {
+            "id": 3,
+            "question": "Tenho cidades, mas não tenho casas. Tenho montanhas, mas não tenho árvores. Tenho água, mas não tenho peixes. O que sou?",
+            "answer": "mapa",
+            "hint": "Guia-te pelo mundo",
+            "category": "Geografia"
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "gift": {
+        "title": "Beijo por cada ponto acima de X 💋",
+        "description": "Carinho especial",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "cryptogram",
+        "openTime": "21:00",
+        "description": "Criptograma",
+        "encodedText": "COQT GVGTPQ",
+        "decodedText": "GOLO BENFICA",
+        "cipherType": "shift",
+        "cipherRule": {
+          "shift": 2,
+          "description": "Cada letra anda 2 posições para a frente (A->C, Z->B)",
+          "hint": "ABC -> 2"
+        }
+      }
+    },
+    {
+      "day": 10,
+      "gift": {
+        "title": "Presente pequeno 🎁",
+        "description": "Livro para fotos",
+        "category": "Medium",
+        "estimatedPrice": 10,
+        "points": 15
+      },
+      "game": {
+        "type": "mini-sudoku",
+        "openTime": "21:00",
+        "description": "Mini Sudoku (4x4)",
+        "solution": "1234 | 2143 | 3412 | 4321",
+        "initial": "1004 | 0140 | 3012 | 4300",
+        "hint": "Isto é um sudoku, mas com ícones, so nao podes repetir os icons nas linhas."
+      }
+    },
+    {
+      "day": 11,
+      "gift": {
+        "title": "Sobremesa caseira 🍰",
+        "description": "Crumble de maçã feito com amor",
+        "category": "Low",
+        "estimatedPrice": 3,
+        "points": 10
+      },
+      "game": {
+        "type": "word-search",
+        "openTime": "21:00",
+        "description": "Caça Palavras",
+        "words": ["AMOR", "SONHO", "BEIJO", "PAIXAO", "FELIZ"],
+        "gridSize": 12
+      }
+    },
+    {
+      "day": 12,
+      "gift": {
+        "title": "Sessão de massagem 💆‍♀️",
+        "description": "Massagem feita por ti",
+        "category": "Medium",
+        "estimatedPrice": 0,
+        "points": 15
+      },
+      "game": {
+        "type": "catch-hearts",
+        "openTime": "21:00",
+        "description": "Apanhar Corações",
+        "targetHearts": 30,
+        "gameDuration": 20,
+        "maxAttempts": 3
+      }
+    },
+    {
+      "day": 13,
+      "gift": {
+        "title": "Escape room 🧩",
+        "description": "Desafio em equipa",
+        "category": "High",
+        "estimatedPrice": 30,
+        "points": 25
+      },
+      "game": {
+        "type": "maze-heart",
+        "openTime": "21:00",
+        "description": "Labirinto do Coração",
+        "mazeSize": 20,
+        "difficulty": "normal"
+      }
+    },
+    {
+      "day": 14,
+      "gift": {
+        "title": "Passeio surpresa 🚗",
+        "description": "Ela escolhe o destino",
+        "category": "Medium",
+        "estimatedPrice": 5,
+        "points": 15
+      },
+      "game": {
+        "type": "bomb-wire",
+        "openTime": "21:00",
+        "description": "Corta o Fio Certo",
+        "difficulty": "normal",
+        "maxTime": 30,
+        "rules": [
+          {
+            "condition": "time > 25",
+            "wire": "vermelho",
+            "description": "Se o timer for maior que 25 segundos corta vermelho!"
+          },
+          {
+            "condition": "time <= 10",
+            "wire": "azul",
+            "description": "Se o timer for menor que 10 Corta azul"
+          },
+          {
+            "condition": "verde.connectedToOdd && time > 10",
+            "wire": "verde",
+            "description": "Se o verde tiver ligado ao número ímpar, corta verde (mas tem de ser acima de 10 segundos)"
+          }
+        ],
+        "mathQuestions": [
+          {
+            "question": "5 x 8",
+            "answer": 40
+          },
+          {
+            "question": "10 % 40",
+            "answer": 4
+          },
+          {
+            "question": "2 ^ 4",
+            "answer": 16
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "gift": {
+        "title": "Ida à praia 🏖️",
+        "description": "Dia de sol e mar",
+        "category": "Medium",
+        "estimatedPrice": 0,
+        "points": 15
+      },
+      "game": {
+        "type": "puzzle-tiles",
+        "openTime": "21:00",
+        "description": "Puzzle de Imagem",
+        "gridSize": 3,
+        "difficulty": "easy",
+        "imageUrl": "/src/games/Puzzle/foto.jpg"
+      }
+    },
+    {
+      "day": 16,
+      "gift": {
+        "title": "Filme da noite 🎬",
+        "description": "Ela escolhe + comida",
+        "category": "Low",
+        "estimatedPrice": 10,
+        "points": 10
+      },
+      "game": {
+        "type": "simon",
+        "openTime": "21:00",
+        "description": "Memorizar Sequência",
+        "numberOfBalls": 4,
+        "sequences": [
+          [0, 1, 2, 3],
+          [2, 0, 1, 3],
+          [1, 2, 0, 3, 2],
+          [3, 1, 0, 2, 1],
+          [0, 2, 1, 3, 0]
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "gift": {
+        "title": "Um beijinho por cada acerto 😘",
+        "description": "Carinho recompensado",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "double-reflex",
+        "openTime": "21:00",
+        "description": "Reflexo Duplo",
+        "rounds": 10,
+        "numberOfButtons": 9
+      }
+    },
+    {
+      "day": 18,
+      "gift": {
+        "title": "Almoço fora 🍽️",
+        "description": "15€ por pessoa",
+        "category": "Medium",
+        "estimatedPrice": 30,
+        "points": 15
+      },
+      "game": {
+        "type": "pair-matching",
+        "openTime": "21:00",
+        "description": "Ligar Pares com Sentido",
+        "pairs": [
+          { "left": "Lua", "right": "Noite" },
+          { "left": "Sol", "right": "Dia" },
+          { "left": "Chuva", "right": "Guarda-chuva" },
+          { "left": "Fogo", "right": "Água" },
+          { "left": "Amor", "right": "Coração" }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "gift": {
+        "title": "Caça ao Tesouro 🗺️",
+        "description": "Uma aventura especial",
+        "category": "Medium",
+        "estimatedPrice": 0,
+        "points": 20
+      },
+      "game": {
+        "type": "qr-code",
+        "openTime": "21:00",
+        "description": "Caça ao Tesouro - QR Codes",
+        "qrCodes": [
+          {
+            "id": "qr1",
+            "code": "AURORA_QR_1",
+            "message": "🕯️ Mensagem 1\n\nHá viagens que começam com um simples abrir de porta…\n\nProcura onde costumas guardar os mapas, as estradas e as pequenas memórias dos dias.\n\nÉ lá que o viajante deixou o primeiro sinal do caminho."
+          },
+          {
+            "id": "qr2",
+            "code": "AURORA_QR_2",
+            "message": "📜 Mensagem 2\n\nNem todos os abrigos servem apenas para o frio.\n\nEntre tecidos novos e promessas de aventuras, há um casaco que ainda não conheceu o vento.\n\nDentro dele, repousa a próxima pista da tua viagem."
+          },
+          {
+            "id": "qr3",
+            "code": "AURORA_QR_3",
+            "message": "🎁 Mensagem 3\n\nToda viajante tem um refúgio secreto, onde guarda o seu pequeno mundo.\n\nLá dentro, entre o que é essencial e o que levas \"só por precaução\", encontrarás o destino final desta rota.\n\nO caixeiro despede-se aqui — mas quem sabe o caminho vos volte a cruzar."
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "gift": {
+        "title": "Jantar no Mezzero 🍷",
+        "description": "Jantar especial",
+        "category": "High",
+        "estimatedPrice": 40,
+        "points": 25
+      },
+      "game": {
+        "type": "photo-trivia",
+        "openTime": "21:00",
+        "description": "Trivia das Fotos",
+        "photos": [
+          {
+            "id": "photo1",
+            "image": "/src/games/PhotoTrivia/photos/photo_1.JPG",
+            "answer": "fatima"
+          },
+          {
+            "id": "photo2",
+            "image": "/src/games/PhotoTrivia/photos/photo_1.JPG",
+            "answer": "geres"
+          },
+          {
+            "id": "photo3",
+            "image": "/src/games/PhotoTrivia/photos/photo_1.JPG",
+            "answer": "algarve"
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "gift": {
+        "title": "Ida aos karts 🏎️",
+        "description": "Diversão e velocidade",
+        "category": "Medium",
+        "estimatedPrice": 25,
+        "points": 15
+      },
+      "game": {
+        "type": "box-choice",
+        "openTime": "21:00",
+        "description": "Caixa de Escolhas",
+        "hint": "A dica ajuda-te a escolher qual abrir primeiro! 💡",
+        "boxes": [
+          {
+            "id": "box1",
+            "label": "Caixa 1",
+            "prize": "10"
+          },
+          {
+            "id": "box2",
+            "label": "Caixa 2",
+            "prize": "20"
+          },
+          {
+            "id": "box3",
+            "label": "Caixa 3",
+            "prize": "30"
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "gift": {
+        "title": "Jantar no Mezzero 🍷",
+        "description": "Jantar especial",
+        "category": "High",
+        "estimatedPrice": 40,
+        "points": 25
+      },
+      "game": {
+        "type": "musical-quiz",
+        "openTime": "21:00",
+        "description": "Quiz Musical",
+        "songs": [
+          {
+            "id": "song1",
+            "audio": "/src/games/MusicalQuiz/audio/song1.mp3",
+            "options": ["Maria", "Apaixonei", "Monstro"],
+            "correct": 0
+          },
+          {
+            "id": "song2",
+            "audio": "/src/games/MusicalQuiz/audio/song2.mp3",
+            "options": ["No tiene sentido", "Ojitos Lindos", "Aurora"],
+            "correct": 2
+          },
+          {
+            "id": "song3",
+            "audio": "/src/games/MusicalQuiz/audio/song3.mp3",
+            "options": ["Fardos", "Smack That", "They not like us"],
+            "correct": 0
+          },
+          {
+            "id": "song4",
+            "audio": "/src/games/MusicalQuiz/audio/song4.mp3",
+            "options": ["Big Boss", "Tikiti", "Ponto de interrogacao"],
+            "correct": 1
+          },
+          {
+            "id": "song5",
+            "audio": "/src/games/MusicalQuiz/audio/song5.mp3",
+            "options": ["Somertime Sadness", "Mockinbird", "The Fate of Ophelia"],
+            "correct": 2
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "gift": {
+        "title": "Massagem a dois 💆‍♀️💆",
+        "description": "Relaxamento conjunto",
+        "category": "High",
+        "estimatedPrice": 40,
+        "points": 25
+      },
+      "game": {
+        "type": "number-sequence",
+        "openTime": "21:00",
+        "description": "Sequência Numérica",
+        "sequences": [
+          {
+            "id": "seq1",
+            "sequence": [2, 4, 6, 8, "?"],
+            "answer": 10,
+            "hint": "Soma 2 a cada número"
+          },
+          {
+            "id": "seq2",
+            "sequence": [1, 3, 5, 7, "?"],
+            "answer": 9,
+            "hint": "Números ímpares"
+          },
+          {
+            "id": "seq3",
+            "sequence": [5, 10, 15, 20, "?"],
+            "answer": 25,
+            "hint": "Multiplica por 5"
+          },
+          {
+            "id": "seq4",
+            "sequence": [3, 6, 9, 12, "?"],
+            "answer": 15,
+            "hint": "Múltiplos de 3"
+          },
+          {
+            "id": "seq5",
+            "sequence": [1, 4, 9, 16, "?"],
+            "answer": 25,
+            "hint": "Números ao quadrado"
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "gift": {
+        "title": "Jantar em casa 🍝",
+        "description": "Preparado por ti",
+        "category": "Medium",
+        "estimatedPrice": 15,
+        "points": 15
+      },
+      "game": {
+        "type": "fast-math",
+        "openTime": "21:00",
+        "description": "Matemática Rápida",
+        "timeLimit": 30,
+        "questions": [
+          { "question": "5 + 3", "answer": 8 },
+          { "question": "10 - 4", "answer": 6 },
+          { "question": "7 × 2", "answer": 14 },
+          { "question": "15 ÷ 3", "answer": 5 },
+          { "question": "9 + 6", "answer": 15 },
+          { "question": "12 - 5", "answer": 7 },
+          { "question": "4 × 3", "answer": 12 },
+          { "question": "20 ÷ 4", "answer": 5 },
+          { "question": "8 + 7", "answer": 15 },
+          { "question": "16 - 9", "answer": 7 }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "gift": {
+        "title": "Prenda principal 🎁",
+        "description": "O presente mais especial! (até 100€)",
+        "category": "Final",
+        "estimatedPrice": 100,
+        "points": 100
+      },
+      "game": {
+        "type": "pattern-recognition",
+        "openTime": "21:00",
+        "description": "Reconhecimento de Padrões",
+        "patterns": [
+          {
+            "id": "pattern1",
+            "sequence": ["🔴", "🔵", "🔴", "🔵", "?"],
+            "options": ["🔴", "🔵", "🟢"],
+            "correct": 0,
+            "hint": "Alterna entre vermelho e azul"
+          },
+          {
+            "id": "pattern2",
+            "sequence": ["⭐", "⭐", "❤️", "⭐", "⭐", "?"],
+            "options": ["⭐", "❤️", "🎁"],
+            "correct": 1,
+            "hint": "Dois estrelas, um coração"
+          },
+          {
+            "id": "pattern3",
+            "sequence": ["⬆️", "➡️", "⬇️", "⬅️", "?"],
+            "options": ["⬆️", "➡️", "⬇️"],
+            "correct": 0,
+            "hint": "Roda no sentido dos ponteiros do relógio"
+          },
+          {
+            "id": "pattern4",
+            "sequence": ["🎵", "🎵", "🎵", "❤️", "🎵", "🎵", "?"],
+            "options": ["🎵", "❤️", "⭐"],
+            "correct": 0,
+            "hint": "Três músicas, um coração"
+          },
+          {
+            "id": "pattern5",
+            "sequence": ["1", "2", "3", "1", "2", "?"],
+            "options": ["1", "2", "3"],
+            "correct": 2,
+            "hint": "Repete o padrão 1-2-3"
+          }
+        ]
+      }
+    }
+  ],
+  "examples": {
+    "quiz":     
+    {
+      "day": 3,
+      "gift": {
+        "title": "Carta escrita à mão 💌",
+        "description": "Palavras do coração",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
+      "game": {
+        "type": "wheel",
+        "openTime": "21:00",
+        "description": "Roda da Sorte",
+        "prizes": [
+          { "id": 1, "name": "Chocolate 🍫", "description": "Bounty/mini-doce" },
+          { "id": 2, "name": "Rosa 🌹", "description": "Dar uma flor" },
+          { "id": 3, "name": "Beijo extra 💋", "description": "Beijo a pedido" },
+          { "id": 4, "name": "Bebida quente ☕", "description": "Café/chocolate quente juntos" },
+          { "id": 5, "name": "Escolher filme 🎬", "description": "Ela escolhe o próximo filme" },
+          { "id": 6, "name": "Mensagem secreta 💌", "description": "Carta guardada no site" },
+          { "id": 7, "name": "Sobremesa 🍪", "description": "Crumble/bolachas feitas por ti" },
+          { "id": 8, "name": "Foto nossa 📸", "description": "Foto impressa/Polaroid" }
+        ]
+      }
+    },
+    "trivia": {
+      "day": 27,
+      "game": {
+        "type": "trivia",
+        "openTime": "21:00",
+        "description": "Isto ou Aquilo",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Qual preferes?",
+            "option1": { "text": "Praia", "correct": true },
+            "option2": { "text": "Montanha", "correct": false }
+          },
+          {
+            "id": 2,
+            "question": "Qual preferes?",
+            "option1": { "text": "Filme", "correct": false },
+            "option2": { "text": "Série", "correct": true }
+          }
+        ]
+      }
+    },
+    "reflex": {
+      "day": 28,
+      "game": {
+        "type": "reflex",
+        "openTime": "21:00",
+        "description": "Jogo de Reflexo",
+        "rounds": 5
+      }
+    },
+    "riddles": {
+      "day": 29,
+      "game": {
+        "type": "riddles",
+        "openTime": "21:00",
+        "description": "Mini Riddles",
+        "riddles": [
+          {
+            "id": 1,
+            "question": "Tenho chaves mas não abro portas. Tenho espaço mas não tenho quartos. O que sou?",
+            "answer": "teclado",
+            "hint": "Usas-me para escrever",
+            "category": "Tecnologia"
+          },
+          {
+            "id": 2,
+            "question": "Sou alto quando novo e baixo quando velho. O que sou?",
+            "answer": "vela",
+            "hint": "Aceso-me para ver no escuro",
+            "category": "Objeto"
+          },
+          {
+            "id": 3,
+            "question": "Tenho cidades, mas não tenho casas. Tenho montanhas, mas não tenho árvores. Tenho água, mas não tenho peixes. O que sou?",
+            "answer": "mapa",
+            "hint": "Guia-te pelo mundo",
+            "category": "Geografia"
+          }
+        ]
+      }
+    }
+  }
+}

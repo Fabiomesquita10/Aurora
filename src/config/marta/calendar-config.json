@@ -71,6 +71,16 @@
       "type": "maze-heart",
       "description": "Labirinto do Coração",
       "instruction": "Guia o coração até ao outro sem tocar nas paredes ou bordas!"
+    },
+    "pair-matching": {
+      "type": "pair-matching",
+      "description": "Ligar Pares com Sentido",
+      "instruction": "Clica em dois itens para formar um par lógico (ex.: Lua ↔ Noite)"
+    },
+    "qr-code": {
+      "type": "qr-code",
+      "description": "Caça ao Tesouro - QR Codes",
+      "instruction": "Encontra e escaneia os 3 QR codes escondidos!"
     }
   },
   "days": [
@@ -89,23 +99,23 @@
         "description": "Linha do Tempo - Ordenar Eventos de 2025",
         "events": [
           {
-            "text": "Primeira mensagem",
+            "text": "Primeira",
             "date": "2025-04-11"
           },
           {
-            "text": "Primeiro jantar",
+            "text": "Segunda",
             "date": "2025-04-26"
           },
           {
-            "text": "Primeira noite juntos",
+            "text": "Terceira",
             "date": "2025-06-10"
           },
           {
-            "text": "Ferias ao geres",
+            "text": "Quarta",
             "date": "2025-06-17"
           },
           {
-            "text": "Ferias ao Algarve",
+            "text": "Quinta",
             "date": "2025-09-02"
           }
         ]
@@ -124,7 +134,7 @@
         "type": "scrambled-sentence",
         "openTime": "21:00",
         "description": "Decifrar Frase Baralhada",
-        "sentence": "AMO TE COM O MEU CORAÇÃO TODO"
+        "sentence": "Eu sou linda"
       }
     },
     {
@@ -166,7 +176,7 @@
         "openTime": "21:00",
         "description": "Encoding T9 (Telemóvel Antigo)",
         "numbers": "23676 67 8387 65467",
-        "phrase": "ADORO OS TEUS OLHOS"
+        "phrase": "ADORO O BENFICA"
       }
     },
     {
@@ -185,7 +195,7 @@
         "questions": [
           {
             "id": 1,
-            "question": "Onde foi o nosso primeiro encontro?",
+            "question": "Onde foi?",
             "options": [
               { "id": "a", "text": "Parque da cidade", "correct": true },
               { "id": "b", "text": "Cinema", "correct": false },
@@ -195,42 +205,42 @@
           },
           {
             "id": 2,
-            "question": "Em que dia te mandei mensagem pela primeira vez?",
+            "question": "Onde foi?",
             "options": [
-              { "id": "a", "text": "11 Abril", "correct": true },
-              { "id": "b", "text": "12 Abril", "correct": false },
-              { "id": "c", "text": "22 Abril", "correct": false },
-              { "id": "d", "text": "21 Abril", "correct": false }
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
             ]
           },
           {
             "id": 3,
-            "question": "Onde fomos jantar a primeira vez?",
+            "question": "Onde foi?",
             "options": [
-              { "id": "a", "text": "Minha casa", "correct": false },
-              { "id": "b", "text": "Mc Donalds", "correct": false },
-              { "id": "c", "text": "Antonio Mezzero", "correct": true },
-              { "id": "d", "text": "Burger King", "correct": false }
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
             ]
           },
           {
             "id": 4,
-            "question": "Onde foram as nossas primeiras ferias juntos?",
+            "question": "Onde foi?",
             "options": [
-              { "id": "a", "text": "Algarve", "correct": false },
-              { "id": "b", "text": "Sevilha", "correct": false },
-              { "id": "c", "text": "Vigo", "correct": false },
-              { "id": "d", "text": "Geres", "correct": true }
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
             ]
           },
           {
             "id": 5,
-            "question": "Qual foi a minha primeira prenda?",
+            "question": "Onde foi?",
             "options": [
-              { "id": "a", "text": "Uma carta", "correct": false },
-              { "id": "b", "text": "Uma rosa", "correct": true },
-              { "id": "c", "text": "Um anel", "correct": false },
-              { "id": "d", "text": "Nada", "correct": false }
+              { "id": "a", "text": "Parque da cidade", "correct": true },
+              { "id": "b", "text": "Cinema", "correct": false },
+              { "id": "c", "text": "Praia", "correct": false },
+              { "id": "d", "text": "Jantar", "correct": false }
             ]
           }
         ]
@@ -351,7 +361,7 @@
         "openTime": "21:00",
         "description": "Criptograma",
         "encodedText": "COQT GVGTPQ",
-        "decodedText": "AMOR ETERNO",
+        "decodedText": "GOLO BENFICA",
         "cipherType": "shift",
         "cipherRule": {
           "shift": 2,
@@ -546,10 +556,16 @@
         "points": 15
       },
       "game": {
-        "type": "wordle",
+        "type": "pair-matching",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "ELITE"
+        "description": "Ligar Pares com Sentido",
+        "pairs": [
+          { "left": "Lua", "right": "Noite" },
+          { "left": "Sol", "right": "Dia" },
+          { "left": "Chuva", "right": "Guarda-chuva" },
+          { "left": "Fogo", "right": "Água" },
+          { "left": "Amor", "right": "Coração" }
+        ]
       }
     },
     {
@@ -581,23 +597,55 @@
         "type": "wordle",
         "openTime": "21:00",
         "description": "Wordle Romântico",
-        "word": "UNICO"
+        "word": "AMOR"
       }
     },
     {
       "day": 21,
       "gift": {
-        "title": "Ela escolhe um prémio low",
-        "description": "Escolha especial",
-        "category": "Low",
-        "estimatedPrice": 5,
-        "points": 10
+        "title": "Caça ao Tesouro 🗺️",
+        "description": "Uma aventura especial",
+        "category": "Medium",
+        "estimatedPrice": 0,
+        "points": 20
+      },
+      "game": {
+        "type": "qr-code",
+        "openTime": "21:00",
+        "description": "Caça ao Tesouro - QR Codes",
+        "qrCodes": [
+          {
+            "id": "qr1",
+            "code": "AURORA_QR_1",
+            "message": "🎉 Primeiro QR encontrado! Continua a procurar!"
+          },
+          {
+            "id": "qr2",
+            "code": "AURORA_QR_2",
+            "message": "🌟 Segundo QR encontrado! Falta mais um!"
+          },
+          {
+            "id": "qr3",
+            "code": "AURORA_QR_3",
+            "message": "🏆 Terceiro QR encontrado! Parabéns, completaste a caça ao tesouro!"
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "gift": {
+        "title": "Jantar no Mezzero 🍷",
+        "description": "Jantar especial",
+        "category": "High",
+        "estimatedPrice": 40,
+        "points": 25
       },
       "game": {
         "type": "wordle",
         "openTime": "21:00",
         "description": "Wordle Romântico",
-        "word": "AMIGO"
+        "word": "UNICO"
       }
     },
     {

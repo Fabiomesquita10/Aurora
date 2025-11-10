@@ -1,10 +1,12 @@
 // Sistema de gestão de contas/utilizadores
 
 // Carregar contas do ficheiro JSON
-export const loadAccounts = async () => {
+export const loadAccounts = async (forceReload = false) => {
   try {
     if (import.meta.env.DEV) {
-      const response = await fetch('/src/config/accounts.json')
+      // Adicionar timestamp para evitar cache
+      const cacheBuster = forceReload ? `?t=${Date.now()}` : ''
+      const response = await fetch(`/src/config/accounts.json${cacheBuster}`)
       if (response.ok) {
         return await response.json()
       }
@@ -32,15 +34,35 @@ export const authenticateAccount = async (username, password) => {
 }
 
 // Obter conta por ID
-export const getAccountById = async (accountId) => {
-  const accounts = await loadAccounts()
-  return accounts.find(acc => acc.id === accountId) || null
+export const getAccountById = async (accountId, forceReload = false) => {
+  if (!accountId) return null
+  const accounts = await loadAccounts(forceReload)
+  const account = accounts.find(acc => acc.id === accountId) || null
+  if (!account) {
+    console.warn(`⚠️ Conta não encontrada no JSON: ${accountId}. Contas disponíveis:`, accounts.map(a => a.id))
+  }
+  return account
 }
 
 // Verificar se conta está ativa
 export const isAccountActive = async (accountId) => {
-  const account = await getAccountById(accountId)
-  return account && account.active === true
+  if (!accountId) {
+    console.warn('⚠️ isAccountActive: accountId não fornecido')
+    return false
+  }
+  
+  // Forçar reload para garantir dados atualizados (evitar cache)
+  const account = await getAccountById(accountId, true)
+  
+  if (!account) {
+    console.warn(`⚠️ Conta não encontrada: ${accountId}`)
+    return false
+  }
+  
+  const isActive = account.active === true
+  console.log(`🔍 Verificação de conta: ${accountId} (${account.name}) - Ativa: ${isActive}`)
+  
+  return isActive
 }
 
 // Guardar contas (apenas para modo DEV - para edição manual)

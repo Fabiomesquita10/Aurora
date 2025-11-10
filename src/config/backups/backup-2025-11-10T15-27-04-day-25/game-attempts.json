@@ -1,0 +1,370 @@
+[
+  {
+    "gameType": "pattern-recognition",
+    "day": 25,
+    "date": "2025-11-10T15:27:04.160Z",
+    "won": true,
+    "attempts": 5,
+    "errors": 1,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "correctAnswers": 4,
+      "totalErrors": 1,
+      "totalPatterns": 5
+    },
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "fast-math",
+    "day": 24,
+    "date": "2025-11-10T15:26:28.501Z",
+    "won": true,
+    "attempts": 20,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "correctAnswers": 20,
+      "questionTimes": [
+        {
+          "questionIndex": 0,
+          "question": "5 + 3",
+          "answer": 8,
+          "userAnswer": 8,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 1,
+          "question": "10 - 4",
+          "answer": 6,
+          "userAnswer": 6,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 2,
+          "question": "7 × 2",
+          "answer": 14,
+          "userAnswer": 14,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 3,
+          "question": "15 ÷ 3",
+          "answer": 5,
+          "userAnswer": 5,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 4,
+          "question": "9 + 6",
+          "answer": 15,
+          "userAnswer": 15,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 5,
+          "question": "12 - 5",
+          "answer": 7,
+          "userAnswer": 7,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 6,
+          "question": "4 × 3",
+          "answer": 12,
+          "userAnswer": 12,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 7,
+          "question": "20 ÷ 4",
+          "answer": 5,
+          "userAnswer": 5,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 8,
+          "question": "8 + 7",
+          "answer": 15,
+          "userAnswer": 15,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 9,
+          "question": "16 - 9",
+          "answer": 7,
+          "userAnswer": 7,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 0,
+          "question": "5 + 3",
+          "answer": 8,
+          "userAnswer": 8,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 1,
+          "question": "10 - 4",
+          "answer": 6,
+          "userAnswer": 6,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 2,
+          "question": "7 × 2",
+          "answer": 14,
+          "userAnswer": 14,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 3,
+          "question": "15 ÷ 3",
+          "answer": 5,
+          "userAnswer": 5,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 4,
+          "question": "9 + 6",
+          "answer": 15,
+          "userAnswer": 15,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 5,
+          "question": "12 - 5",
+          "answer": 7,
+          "userAnswer": 7,
+          "isCorrect": true,
+          "timeSeconds": 2
+        },
+        {
+          "questionIndex": 6,
+          "question": "4 × 3",
+          "answer": 12,
+          "userAnswer": 12,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 7,
+          "question": "20 ÷ 4",
+          "answer": 5,
+          "userAnswer": 5,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 8,
+          "question": "8 + 7",
+          "answer": 15,
+          "userAnswer": 15,
+          "isCorrect": true,
+          "timeSeconds": 1
+        },
+        {
+          "questionIndex": 9,
+          "question": "16 - 9",
+          "answer": 7,
+          "userAnswer": 7,
+          "isCorrect": true,
+          "timeSeconds": 2
+        }
+      ],
+      "totalQuestions": 10,
+      "questionsAnswered": 20
+    },
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "number-sequence",
+    "day": 23,
+    "date": "2025-11-10T15:25:43.371Z",
+    "won": true,
+    "attempts": 7,
+    "errors": 2,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "correctAnswers": 5,
+      "totalSequences": 5
+    },
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "memory-game",
+    "day": 3,
+    "date": "2025-11-10T15:24:58.921Z",
+    "won": true,
+    "attempts": 11,
+    "errors": 5,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 17,
+      "failedAttempts": 5,
+      "moves": 11,
+      "totalPairs": 6
+    },
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "musical-quiz",
+    "day": 22,
+    "date": "2025-11-10T15:07:34.276Z",
+    "won": true,
+    "attempts": 5,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 19,
+      "score": 5,
+      "totalSongs": 5,
+      "songResults": [
+        {
+          "songId": "song1",
+          "songIndex": 0,
+          "selectedAnswer": 0,
+          "correctAnswer": 0,
+          "isCorrect": true,
+          "selectedOption": "Maria",
+          "correctOption": "Maria"
+        },
+        {
+          "songId": "song2",
+          "songIndex": 1,
+          "selectedAnswer": 2,
+          "correctAnswer": 2,
+          "isCorrect": true,
+          "selectedOption": "Aurora",
+          "correctOption": "Aurora"
+        },
+        {
+          "songId": "song3",
+          "songIndex": 2,
+          "selectedAnswer": 0,
+          "correctAnswer": 0,
+          "isCorrect": true,
+          "selectedOption": "Fardos",
+          "correctOption": "Fardos"
+        },
+        {
+          "songId": "song4",
+          "songIndex": 3,
+          "selectedAnswer": 1,
+          "correctAnswer": 1,
+          "isCorrect": true,
+          "selectedOption": "Tikiti",
+          "correctOption": "Tikiti"
+        },
+        {
+          "songId": "song5",
+          "songIndex": 4,
+          "selectedAnswer": 2,
+          "correctAnswer": 2,
+          "isCorrect": true,
+          "selectedOption": "The Fate of Ophelia",
+          "correctOption": "The Fate of Ophelia"
+        }
+      ],
+      "correctSongs": [
+        {
+          "songId": "song1",
+          "songIndex": 0,
+          "correctOption": "Maria"
+        },
+        {
+          "songId": "song2",
+          "songIndex": 1,
+          "correctOption": "Aurora"
+        },
+        {
+          "songId": "song3",
+          "songIndex": 2,
+          "correctOption": "Fardos"
+        },
+        {
+          "songId": "song4",
+          "songIndex": 3,
+          "correctOption": "Tikiti"
+        },
+        {
+          "songId": "song5",
+          "songIndex": 4,
+          "correctOption": "The Fate of Ophelia"
+        }
+      ],
+      "incorrectSongs": []
+    },
+    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "box-choice",
+    "day": 21,
+    "date": "2025-11-10T14:41:34.714Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 6,
+      "selectedBoxIndex": 1,
+      "selectedPrize": "20",
+      "allPrizes": [
+        {
+          "boxIndex": 0,
+          "boxLabel": "Caixa 1",
+          "prize": "10"
+        },
+        {
+          "boxIndex": 1,
+          "boxLabel": "Caixa 2",
+          "prize": "20"
+        },
+        {
+          "boxIndex": 2,
+          "boxLabel": "Caixa 3",
+          "prize": "30"
+        }
+      ]
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

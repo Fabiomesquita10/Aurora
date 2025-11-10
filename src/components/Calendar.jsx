@@ -3,7 +3,7 @@ import { useGameState } from '../utils/gameState'
 import { canUnlockDay as checkCanUnlockDay, getUnlockTime, formatTimeUntilUnlock } from '../utils/dateUtils'
 import { getCurrentProfile } from '../utils/userProfiles'
 import { isAccountActive } from '../utils/accounts'
-import { getDayGift, getDayGame, getGameOpenTime, getDayGameWord, getDayGameNumbers, getDayGamePhrase, getDayGamePrizes, getDayGameQuestions, getDayGameTriviaQuestions, getDayGameRounds, getDayGameRiddles, getDayGameEncodedText, getDayGameDecodedText, getDayGameCipherType, getDayGameCipherRule, getDayGameSudokuPuzzle, getDayGameSudokuSolution, getDayGameSudokuInitial, getDayGameSudokuHint, getDayGameWords, getDayGameGridSize, getDayGameTargetHearts, getDayGameDuration, getDayGameMaxAttempts, getDayGameSentence, getDayGameMazeSize, getDayGameDifficulty, getDayGameCorrectWire, getDayGameRules, getDayGameMaxTime, getDayGameMathQuestions, getDayGameEvents, getDayGameImageUrl, getDayGameNumberOfBalls, getDayGameSequences, getDayGameDoubleReflexRounds, getDayGameDoubleReflexButtons } from '../utils/calendarConfig'
+import { getDayGift, getDayGame, getGameOpenTime, getDayGameWord, getDayGameNumbers, getDayGamePhrase, getDayGamePrizes, getDayGameQuestions, getDayGameTriviaQuestions, getDayGameRounds, getDayGameRiddles, getDayGameEncodedText, getDayGameDecodedText, getDayGameCipherType, getDayGameCipherRule, getDayGameSudokuPuzzle, getDayGameSudokuSolution, getDayGameSudokuInitial, getDayGameSudokuHint, getDayGameWords, getDayGameGridSize, getDayGameTargetHearts, getDayGameDuration, getDayGameMaxAttempts, getDayGameSentence, getDayGameMazeSize, getDayGameDifficulty, getDayGameCorrectWire, getDayGameRules, getDayGameMaxTime, getDayGameMathQuestions, getDayGameEvents, getDayGameImageUrl, getDayGameNumberOfBalls, getDayGameSequences, getDayGameDoubleReflexRounds, getDayGameDoubleReflexButtons, getDayGamePairs, getDayGameQRCodes, getDayGamePhotos, getDayGameBoxes, getDayGameHint, getDayGameSongs, getDayGameCards, getDayGameNumberSequences, getDayGameFastMathQuestions, getDayGameMathTimeLimit, getDayGamePatterns } from '../utils/calendarConfig'
 import { getWordleWordForDay } from '../utils/wordlePhrase'
 import WordleRomantico from '../games/WordleRomantico/WordleRomantico'
 import T9Encoding from '../games/T9Encoding/T9Encoding'
@@ -23,6 +23,15 @@ import Timeline from '../games/Timeline/Timeline'
 import Puzzle from '../games/Puzzle/Puzzle'
 import Simon from '../games/Simon/Simon'
 import DoubleReflex from '../games/DoubleReflex/DoubleReflex'
+import PairMatching from '../games/PairMatching/PairMatching'
+import QRCodeReader from '../games/QRCodeReader/QRCodeReader'
+import PhotoTrivia from '../games/PhotoTrivia/PhotoTrivia'
+import BoxChoice from '../games/BoxChoice/BoxChoice'
+import MusicalQuiz from '../games/MusicalQuiz/MusicalQuiz'
+import MemoryGame from '../games/MemoryGame/MemoryGame'
+import NumberSequence from '../games/NumberSequence/NumberSequence'
+import FastMath from '../games/FastMath/FastMath'
+import PatternRecognition from '../games/PatternRecognition/PatternRecognition'
 import PrizeModal from './PrizeModal'
 import './Calendar.css'
 import './GameSelection.css'
@@ -250,6 +259,17 @@ function Calendar({ onNavigateToPresents }) {
     const gameSequences = getDayGameSequences(gameDay)
     const gameDoubleReflexRounds = getDayGameDoubleReflexRounds(gameDay)
     const gameDoubleReflexButtons = getDayGameDoubleReflexButtons(gameDay)
+    const gamePairs = getDayGamePairs(gameDay)
+    const gameQRCodes = getDayGameQRCodes(gameDay)
+    const gamePhotos = getDayGamePhotos(gameDay)
+    const gameBoxes = getDayGameBoxes(gameDay)
+    const gameHint = getDayGameHint(gameDay)
+    const gameSongs = getDayGameSongs(gameDay)
+    const gameCards = getDayGameCards(gameDay)
+    const gameNumberSequences = getDayGameNumberSequences(gameDay)
+    const gameFastMathQuestions = getDayGameFastMathQuestions(gameDay)
+    const gameFastMathTimeLimit = getDayGameMathTimeLimit(gameDay)
+    const gamePatterns = getDayGamePatterns(gameDay)
     
     // Verificar se o jogo já foi completado
     const isGameCompleted = (gameId) => {
@@ -487,6 +507,98 @@ function Calendar({ onNavigateToPresents }) {
             <DoubleReflex
               rounds={gameDoubleReflexRounds || 10}
               numberOfButtons={gameDoubleReflexButtons || 9}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'pair-matching':
+          return (
+            <PairMatching
+              pairs={gamePairs}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'qr-code':
+          return (
+            <QRCodeReader
+              qrCodes={gameQRCodes}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'photo-trivia':
+          return (
+            <PhotoTrivia
+              photos={gamePhotos}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'box-choice':
+          return (
+            <BoxChoice
+              boxes={gameBoxes}
+              hint={gameHint}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'musical-quiz':
+          return (
+            <MusicalQuiz
+              songs={gameSongs}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'memory-game':
+          return (
+            <MemoryGame
+              cards={gameCards}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'number-sequence':
+          return (
+            <NumberSequence
+              sequences={gameNumberSequences}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'fast-math':
+          return (
+            <FastMath
+              questions={gameFastMathQuestions}
+              timeLimit={gameFastMathTimeLimit}
+              day={gameDay}
+              onWin={handleGameWin}
+              onComplete={handleGameComplete}
+              onGameAttempt={addGameAttempt}
+            />
+          )
+        case 'pattern-recognition':
+          return (
+            <PatternRecognition
+              patterns={gamePatterns}
               day={gameDay}
               onWin={handleGameWin}
               onComplete={handleGameComplete}

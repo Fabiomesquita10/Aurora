@@ -77,7 +77,16 @@ src/
 │   ├── WordSearch/          # Word search
 │   ├── Puzzle/              # Puzzle tiles (sliding puzzle)
 │   ├── Simon/               # Simon Says (memory sequence game)
-│   └── DoubleReflex/        # Double Reflex (quick reaction game)
+│   ├── DoubleReflex/        # Double Reflex (quick reaction game)
+│   ├── PairMatching/        # Pair matching game
+│   ├── QRCodeReader/        # QR code scanner (treasure hunt)
+│   ├── PhotoTrivia/         # Photo trivia (guess locations)
+│   ├── BoxChoice/           # Box choice game (pick a box)
+│   ├── MusicalQuiz/         # Musical quiz (identify songs)
+│   ├── MemoryGame/           # Memory game (find pairs)
+│   ├── NumberSequence/      # Number sequence game
+│   ├── FastMath/            # Fast math game (timer-based)
+│   └── PatternRecognition/   # Pattern recognition game
 │       (Each game has its own folder with .jsx, .css, and README.md)
 │
 ├── utils/              # Utilities and logic
@@ -131,6 +140,15 @@ src/
 16. **Puzzle Tiles 🧩** - Sliding puzzle game (configurable difficulty and grid size)
 17. **Simon 🎮** - Memorize and repeat color sequences (progressive difficulty)
 18. **Double Reflex ⚡** - Quick reaction game with multiple buttons
+19. **Pair Matching 🔗** - Match pairs of related items (e.g., "Lua ↔ Noite")
+20. **QR Code Reader 📱** - Scan QR codes to find hidden messages (treasure hunt)
+21. **Photo Trivia 📸** - Guess locations from blurred/cropped photos
+22. **Box Choice 📦** - Choose one of three boxes with different prizes
+23. **Musical Quiz 🎵** - Listen to music snippets and identify the song
+24. **Memory Game 🧠** - Find matching pairs of cards (12 cards, 6 pairs)
+25. **Number Sequence 🔢** - Complete numerical sequences with hints
+26. **Fast Math ⚡** - Solve math problems as fast as possible (timer-based)
+27. **Pattern Recognition 🔍** - Identify visual patterns and choose the next element
 
 ## 🎁 Gift System
 
@@ -216,7 +234,7 @@ The application supports multiple users with individual progress tracking:
 3. **Shop** 🛍️ - Buy items with earned points
 4. **Wordles** 📝 - List of completed daily Wordles
 5. **Profiles** 👤 - User login and profile management
-6. **Playground** 🎮 - Test all games (development mode)
+6. **Playground** 🎮 - Replay any previously played game
 
 ## 🔧 Configuration and Development
 
@@ -232,10 +250,19 @@ Edit `DAILY_GIFTS` in `src/utils/gameState.js`
 ### Customizing Shop Items
 Edit `SHOP_ITEMS` in `src/utils/gameState.js`
 
+### Playground System
+The Playground allows players to replay any game they've already completed:
+- **Access**: Available to all logged-in users (not just dev mode)
+- **Available Games**: Shows all games from days you've won
+- **Wordle**: Always available with random word selection
+- **Content Behavior**:
+  - **Fixed Content**: Games with specific questions/content (Quiz, Trivia, Cryptogram, Riddles, Timeline, Pair Matching, Memory Game, Number Sequence, Fast Math, Pattern Recognition) repeat the exact same content
+  - **Randomized Content**: Games that generate content (Reflex, Catch Hearts, Maze Heart, Word Search, Simon, Bomb Wire, Mini Sudoku, Double Reflex) create new content each time
+- **Authentication**: Requires login and active account
+
 ### Development Mode
 The project includes a development mode (DEV_MODE) that allows:
 - Unlock all days
-- Test games in Playground
 - Reset game state (button only visible in dev mode)
 
 **Modes:**
@@ -279,6 +306,12 @@ Edit `src/config/accounts.json` to add new users:
 - **Responsive Design**: Interface adaptable to different screen sizes, optimized for desktop use
 - **Desktop Optimized**: Full-width layout for desktop screens, better use of available space
 - **Progressive Difficulty**: Some games (like Simon) increase difficulty progressively (speed increases with each level)
+- **Playground System**: Replay any game you've already played:
+  - Shows all games from days you've completed
+  - Wordle is always available with random words
+  - Games with specific content (quizzes, cryptograms, etc.) repeat the same content
+  - Games with randomized content (Reflex, Catch Hearts, Maze, Word Search, Simon, Bomb Wire, Mini Sudoku, Double Reflex) generate new content each time
+  - Requires login and active account to play
 
 ## 🎁 Prize System
 

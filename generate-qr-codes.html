@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Codes - Caça ao Tesouro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .qr-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e74c3c;
+        }
+        .qr-section h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        .qr-message {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #e74c3c;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+        .qr-code-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code-container img {
+            max-width: 300px;
+            border: 3px solid #e74c3c;
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .download-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #229954;
+            transform: scale(1.05);
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .info {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .code-text {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕯️ Gerador de QR Codes - Caça ao Tesouro</h1>
+        
+        <div class="info">
+            <strong>ℹ️ Instruções:</strong> Clica em "Gerar QR Code" para cada mensagem. Depois faz download da imagem e imprime ou guarda digitalmente.
+        </div>
+
+        <!-- QR Code 1 -->
+        <div class="qr-section">
+            <h2>🕯️ QR Code 1 - Porta-luvas do Carro</h2>
+            <div class="qr-message">
+🕯️ Mensagem 1
+
+Há viagens que começam com um simples abrir de porta…
+
+Procura onde costumas guardar os mapas, as estradas e as pequenas memórias dos dias.
+
+É lá que o viajante deixou o primeiro sinal do caminho.
+            </div>
+            <div class="code-text" id="code1-text">AURORA_QR_1</div>
+            <div class="qr-code-container" id="qr1-container">
+                <button class="generate-btn" onclick="generateQR(1)">🎨 Gerar QR Code 1</button>
+            </div>
+        </div>
+
+        <!-- QR Code 2 -->
+        <div class="qr-section">
+            <h2>📜 QR Code 2 - Casaco Castanho</h2>
+            <div class="qr-message">
+📜 Mensagem 2
+
+Nem todos os abrigos servem apenas para o frio.
+
+Entre tecidos novos e promessas de aventuras, há um casaco que ainda não conheceu o vento.
+
+Dentro dele, repousa a próxima pista da tua viagem.
+            </div>
+            <div class="code-text" id="code2-text">AURORA_QR_2</div>
+            <div class="qr-code-container" id="qr2-container">
+                <button class="generate-btn" onclick="generateQR(2)">🎨 Gerar QR Code 2</button>
+            </div>
+        </div>
+
+        <!-- QR Code 3 -->
+        <div class="qr-section">
+            <h2>🎁 QR Code 3 - Mala</h2>
+            <div class="qr-message">
+🎁 Mensagem 3
+
+Toda viajante tem um refúgio secreto, onde guarda o seu pequeno mundo.
+
+Lá dentro, entre o que é essencial e o que levas "só por precaução", encontrarás o destino final desta rota.
+
+O caixeiro despede-se aqui — mas quem sabe o caminho vos volte a cruzar.
+            </div>
+            <div class="code-text" id="code3-text">AURORA_QR_3</div>
+            <div class="qr-code-container" id="qr3-container">
+                <button class="generate-btn" onclick="generateQR(3)">🎨 Gerar QR Code 3</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const qrMessages = {
+            1: {
+                code: 'AURORA_QR_1',
+                message: '🕯️ Mensagem 1\n\nHá viagens que começam com um simples abrir de porta…\n\nProcura onde costumas guardar os mapas, as estradas e as pequenas memórias dos dias.\n\nÉ lá que o viajante deixou o primeiro sinal do caminho.'
+            },
+            2: {
+                code: 'AURORA_QR_2',
+                message: '📜 Mensagem 2\n\nNem todos os abrigos servem apenas para o frio.\n\nEntre tecidos novos e promessas de aventuras, há um casaco que ainda não conheceu o vento.\n\nDentro dele, repousa a próxima pista da tua viagem.'
+            },
+            3: {
+                code: 'AURORA_QR_3',
+                message: '🎁 Mensagem 3\n\nToda viajante tem um refúgio secreto, onde guarda o seu pequeno mundo.\n\nLá dentro, entre o que é essencial e o que levas "só por precaução", encontrarás o destino final desta rota.\n\nO caixeiro despede-se aqui — mas quem sabe o caminho vos volte a cruzar.'
+            }
+        };
+
+        async function generateQR(num) {
+            const container = document.getElementById(`qr${num}-container`);
+            const btn = container.querySelector('.generate-btn');
+            
+            // Mostrar loading
+            btn.disabled = true;
+            btn.innerHTML = '⏳ A gerar... <span class="loading"></span>';
+            
+            const qrData = qrMessages[num];
+            
+            // Configuração personalizada do QR code
+            const config = {
+                body: "rounded-pointed",
+                eye: "frame14",
+                eyeBall: "ball16",
+                erf1: [],
+                erf2: ["fh"],
+                erf3: ["fv"],
+                brf1: [],
+                brf2: ["fh"],
+                brf3: ["fv"],
+                bodyColor: "#e74c3c",
+                bgColor: "#FFFFFF",
+                eye1Color: "#c0392b",
+                eye2Color: "#c0392b",
+                eye3Color: "#c0392b",
+                eyeBall1Color: "#e74c3c",
+                eyeBall2Color: "#e74c3c",
+                eyeBall3Color: "#e74c3c",
+                gradientColor1: "#e74c3c",
+                gradientColor2: "#c0392b",
+                gradientType: "radial",
+                gradientOnEyes: false,
+                logo: ""
+            };
+            
+            try {
+                // Usar a API do QRCode Monkey
+                // Nota: Esta é uma versão simplificada. Para usar a API completa com logo e design avançado,
+                // precisas de uma chave da RapidAPI (https://rapidapi.com/qrcode-monkey/api/qrcode-monkey)
+                
+                // Configuração para QR code personalizado
+                // Aumentar o tamanho para melhor legibilidade (1000x1000)
+                const apiUrl = 'https://api.qrserver.com/v1/create-qr-code/';
+                const params = new URLSearchParams({
+                    size: '1000x1000',  // Aumentado de 500x500 para 1000x1000
+                    data: qrData.code,
+                    color: 'dc3545',  // Vermelho (#e74c3c)
+                    bgcolor: 'ffffff',
+                    margin: '4',  // Aumentado de 2 para 4 (mais espaço ao redor)
+                    qzone: '2',
+                    format: 'png',
+                    ecclevel: 'M'  // Nível de correção de erro: L (baixo), M (médio), Q (alto), H (muito alto)
+                });
+                
+                const qrCodeUrl = `${apiUrl}?${params.toString()}`;
+                
+                // Criar imagem
+                const img = document.createElement('img');
+                img.src = qrCodeUrl;
+                img.alt = `QR Code ${num}`;
+                img.style.display = 'block';
+                img.style.margin = '20px auto';
+                img.onload = () => {
+                    btn.disabled = false;
+                };
+                
+                // Limpar container e adicionar imagem
+                container.innerHTML = '';
+                container.appendChild(img);
+                
+                // Adicionar botão de download
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.textContent = '⬇️ Download QR Code';
+                downloadBtn.onclick = () => downloadQR(qrCodeUrl, `AURORA_QR_${num}.png`);
+                container.appendChild(downloadBtn);
+                
+                // Adicionar botão para gerar novamente
+                const regenBtn = document.createElement('button');
+                regenBtn.className = 'generate-btn';
+                regenBtn.textContent = '🔄 Gerar Novamente';
+                regenBtn.onclick = () => generateQR(num);
+                regenBtn.style.marginTop = '10px';
+                container.appendChild(regenBtn);
+                
+                // Adicionar link para API avançada
+                const apiLink = document.createElement('div');
+                apiLink.style.marginTop = '15px';
+                apiLink.style.fontSize = '12px';
+                apiLink.style.color = '#7f8c8d';
+                apiLink.innerHTML = '💡 Para QR codes mais personalizados com logo, usa: <a href="https://www.qrcode-monkey.com" target="_blank">QRCode Monkey</a>';
+                container.appendChild(apiLink);
+                
+            } catch (error) {
+                console.error('Erro ao gerar QR code:', error);
+                btn.disabled = false;
+                btn.innerHTML = '❌ Erro ao gerar. Tenta novamente.';
+                alert('Erro ao gerar QR code. Verifica a ligação à internet.');
+            }
+        }
+        
+        function downloadQR(url, filename) {
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(link.href);
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer download:', error);
+                    alert('Erro ao fazer download. Tenta clicar com o botão direito na imagem e "Guardar imagem como..."');
+                });
+        }
+    </script>
+</body>
+</html>
+

@@ -391,6 +391,93 @@ export const getDayGameMathQuestions = (day) => {
 }
 
 /**
+ * Obtém os pares de um dia (para jogos pair-matching)
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {array|null} Array de pares {left, right} ou null
+ */
+export const getDayGamePairs = (day) => {
+  const game = getDayGame(day)
+  return game?.pairs || null
+}
+
+/**
+ * Obtém os QR codes de um dia (para jogos qr-code)
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {array|null} Array de QR codes {id, code, message} ou null
+ */
+export const getDayGameQRCodes = (day) => {
+  const game = getDayGame(day)
+  return game?.qrCodes || null
+}
+
+/**
+ * Obtém as fotos do jogo Photo Trivia de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {array|null} Array de fotos ou null se não existir
+ */
+export const getDayGamePhotos = (day) => {
+  const game = getDayGame(day)
+  return game?.photos || null
+}
+
+/**
+ * Obtém as caixas do jogo Box Choice de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {array|null} Array de caixas ou null se não existir
+ */
+export const getDayGameBoxes = (day) => {
+  const game = getDayGame(day)
+  return game?.boxes || null
+}
+
+/**
+ * Obtém a dica do jogo Box Choice de um dia
+ * @param {number} day - Dia de dezembro (1-25)
+ * @returns {string|null} Dica ou null se não existir
+ */
+export const getDayGameHint = (day) => {
+  const game = getDayGame(day)
+  return game?.hint || null
+}
+
+export const getDayGameCorrectBoxIndex = (day) => {
+  const game = getDayGame(day)
+  return game?.correctBoxIndex !== undefined ? game.correctBoxIndex : null
+}
+
+export const getDayGameSongs = (day) => {
+  const game = getDayGame(day)
+  return game?.songs || null
+}
+
+export const getDayGameCards = (day) => {
+  const game = getDayGame(day)
+  return game?.cards || null
+}
+
+export const getDayGameNumberSequences = (day) => {
+  const game = getDayGame(day)
+  if (!game || game.type !== 'number-sequence') return null
+  return game.sequences || null
+}
+
+export const getDayGameFastMathQuestions = (day) => {
+  const game = getDayGame(day)
+  if (!game || game.type !== 'fast-math') return null
+  return game.questions || null
+}
+
+export const getDayGameMathTimeLimit = (day) => {
+  const game = getDayGame(day)
+  return game?.timeLimit || 30
+}
+
+export const getDayGamePatterns = (day) => {
+  const game = getDayGame(day)
+  return game?.patterns || null
+}
+
+/**
  * Obtém o horário de abertura do jogo de um dia específico
  * @param {number} day - Dia de dezembro (1-25)
  * @returns {string|null} Horário no formato "HH:mm" ou null

@@ -1,0 +1,48 @@
+[
+  {
+    "gameType": "qr-code",
+    "day": 19,
+    "date": "2025-11-10T13:01:27.816Z",
+    "won": true,
+    "attempts": 3,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 11,
+      "scannedCodes": [
+        "qr1",
+        "qr2",
+        "qr3"
+      ],
+      "finalAnswer": "mala"
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  },
+  {
+    "gameType": "qr-code",
+    "day": 19,
+    "date": "2025-11-10T12:59:21.517Z",
+    "won": true,
+    "attempts": 3,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 15,
+      "scannedCodes": [
+        "qr1",
+        "qr2",
+        "qr3"
+      ],
+      "finalAnswer": "mala"
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]

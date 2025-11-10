@@ -1,0 +1,19 @@
+[
+  {
+    "id": "account_1",
+    "username": "admin",
+    "password": "admin",
+    "name": "Administrador",
+    "active": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "account_2",
+    "username": "filipa",
+    "password": "filipa",
+    "name": "filipa",
+    "active": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]
+

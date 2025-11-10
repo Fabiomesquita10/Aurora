@@ -1,0 +1,38 @@
+[
+  {
+    "gameType": "box-choice",
+    "day": 21,
+    "date": "2025-11-10T14:41:34.714Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 6,
+      "selectedBoxIndex": 1,
+      "selectedPrize": "20",
+      "allPrizes": [
+        {
+          "boxIndex": 0,
+          "boxLabel": "Caixa 1",
+          "prize": "10"
+        },
+        {
+          "boxIndex": 1,
+          "boxLabel": "Caixa 2",
+          "prize": "20"
+        },
+        {
+          "boxIndex": 2,
+          "boxLabel": "Caixa 3",
+          "prize": "30"
+        }
+      ]
+    },
+    "profileId": "profile_1762686666950_qwv1gg55b",
+    "profileName": "filipa",
+    "accountId": "account_2"
+  }
+]
