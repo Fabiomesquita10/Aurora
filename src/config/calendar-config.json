@@ -542,7 +542,7 @@
         "description": "Puzzle de Imagem",
         "gridSize": 3,
         "difficulty": "easy",
-        "imageUrl": "/src/games/Puzzle/foto.jpg"
+        "imageUrl": "/src/games/Puzzle/foto.JPG"
       }
     },
     {

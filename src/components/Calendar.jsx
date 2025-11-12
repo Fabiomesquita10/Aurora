@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useGameState } from '../utils/gameState'
 import { canUnlockDay as checkCanUnlockDay, getUnlockTime, formatTimeUntilUnlock } from '../utils/dateUtils'
 import { getCurrentProfile } from '../utils/userProfiles'
@@ -33,10 +33,127 @@ import NumberSequence from '../games/NumberSequence/NumberSequence'
 import FastMath from '../games/FastMath/FastMath'
 import PatternRecognition from '../games/PatternRecognition/PatternRecognition'
 import PrizeModal from './PrizeModal'
+import bgImage from '../public/images/bgImage.jpg'
 import './Calendar.css'
 import './GameSelection.css'
 
 const DAYS = Array.from({ length: 25 }, (_, i) => i + 1)
+
+// ============================================
+// IMAGEM DE FUNDO DO CALENDÁRIO
+// ============================================
+// A imagem bgImage.jpg está a ser usada como fundo do calendário.
+// Para usar uma imagem diferente, substitui o import acima e atualiza a constante abaixo.
+// Exemplo: import minhaImagem from '../caminho/para/imagem.jpg'
+// ============================================
+const CALENDAR_BACKGROUND_IMAGE = bgImage
+
+// Função para gerar número pseudo-aleatório determinístico
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000
+  return x - Math.floor(x)
+}
+
+// Função para embaralhar array usando Fisher-Yates com seed
+function shuffleArray(array, seed) {
+  const shuffled = [...array]
+  let randomIndex
+  let currentIndex = shuffled.length
+  
+  while (currentIndex !== 0) {
+    const randomValue = seededRandom(seed + currentIndex)
+    randomIndex = Math.floor(randomValue * currentIndex)
+    currentIndex--
+    
+    // Trocar elementos
+    [shuffled[currentIndex], shuffled[randomIndex]] = [
+      shuffled[randomIndex],
+      shuffled[currentIndex]
+    ]
+  }
+  
+  return shuffled
+}
+
+// ============================================
+// POSIÇÕES MANUAIS DO CALENDÁRIO
+// ============================================
+// Posições base bem distribuídas, depois randomizadas
+// Os números são embaralhados e as posições têm pequenas variações
+// Seed fixo (2024) garante consistência entre renderizações
+// ============================================
+function getManualPositions(seed = 2024) {
+  // Posições base bem distribuídas para evitar sobreposições
+  // Distribuição orgânica mas controlada
+  // Área útil: 12% a 88% (76% x 76%)
+  
+  const basePositions = [
+    // Topo esquerdo
+    { x: 18, y: 18, rotation: -4 },
+    { x: 38, y: 15, rotation: 3 },
+    { x: 58, y: 17, rotation: -2 },
+    { x: 78, y: 19, rotation: 5 },
+    { x: 88, y: 22, rotation: -3 },
+    
+    // Parte superior
+    { x: 15, y: 35, rotation: 2 },
+    { x: 35, y: 33, rotation: -5 },
+    { x: 52, y: 32, rotation: 4 },
+    { x: 72, y: 34, rotation: -2 },
+    { x: 85, y: 38, rotation: 3 },
+    
+    // Centro
+    { x: 17, y: 50, rotation: -3 },
+    { x: 36, y: 48, rotation: 4 },
+    { x: 50, y: 50, rotation: -1 },
+    { x: 68, y: 52, rotation: 2 },
+    { x: 83, y: 50, rotation: -4 },
+    
+    // Parte inferior
+    { x: 16, y: 65, rotation: 3 },
+    { x: 34, y: 67, rotation: -2 },
+    { x: 54, y: 68, rotation: 5 },
+    { x: 74, y: 66, rotation: -3 },
+    { x: 86, y: 62, rotation: 2 },
+    
+    // Baixo
+    { x: 20, y: 82, rotation: -4 },
+    { x: 40, y: 85, rotation: 3 },
+    { x: 60, y: 83, rotation: -2 },
+    { x: 80, y: 81, rotation: 4 },
+    { x: 88, y: 78, rotation: -3 },
+  ]
+  
+  // Embaralhar os números 1-25
+  const days = Array.from({ length: 25 }, (_, i) => i + 1)
+  const shuffledDays = shuffleArray(days, seed)
+  
+  // Criar posições finais com variações aleatórias
+  const positions = basePositions.map((basePos, index) => {
+    const day = shuffledDays[index]
+    
+    // Adicionar pequena variação aleatória nas posições (±4%)
+    const xVariation = (seededRandom(seed + day * 100) - 0.5) * 8
+    const yVariation = (seededRandom(seed + day * 200) - 0.5) * 8
+    
+    // Variação na rotação (±3 graus)
+    const rotationVariation = (seededRandom(seed + day * 300) - 0.5) * 6
+    
+    // Calcular posição final
+    const x = Math.max(12, Math.min(88, basePos.x + xVariation))
+    const y = Math.max(12, Math.min(88, basePos.y + yVariation))
+    const rotation = basePos.rotation + rotationVariation
+    
+    return {
+      day,
+      x,
+      y,
+      rotation
+    }
+  })
+  
+  return positions
+}
 
 function Calendar({ onNavigateToPresents }) {
   const { unlockedDays, unlockDay, addWonGame, addGameAttempt, addPoints, calculateWordlePoints, DEV_MODE, wonGames } = useGameState()
@@ -174,6 +291,11 @@ function Calendar({ onNavigateToPresents }) {
   const today = new Date()
   const currentDay = today.getDate()
   const isDecember = today.getMonth() === 11
+
+  // Usar posições manuais com números randomizados e variações nas posições
+  // Seed fixo (2024) garante que as posições são consistentes entre renderizações
+  // Mas os números aparecem em ordem diferente e as posições têm pequenas variações
+  const dayPositions = useMemo(() => getManualPositions(2024), [])
 
   if (gameDay) {
     const game = getDayGame(gameDay)
@@ -647,51 +769,76 @@ function Calendar({ onNavigateToPresents }) {
       <h2 className="calendar-title">Calendário de Advento</h2>
       <p className="calendar-subtitle">Clica num dia para desbloquear e jogar!</p>
       
-      <div className="calendar-grid">
-        {DAYS.map((day) => {
-          const status = getDayStatus(day)
-          const isToday = isDecember && currentDay === day
-          const unlockInfo = getDayUnlockInfo(day)
-          const game = getDayGame(day)
-          const gameOpenTime = game ? game.openTime : null
-          
-          return (
-            <div
-              key={day}
-              className={`calendar-day ${status} ${isToday ? 'today' : ''} ${hasWonGame(day) ? 'won' : ''}`}
-              onClick={() => status !== 'locked' && handleDayClick(day)}
-              title={gameOpenTime ? `Jogo abre às ${gameOpenTime}` : undefined}
-            >
-              <div className="day-number">{day}</div>
-              {hasWonGame(day) && (
-                <div className="day-icon">✅</div>
-              )}
-              {status === 'unlocked' && !hasWonGame(day) && (
-                <div className="day-icon">🎁</div>
-              )}
-              {status === 'locked' && (
-                <>
-                  <div className="day-icon">🔒</div>
-                  {unlockInfo && (
-                    <div className="unlock-time">{unlockInfo}</div>
-                  )}
-                  {gameOpenTime && (
-                    <div className="game-open-time">⏰ {gameOpenTime}</div>
-                  )}
-                </>
-              )}
-              {status === 'available' && !hasWonGame(day) && (
-                <>
-                  <div className="day-icon">✨</div>
-                  {gameOpenTime && (
-                    <div className="game-open-time">⏰ {gameOpenTime}</div>
-                  )}
-                </>
-              )}
-              {isToday && <div className="today-badge">Hoje</div>}
-            </div>
-          )
-        })}
+      <div 
+        className="calendar-background-wrapper"
+        style={CALENDAR_BACKGROUND_IMAGE ? {
+          backgroundImage: `url(${CALENDAR_BACKGROUND_IMAGE})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          maxWidth: '100%'
+        } : {
+          width: '100%',
+          maxWidth: '100%'
+        }}
+      >
+        <div className={`calendar-days-overlay ${CALENDAR_BACKGROUND_IMAGE ? 'has-background' : ''}`}>
+          {dayPositions.map(({ day, x, y, rotation }) => {
+            const status = getDayStatus(day)
+            const isToday = isDecember && currentDay === day
+            const unlockInfo = getDayUnlockInfo(day)
+            const game = getDayGame(day)
+            const gameOpenTime = game ? game.openTime : null
+            
+            const dayStyle = {
+              position: 'absolute',
+              left: `${x}%`,
+              top: `${y}%`,
+              transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+              '--rotation': `${rotation}deg`,
+            }
+            
+            // Só mostrar o número se o dia não estiver bloqueado
+            const isLocked = status === 'locked'
+            const isWon = hasWonGame(day)
+            
+            // Adicionar classe not-won apenas para dias desbloqueados que ainda não foram completados
+            const shouldBlink = status === 'unlocked' && !isWon
+            
+            return (
+              <div
+                key={day}
+                className={`calendar-day ${status} ${isToday ? 'today' : ''} ${isWon ? 'won' : ''} ${shouldBlink ? 'not-won' : ''}`}
+                onClick={() => status !== 'locked' && handleDayClick(day)}
+                title={gameOpenTime ? `Jogo abre às ${gameOpenTime}` : undefined}
+                style={dayStyle}
+              >
+                {/* Sempre mostrar o número - único elemento visível quando não desbloqueado */}
+                <div className="day-number">{day}</div>
+                
+                {/* Mostrar elementos apenas quando desbloqueado */}
+                {status === 'unlocked' && (
+                  <>
+                    {isWon && (
+                      <div className="day-icon">✅</div>
+                    )}
+                    {!isWon && (
+                      <div className="day-icon">🎁</div>
+                    )}
+                    {gameOpenTime && (
+                      <div className="game-open-time">⏰ {gameOpenTime}</div>
+                    )}
+                  </>
+                )}
+                
+                {/* Quando bloqueado ou available - não mostrar nada além do número */}
+                
+                {isToday && status === 'unlocked' && <div className="today-badge">Hoje</div>}
+              </div>
+            )
+          })}
+        </div>
       </div>
 
       {selectedDay && unlockedDays.includes(selectedDay) && hasWonGame(selectedDay) && (

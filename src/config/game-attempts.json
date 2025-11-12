@@ -1,5 +1,28 @@
 [
   {
+    "gameType": "photo-trivia",
+    "day": 20,
+    "date": "2025-11-12T15:28:05.837Z",
+    "won": true,
+    "attempts": 3,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 7,
+      "photoAttempts": [
+        1,
+        1,
+        1
+      ],
+      "hintsUsed": 0
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
     "gameType": "mini-sudoku",
     "day": 10,
     "date": "2025-11-10T15:29:52.000Z",
@@ -12,7 +35,7 @@
     "metadata": {
       "timeSeconds": 17
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -31,7 +54,7 @@
       "totalErrors": 1,
       "totalPatterns": 5
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -212,7 +235,7 @@
       "totalQuestions": 10,
       "questionsAnswered": 20
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -230,7 +253,7 @@
       "correctAnswers": 5,
       "totalSequences": 5
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -250,7 +273,7 @@
       "moves": 11,
       "totalPairs": 6
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -344,7 +367,7 @@
       ],
       "incorrectSongs": []
     },
-    "profileId": "profile_1762786546155_b6qda7u6e",
+    "profileId": "profile_1762290255457_zi0pg4kiu",
     "profileName": "Administrador",
     "accountId": "account_1"
   },
@@ -383,5 +406,73 @@
     "profileId": "profile_1762686666950_qwv1gg55b",
     "profileName": "filipa",
     "accountId": "account_2"
+  },
+  {
+    "gameType": "wordle",
+    "day": 3,
+    "date": "2025-11-04T21:15:45.792Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "wordle",
+    "day": 1,
+    "date": "2025-11-04T21:15:37.626Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "wordle",
+    "day": 2,
+    "date": "2025-11-04T21:15:29.798Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": 5,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 4
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
+  },
+  {
+    "gameType": "timeline",
+    "day": 1,
+    "date": "2025-11-04T21:15:20.470Z",
+    "won": true,
+    "attempts": 1,
+    "errors": 0,
+    "score": null,
+    "reactionTimes": null,
+    "answeredQuestions": null,
+    "metadata": {
+      "timeSeconds": 6
+    },
+    "profileId": "profile_1762290255457_zi0pg4kiu",
+    "profileName": "Administrador",
+    "accountId": "account_1"
   }
 ]

@@ -229,7 +229,14 @@ The application supports multiple users with individual progress tracking:
 
 ## 📱 Pages/Navigation
 
-1. **Calendar** 📅 - Grid of 25 days, clickable when available
+1. **Calendar** 📅 - Interactive advent calendar with personalized background image
+   - 25 days displayed over a custom background image
+   - Manual position layout for optimal visual distribution
+   - Randomized day numbers for added challenge
+   - Transparent numbers (30% opacity) when not unlocked
+   - Background box appears only when day is unlocked
+   - Blinking animation for unlocked days that haven't been completed
+   - Click on unlocked days to play the game
 2. **Presents** 🎁 - List of unlocked and won gifts
 3. **Shop** 🛍️ - Buy items with earned points
 4. **Wordles** 📝 - List of completed daily Wordles
@@ -269,6 +276,14 @@ The project includes a development mode (DEV_MODE) that allows:
 - `npm run dev:dev` - Development mode with dev tools and reset button
 - `npm run dev:player` - Player mode without dev tools (clean interface)
 
+### Customizing Calendar Visual
+The calendar uses a custom background image and manual position layout:
+- **Background Image**: Replace `src/public/images/bgImage.jpg` with your own image
+- **Position Layout**: Edit `getManualPositions()` in `src/components/Calendar.jsx` to adjust day positions
+- **Number Randomization**: Day numbers are shuffled using a seed (default: 2024) for consistency
+- **Transparency**: Adjust number opacity in `src/components/Calendar.css` (`.day-number` opacity property)
+- **Animations**: Modify blink animation in `src/components/Calendar.css` for different effects
+
 ### Adding User Accounts
 Edit `src/config/accounts.json` to add new users:
 ```json
@@ -288,6 +303,20 @@ Edit `src/config/accounts.json` to add new users:
 
 ## 🎯 Special Features
 
+### Visual Calendar System
+- **Custom Background Image**: Personalize the calendar with your own background image
+- **Manual Position Layout**: 25 day positions are manually defined for optimal visual distribution
+- **Randomized Day Numbers**: Day numbers (1-25) are shuffled and randomly assigned to positions for added challenge
+- **Smart Visibility System**:
+  - Numbers are transparent (30% opacity) when days are not unlocked
+  - Background boxes are invisible until a day is unlocked
+  - Only the number is visible for locked and available days
+  - Background box with blur effect appears when a day is unlocked
+- **Blinking Animation**: Unlocked days that haven't been completed have a subtle blinking animation to draw attention
+- **No Movement**: Numbers stay in fixed positions (no movement animations) to maintain mystery
+- **Position Variations**: Small random variations in position and rotation make each day unique while maintaining spacing
+
+### Other Features
 - **Multi-User Support**: Login system with individual progress tracking per user
 - **Cross-Browser Sync**: User progress automatically syncs across different browsers using `accountId`
 - **Dynamic Points System**: Points are calculated in real-time from all game attempts (not stored statically)

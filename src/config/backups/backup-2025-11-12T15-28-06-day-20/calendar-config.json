@@ -86,6 +86,36 @@
       "type": "photo-trivia",
       "description": "Trivia das Fotos",
       "instruction": "Adivinha o local de cada foto (com blur e cortada)!"
+    },
+    "box-choice": {
+      "type": "box-choice",
+      "description": "Caixa de Escolhas",
+      "instruction": "Escolhe uma das três caixas. Apenas uma tem o prémio!"
+    },
+    "musical-quiz": {
+      "type": "musical-quiz",
+      "description": "Quiz Musical",
+      "instruction": "Ouve o trecho de música e escolhe a resposta correta!"
+    },
+    "memory-game": {
+      "type": "memory-game",
+      "description": "Jogo de Memória",
+      "instruction": "Encontra todos os pares de cartas!"
+    },
+    "number-sequence": {
+      "type": "number-sequence",
+      "description": "Sequência Numérica",
+      "instruction": "Completa a sequência numérica!"
+    },
+    "fast-math": {
+      "type": "fast-math",
+      "description": "Matemática Rápida",
+      "instruction": "Resolve os cálculos o mais rápido possível!"
+    },
+    "pattern-recognition": {
+      "type": "pattern-recognition",
+      "description": "Reconhecimento de Padrões",
+      "instruction": "Identifica o padrão e escolhe o próximo elemento!"
     }
   },
   "days": [
@@ -152,18 +182,22 @@
         "points": 10
       },
       "game": {
-        "type": "wheel",
+        "type": "memory-game",
         "openTime": "21:00",
-        "description": "Roda da Sorte",
-        "prizes": [
-          { "id": 1, "name": "Chocolate 🍫", "description": "Bounty/mini-doce" },
-          { "id": 2, "name": "Rosa 🌹", "description": "Dar uma flor" },
-          { "id": 3, "name": "Beijo extra 💋", "description": "Beijo a pedido" },
-          { "id": 4, "name": "Bebida quente ☕", "description": "Café/chocolate quente juntos" },
-          { "id": 5, "name": "Escolher filme 🎬", "description": "Ela escolhe o próximo filme" },
-          { "id": 6, "name": "Mensagem secreta 💌", "description": "Carta guardada no site" },
-          { "id": 7, "name": "Sobremesa 🍪", "description": "Crumble/bolachas feitas por ti" },
-          { "id": 8, "name": "Foto nossa 📸", "description": "Foto impressa/Polaroid" }
+        "description": "Jogo de Memória",
+        "cards": [
+          { "id": "card1", "content": "🎵", "pair": "card1" },
+          { "id": "card1", "content": "🎵", "pair": "card1" },
+          { "id": "card2", "content": "❤️", "pair": "card2" },
+          { "id": "card2", "content": "❤️", "pair": "card2" },
+          { "id": "card3", "content": "⭐", "pair": "card3" },
+          { "id": "card3", "content": "⭐", "pair": "card3" },
+          { "id": "card4", "content": "🎁", "pair": "card4" },
+          { "id": "card4", "content": "🎁", "pair": "card4" },
+          { "id": "card5", "content": "🎄", "pair": "card5" },
+          { "id": "card5", "content": "🎄", "pair": "card5" },
+          { "id": "card6", "content": "🌟", "pair": "card6" },
+          { "id": "card6", "content": "🌟", "pair": "card6" }
         ]
       }
     },
@@ -508,7 +542,7 @@
         "description": "Puzzle de Imagem",
         "gridSize": 3,
         "difficulty": "easy",
-        "imageUrl": "/src/games/Puzzle/foto.jpg"
+        "imageUrl": "/src/games/Puzzle/foto.JPG"
       }
     },
     {
@@ -647,10 +681,27 @@
         "points": 15
       },
       "game": {
-        "type": "wordle",
+        "type": "box-choice",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "ESPIA"
+        "description": "Caixa de Escolhas",
+        "hint": "A dica ajuda-te a escolher qual abrir primeiro! 💡",
+        "boxes": [
+          {
+            "id": "box1",
+            "label": "Caixa 1",
+            "prize": "10"
+          },
+          {
+            "id": "box2",
+            "label": "Caixa 2",
+            "prize": "20"
+          },
+          {
+            "id": "box3",
+            "label": "Caixa 3",
+            "prize": "30"
+          }
+        ]
       }
     },
     {
@@ -663,26 +714,41 @@
         "points": 25
       },
       "game": {
-        "type": "wordle",
+        "type": "musical-quiz",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "UNICO"
-      }
-    },
-    {
-      "day": 22,
-      "gift": {
-        "title": "Presente pequeno 💎",
-        "description": "Fio especial",
-        "category": "Medium",
-        "estimatedPrice": 10,
-        "points": 15
-      },
-      "game": {
-        "type": "wordle",
-        "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "MEIGO"
+        "description": "Quiz Musical",
+        "songs": [
+          {
+            "id": "song1",
+            "audio": "/src/games/MusicalQuiz/audio/song1.mp3",
+            "options": ["Maria", "Apaixonei", "Monstro"],
+            "correct": 0
+          },
+          {
+            "id": "song2",
+            "audio": "/src/games/MusicalQuiz/audio/song2.mp3",
+            "options": ["No tiene sentido", "Ojitos Lindos", "Aurora"],
+            "correct": 2
+          },
+          {
+            "id": "song3",
+            "audio": "/src/games/MusicalQuiz/audio/song3.mp3",
+            "options": ["Fardos", "Smack That", "They not like us"],
+            "correct": 0
+          },
+          {
+            "id": "song4",
+            "audio": "/src/games/MusicalQuiz/audio/song4.mp3",
+            "options": ["Big Boss", "Tikiti", "Ponto de interrogacao"],
+            "correct": 1
+          },
+          {
+            "id": "song5",
+            "audio": "/src/games/MusicalQuiz/audio/song5.mp3",
+            "options": ["Somertime Sadness", "Mockinbird", "The Fate of Ophelia"],
+            "correct": 2
+          }
+        ]
       }
     },
     {
@@ -695,10 +761,41 @@
         "points": 25
       },
       "game": {
-        "type": "wordle",
+        "type": "number-sequence",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "OLHAR"
+        "description": "Sequência Numérica",
+        "sequences": [
+          {
+            "id": "seq1",
+            "sequence": [2, 4, 6, 8, "?"],
+            "answer": 10,
+            "hint": "Soma 2 a cada número"
+          },
+          {
+            "id": "seq2",
+            "sequence": [1, 3, 5, 7, "?"],
+            "answer": 9,
+            "hint": "Números ímpares"
+          },
+          {
+            "id": "seq3",
+            "sequence": [5, 10, 15, 20, "?"],
+            "answer": 25,
+            "hint": "Multiplica por 5"
+          },
+          {
+            "id": "seq4",
+            "sequence": [3, 6, 9, 12, "?"],
+            "answer": 15,
+            "hint": "Múltiplos de 3"
+          },
+          {
+            "id": "seq5",
+            "sequence": [1, 4, 9, 16, "?"],
+            "answer": 25,
+            "hint": "Números ao quadrado"
+          }
+        ]
       }
     },
     {
@@ -711,10 +808,22 @@
         "points": 15
       },
       "game": {
-        "type": "wordle",
+        "type": "fast-math",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "TOQUE"
+        "description": "Matemática Rápida",
+        "timeLimit": 30,
+        "questions": [
+          { "question": "5 + 3", "answer": 8 },
+          { "question": "10 - 4", "answer": 6 },
+          { "question": "7 × 2", "answer": 14 },
+          { "question": "15 ÷ 3", "answer": 5 },
+          { "question": "9 + 6", "answer": 15 },
+          { "question": "12 - 5", "answer": 7 },
+          { "question": "4 × 3", "answer": 12 },
+          { "question": "20 ÷ 4", "answer": 5 },
+          { "question": "8 + 7", "answer": 15 },
+          { "question": "16 - 9", "answer": 7 }
+        ]
       }
     },
     {
@@ -727,41 +836,73 @@
         "points": 100
       },
       "game": {
-        "type": "wordle",
+        "type": "pattern-recognition",
         "openTime": "21:00",
-        "description": "Wordle Romântico",
-        "word": "ENVIA"
+        "description": "Reconhecimento de Padrões",
+        "patterns": [
+          {
+            "id": "pattern1",
+            "sequence": ["🔴", "🔵", "🔴", "🔵", "?"],
+            "options": ["🔴", "🔵", "🟢"],
+            "correct": 0,
+            "hint": "Alterna entre vermelho e azul"
+          },
+          {
+            "id": "pattern2",
+            "sequence": ["⭐", "⭐", "❤️", "⭐", "⭐", "?"],
+            "options": ["⭐", "❤️", "🎁"],
+            "correct": 1,
+            "hint": "Dois estrelas, um coração"
+          },
+          {
+            "id": "pattern3",
+            "sequence": ["⬆️", "➡️", "⬇️", "⬅️", "?"],
+            "options": ["⬆️", "➡️", "⬇️"],
+            "correct": 0,
+            "hint": "Roda no sentido dos ponteiros do relógio"
+          },
+          {
+            "id": "pattern4",
+            "sequence": ["🎵", "🎵", "🎵", "❤️", "🎵", "🎵", "?"],
+            "options": ["🎵", "❤️", "⭐"],
+            "correct": 0,
+            "hint": "Três músicas, um coração"
+          },
+          {
+            "id": "pattern5",
+            "sequence": ["1", "2", "3", "1", "2", "?"],
+            "options": ["1", "2", "3"],
+            "correct": 2,
+            "hint": "Repete o padrão 1-2-3"
+          }
+        ]
       }
     }
   ],
   "examples": {
-    "quiz": {
-      "day": 26,
+    "quiz":     
+    {
+      "day": 3,
+      "gift": {
+        "title": "Carta escrita à mão 💌",
+        "description": "Palavras do coração",
+        "category": "Low",
+        "estimatedPrice": 0,
+        "points": 10
+      },
       "game": {
-        "type": "quiz",
+        "type": "wheel",
         "openTime": "21:00",
-        "description": "Quiz de Relacionamento",
-        "questions": [
-          {
-            "id": 1,
-            "question": "Qual foi o nosso primeiro encontro?",
-            "options": [
-              { "id": "a", "text": "Noite fora", "correct": true },
-              { "id": "b", "text": "Cinema", "correct": false },
-              { "id": "c", "text": "Praia", "correct": false },
-              { "id": "d", "text": "Jantar romântico", "correct": false }
-            ]
-          },
-          {
-            "id": 2,
-            "question": "Qual é a nossa comida favorita?",
-            "options": [
-              { "id": "a", "text": "Pizza", "correct": false },
-              { "id": "b", "text": "Sushi", "correct": false },
-              { "id": "c", "text": "Hambúrguer", "correct": false },
-              { "id": "d", "text": "A que fazemos juntos", "correct": true }
-            ]
-          }
+        "description": "Roda da Sorte",
+        "prizes": [
+          { "id": 1, "name": "Chocolate 🍫", "description": "Bounty/mini-doce" },
+          { "id": 2, "name": "Rosa 🌹", "description": "Dar uma flor" },
+          { "id": 3, "name": "Beijo extra 💋", "description": "Beijo a pedido" },
+          { "id": 4, "name": "Bebida quente ☕", "description": "Café/chocolate quente juntos" },
+          { "id": 5, "name": "Escolher filme 🎬", "description": "Ela escolhe o próximo filme" },
+          { "id": 6, "name": "Mensagem secreta 💌", "description": "Carta guardada no site" },
+          { "id": 7, "name": "Sobremesa 🍪", "description": "Crumble/bolachas feitas por ti" },
+          { "id": 8, "name": "Foto nossa 📸", "description": "Foto impressa/Polaroid" }
         ]
       }
     },
